@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "root",
+    "password": "1992",
+    "database": "the_smith_Group",
+    "host": "localhost",
+    "dialect": "mysql",
+    "operatorsAliases": 0
+  },
+  "test": {
+    "username": "root",
+    "password": "1992",
+    "database": "the_smith_Group",
+    "host": "localhost",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "root",
+    "password": "1992",
+    "database": "the_smith_Group",
+    "host": "localhost",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  }
+}
