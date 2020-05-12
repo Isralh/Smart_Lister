@@ -1,0 +1,6 @@
+export const FrontImage = require('./FrontImage.jpg')
+export const FrontImage2 = require('./FrontImage2.jpg')
+export const FrontImage3 = require('./FrontImage3.jpg')
+export const SRDInside = require('./SRDInside.jpg')
+export const Image = require('./Image.jpg')
+export const Video = require('./House_Video.mp4')

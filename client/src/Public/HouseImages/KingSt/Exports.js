@@ -1,0 +1,6 @@
+export const KSBack = require('./KSBack.jpg')
+export const KSFront = require('./KSFront.jpg')
+export const KSKitchen = require('./KSKitchen.jpg')
+export const KSKitchenSecond = require('./KSKitchenSecond.jpg')
+export const KSOutside = require('./KSOutside.jpg')
+export const KSOutsideSecond = require('./KSOutsideSecond.jpg')
