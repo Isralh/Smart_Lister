@@ -54,6 +54,9 @@ export default function Home () {
     setLoginView(!loginView)
     setRegisterView(!registerView)
   }
+  const closeRegisterModal = () => {
+    setRegisterView(false)
+  }
   useEffect(() => {
     console.log(loginView)
   })
@@ -65,7 +68,7 @@ export default function Home () {
       <Properties />
       <Portfolio />
       <Communities />
-      <Register registerModal={registerView} displayLogin={toggleLogin} />
+      <Register registerModal={registerView} displayLogin={toggleLogin} registerClose={closeRegisterModal}/>
       <Login loginModal={loginView} displayRegister={toggleRegisteration} />
       <Footer />
     </Container>
