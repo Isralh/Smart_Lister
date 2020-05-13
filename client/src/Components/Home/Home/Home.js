@@ -8,6 +8,7 @@ import Communities from '../Communities/Communities'
 import Footer from '../Footer/Footer'
 import Properties from '../Properties/Properties'
 import axios from 'axios'
+import Register from '../Login/Register/Register'
 
 export default function Home () {
   const [housedata, sethouseData] = useState([])
@@ -34,14 +35,23 @@ export default function Home () {
     return ['1346 Columbia Avenue', '1051 Fruitville Pike', '821 Lititz Pike'].indexOf(house.Address) !== -1
   })
   console.log(houses)
+
+  const [registerView, setRegisterView] = useState(false)
+  const handleRegisterView = () => {
+    setRegisterView(!registerView)
+  }
+  useEffect(() => {
+    console.log(registerView)
+  })
   return (
     <Container>
-      <Nav />
+      <Nav toggleRegister={handleRegisterView} />
       <FrontView />
       <WhoWeAre />
       <Properties />
       <Portfolio />
       <Communities />
+      <Register registerModal={registerView} />
       <Footer />
     </Container>
   )
