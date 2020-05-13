@@ -8,6 +8,12 @@
 # testing
 /coverage
 
+#ApiKey
+apiKey.js
+
+#vsCode Warning
+/.vscode
+
 # production
 /build
 

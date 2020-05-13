@@ -1,8 +1,2 @@
 # dependencies
 /node_modules
-
-#ApiKey
-apiKey.js
-
-#vsCode Warning
-/.vscode
