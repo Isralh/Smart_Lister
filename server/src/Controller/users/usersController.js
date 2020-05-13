@@ -34,7 +34,7 @@ exports.register = async (req, res) => {
       password: await bcrypt.hash(password, 8),
       confirmPassword: await bcrypt.hash(confirmPassword, 8)
     })
-  } catch {
-
+  } catch (e) {
+    console.log(e)
   }
 }
