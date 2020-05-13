@@ -23,32 +23,32 @@ position:relative;
 @media (min-width:320px){
 margin: 15vh 5% 0vh 5%;
 background:white;
-height:75vh;
+height:50vh;
 }
 @media (min-width:400px){
 margin: 15vh 15% 0% 15%;
 background:white;
-height:75vh;
+height:50vh;
 }
 @media (min-width:500px){
 margin: 15vh 25% 0% 25%;
 background:white;
-height:75vh;
+height:50vh;
 }
 @media (min-width:650px){
 margin: 15vh 30% 0% 30%;
 background:white;
-height:75vh;
+height:50vh;
 }
 @media (min-width:850px){
 margin: 15vh 35% 0% 35%;
 background:white;
-height:75vh;
+height:50vh;
 }
 @media (min-width:850px){
 margin: 15vh 36% 0% 36%;
 background:white;
-height:75vh;
+height:50vh;
 }
 h1{
     padding-top:5%;

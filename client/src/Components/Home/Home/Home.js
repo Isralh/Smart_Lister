@@ -9,7 +9,7 @@ import Footer from '../Footer/Footer'
 import Properties from '../Properties/Properties'
 import axios from 'axios'
 import Register from '../Login/Register/Register'
-
+import Login from '../Login/Login/Login'
 export default function Home () {
   const [housedata, sethouseData] = useState([])
   const [imageKey, setImageKey] = useState([])
@@ -36,22 +36,37 @@ export default function Home () {
   })
   console.log(houses)
 
+  // state to define hamburger nav and close it when the register modal is open
+  const [openNav, setOpenNav] = useState()
+
+  // state to toggle our register modal to open and close
   const [registerView, setRegisterView] = useState(false)
+  const [loginView, setLoginView] = useState(false)
   const handleRegisterView = () => {
+    setLoginView(!loginView)
+    setOpenNav(!openNav)
+  }
+  const toggleLogin = () => {
+    setRegisterView(!registerView)
+    setLoginView(!loginView)
+  }
+  const toggleRegisteration = () => {
+    setLoginView(!loginView)
     setRegisterView(!registerView)
   }
   useEffect(() => {
-    console.log(registerView)
+    console.log(loginView)
   })
   return (
     <Container>
-      <Nav toggleRegister={handleRegisterView} />
+      <Nav toggleRegister={handleRegisterView} navOpen={openNav} setNavOpen={setOpenNav} />
       <FrontView />
       <WhoWeAre />
       <Properties />
       <Portfolio />
       <Communities />
-      <Register registerModal={registerView} />
+      <Register registerModal={registerView} displayLogin={toggleLogin} />
+      <Login loginModal={loginView} displayRegister={toggleRegisteration} />
       <Footer />
     </Container>
   )
