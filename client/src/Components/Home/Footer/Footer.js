@@ -9,7 +9,7 @@ const Footer = () => {
     <SectionWrapper>
       <AboutCompanyWrapper>
         <CompanyInfoWrapper>
-          <h1>THE MITH GROUP</h1>
+          <h1>THE SMITH GROUP</h1>
           <p>562 Stanley Avenue</p>
           <p>King of Prussia, PA 19406</p>
           <p>+1 717 342 0012</p>
