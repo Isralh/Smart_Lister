@@ -8,8 +8,8 @@ import Communities from '../Communities/Communities'
 import Footer from '../Footer/Footer'
 import Properties from '../Properties/Properties'
 import axios from 'axios'
-import Register from '../Login/Register/Register'
-import Login from '../Login/Login/Login'
+import Register from '../Authentication/Register/Register'
+import Login from '../Authentication/Login/Login'
 export default function Home () {
   const [housedata, sethouseData] = useState([])
   const [imageKey, setImageKey] = useState([])
