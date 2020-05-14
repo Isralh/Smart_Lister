@@ -9,14 +9,6 @@ module.exports = Database.define('users', ({
     primaryKey: true,
     autoIncrement: true
   },
-  firstName: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  lastName: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -34,7 +26,10 @@ module.exports = Database.define('users', ({
   },
   confirmPassword: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      min: 6
+    }
   }
 }))
 
