@@ -1,23 +1,16 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Container, ModalWrapper, Content } from './RegisterStyling'
-import Authentication from '../Authentication/Authentication'
+import Services from './Services'
 
-function Register ({
-  registerModal, displayLogin, registerClose, userInfo, getEmail,
-  getPassword, getConfirmedPassword
-}) {
-  const [user, handleEmail, handlePassword, handleConfirmPassword] = Authentication({ userInfo, getEmail, getPassword, getConfirmedPassword })
-  useEffect(() => {
-    console.log(user.email)
-    console.log(user.password)
-    console.log(user.confirmPassword)
-  })
+function Register ({ registerModal, displayLogin, registerClose, userInfo, getEmail, getPassword, getConfirmedPassword, postRegisteration }) {
+  const [user, handleEmail, handlePassword, handleConfirmPassword, handleRegisteration] = Services({ userInfo, getEmail, getPassword, getConfirmedPassword, postRegisteration })
+
   return (
     <Container show={registerModal}>
       <ModalWrapper>
         <Content>
           <h1>Register</h1>
-          <form>
+          <form onSubmit={handleRegisteration}>
             <input type='text' name='email' value={user.email} placeholder='Email' required onChange={handleEmail} />
             <input type='text' name='password' value={user.password} placeholder='Password' required onChange={handlePassword} />
             <input type='text' name='confirmPassword' value={user.confirmPassword} placeholder='Confirm Password' required onChange={handleConfirmPassword} />
