@@ -1,6 +1,9 @@
 const Users = require('../../models/users')
-var bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const config = require('../../config/jwtConfig.json')
 
+// function to register user
 exports.register = async (req, res) => {
   const userData = await req.body
   const { email } = userData
@@ -35,3 +38,56 @@ exports.register = async (req, res) => {
     return res.status(404).send({ message: 'server error', e })
   }
 }
+
+// function to login user
+exports.login = async (req, res) => {
+  const userData = await req.body
+  const { email } = userData
+  const { password } = userData
+
+  // search from database if the email sent from the user exists
+  const existingUser = await Users.findOne({ where: { email: email } })
+  try {
+  // if email doesn't exist
+    if (existingUser < 1) { return res.status(200).send({ message: 'user not found ' }) }
+    if (existingUser) {
+      bcrypt.compare(password, existingUser.password).then(result => {
+        if (result) {
+          const token = jwt.sign({
+            email: existingUser.email
+          }, config.jwtSecret, {
+            expiresIn: '1hr'
+          })
+          return res.status(202).send({ message: 'successfuly signed in', token: token })
+        } else { return res.status(200).send({ message: 'incorrect password ' }) }
+      }).catch(e => console.log(e))
+    }
+  } catch (e) {
+    console.log(e)
+    return res.status(404).send({ message: 'server error' })
+  }
+}
+
+// try {
+//   // if email doesn't exist
+//   if (existingUser < 1) { return res.status(200).send({ message: 'user not found ' }) }
+
+//   // if email exists compare the password and authenticate
+//   if (existingUser) {
+//     bcrypt.compare(password, existingUser.password, (err, result) => {
+//       if (err) { return res.status(200).send({ message: 'Incorrect password' }) }
+//       if (result) {
+//         const token = jwt.sign({
+//           email: existingUser.email
+//         }, config.jwtSecret, {
+//           expiresIn: '1hr'
+//         })
+//         return res.status(200).send({ message: 'successfuly signed in', token: token })
+//       }
+//     })
+//   }
+// } catch (e) {
+//   console.log(e)
+//   return res.status(404).send({ message: 'server error' })
+// }
+// }

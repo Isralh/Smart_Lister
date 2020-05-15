@@ -7,8 +7,8 @@ export default function Login ({ loginModal, displayRegister, handleSubmit, hand
         <Content>
           <h1>Login</h1>
           <form onSubmit={handleSubmit}>
-            <input type='text' name='Email' placeholder='Email' required onChange={handleEmail}/>
-            <input type='text' name='Password' placeholder='Password' required onChange={handlePassword}/>
+            <input type='text' name='Email' placeholder='Email' required onChange={handleEmail} />
+            <input type='text' name='Password' placeholder='Password' required onChange={handlePassword} />
             <button type='submit'>Login</button>
           </form>
           <p onClick={loginClose}>Close </p>
