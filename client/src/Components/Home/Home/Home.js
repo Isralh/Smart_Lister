@@ -8,8 +8,8 @@ import Communities from '../Communities/Communities'
 import Footer from '../Footer/Footer'
 import Properties from '../Properties/Properties'
 import axios from 'axios'
-import Register from '../Authentication/Register/Register'
-import Login from '../Authentication/Login/Login'
+import RegisterContainer from '../Authentication/Register/RegisterContainer'
+import LoginContainer from '../Authentication/Login/LoginContainer'
 export default function Home () {
   const [housedata, sethouseData] = useState([])
   const [imageKey, setImageKey] = useState([])
@@ -57,6 +57,9 @@ export default function Home () {
   const closeRegisterModal = () => {
     setRegisterView(false)
   }
+  const closeLoginModal = () => {
+    setLoginView(false)
+  }
   useEffect(() => {
     console.log(loginView)
   })
@@ -68,8 +71,8 @@ export default function Home () {
       <Properties />
       <Portfolio />
       <Communities />
-      <Register registerModal={registerView} displayLogin={toggleLogin} registerClose={closeRegisterModal}/>
-      <Login loginModal={loginView} displayRegister={toggleRegisteration} />
+      <RegisterContainer registerModal={registerView} displayLogin={toggleLogin} registerClose={closeRegisterModal} />
+      <LoginContainer loginModal={loginView} displayRegister={toggleRegisteration} loginClose={closeLoginModal} />
       <Footer />
     </Container>
   )

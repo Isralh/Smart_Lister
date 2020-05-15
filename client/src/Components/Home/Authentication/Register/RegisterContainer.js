@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
-
-export default function Services () {
+import Register from './Register'
+export default function RegisterContainer ({ registerModal, displayLogin, registerClose }) {
   // state to hold our user Info from our Register Input
   const [userInfo, setUserInfo] = useState({
     email: '',
@@ -31,6 +31,7 @@ export default function Services () {
     })
   }
 
+  console.log(userInfo)
   // post to database userInfo using axios
   const registerUrl = 'http://localhost:3001/api/register'
 
@@ -44,6 +45,18 @@ export default function Services () {
     }
   }
 
-  // return the state and logical functions to our login and registration components
-  return [userInfo, getEmail, getPassword, getConfirmedPassword, postRegisteration]
+  // return the view to our Home Component
+  return (
+    <Register
+      registerModal={registerModal}
+      displayLogin={displayLogin}
+      registerClose={registerClose}
+      handleRegisteration={postRegisteration}
+      email={userInfo.email}
+      password={userInfo.password}
+      confirmPassword={userInfo.confirmPassword}
+      handleEmail={getEmail}
+      handlePassword={getPassword}
+      handleConfirmPassword={getConfirmedPassword}    />
+  )
 }
