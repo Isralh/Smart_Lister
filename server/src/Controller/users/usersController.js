@@ -32,7 +32,12 @@ exports.register = async (req, res) => {
       password: await bcrypt.hash(password, 8),
       confirmPassword: await bcrypt.hash(confirmPassword, 8)
     })
-    return res.status(201).send({ message: 'user created successfully' })
+    const token = jwt.sign({
+      email: email
+    }, config.jwtSecret, {
+      expiresIn: '1hr'
+    })
+    return res.status(201).send({ message: 'user created successfully', token: token })
   } catch (e) {
     console.log(e)
     return res.status(404).send({ message: 'server error', e })
