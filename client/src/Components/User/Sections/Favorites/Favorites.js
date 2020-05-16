@@ -1,8 +1,8 @@
 import React from 'react'
 import { Container } from './FavortiesStyling'
-export default function Favorites () {
+export default function Favorites ({ showFavorites }) {
   return (
-    <Container>
+    <Container viewFavorites={showFavorites}>
             Favories
     </Container>
   )

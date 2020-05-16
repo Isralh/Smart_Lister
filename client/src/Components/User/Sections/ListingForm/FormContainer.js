@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from './FormStyling'
-export default function FormContainer () {
+export default function FormContainer ({ showListingForm }) {
   return (
-    <Container>List House</Container>
+    <Container viewForm={showListingForm}>List House</Container>
   )
 }

@@ -13,9 +13,7 @@ h1{
     font-size: 18px;
     height:20px;
     :hover {
-        /* text-decoration:underline;
-        text-decoration-color:lightblue; */
-        border-bottom: 3px solid lightblue;
+        border-bottom: 3px solid #19334d;
         cursor:pointer;
     }
 }
