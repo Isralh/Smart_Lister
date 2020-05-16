@@ -1,13 +1,13 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useState } from 'react'
 import { Container } from './LayoutStyling'
 import { ViewContext } from '../../Section/Container/SectionContainer'
 // presentational component
-export function Layout ({ pageLinks, showLayout }) {
+export function Layout ({ pageLinks, showLayout, handleActive }) {
   return (
 
     <Container>
       {pageLinks.map(link =>
-        <h1 key={link.keyId} onClick={showLayout.bind(this, link)}> {link.heading} </h1>)}
+        <h1 key={link.keyId} onClick={showLayout.bind(this, link)} active={handleActive}> {link.heading} </h1>)}
     </Container>
   )
 }
@@ -23,14 +23,10 @@ export default function LayoutContainer () {
   // function to set the view from the section container through the context we passed through, this function sets the view
   // and changes it dynamically on click... the function passed through as props comes from our layout component and binds the
   // links we have in the user's page
-
-  const layoutView = async (link) => {
-    const data = await link.heading
+  const layoutView = (link) => {
+    const data = link.heading
     setContext(data)
   }
-  useEffect(() => {
-    console.log(context)
-  })
   return (
     <Layout pageLinks={links} showLayout={layoutView} />
   )
