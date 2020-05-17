@@ -31,4 +31,3 @@ export default function Nav ({ toggleRegister, navOpen, setNavOpen }) {
     </Container>
   )
 }
-
