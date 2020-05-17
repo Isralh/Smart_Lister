@@ -72,27 +72,3 @@ exports.login = async (req, res) => {
     return res.status(404).send({ message: 'server error' })
   }
 }
-
-// try {
-//   // if email doesn't exist
-//   if (existingUser < 1) { return res.status(200).send({ message: 'user not found ' }) }
-
-//   // if email exists compare the password and authenticate
-//   if (existingUser) {
-//     bcrypt.compare(password, existingUser.password, (err, result) => {
-//       if (err) { return res.status(200).send({ message: 'Incorrect password' }) }
-//       if (result) {
-//         const token = jwt.sign({
-//           email: existingUser.email
-//         }, config.jwtSecret, {
-//           expiresIn: '1hr'
-//         })
-//         return res.status(200).send({ message: 'successfuly signed in', token: token })
-//       }
-//     })
-//   }
-// } catch (e) {
-//   console.log(e)
-//   return res.status(404).send({ message: 'server error' })
-// }
-// }

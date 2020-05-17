@@ -1,13 +1,21 @@
 const Database = require('../Database/Connection')
 const { DataTypes } = require('sequelize')
 
-module.exports = Database.define('users', ({
+const Users = Database.define('users', ({
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     unique: true,
     primaryKey: true,
     autoIncrement: true
+  },
+  firstName: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  lastName: {
+    type: DataTypes.STRING,
+    allowNull: false
   },
   email: {
     type: DataTypes.STRING,
@@ -16,6 +24,10 @@ module.exports = Database.define('users', ({
     validate: {
       isEmail: true
     }
+  },
+  phone: {
+    type: DataTypes.STRING,
+    allowNull: true
   },
   password: {
     type: DataTypes.STRING,

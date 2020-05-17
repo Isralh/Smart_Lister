@@ -2,12 +2,11 @@ import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import Register from './Register'
 import { useHistory } from 'react-router-dom'
-import { loggInStatus } from '../../../../App'
 export default function RegisterContainer ({ registerModal, displayLogin, registerClose }) {
-  // setInputState(prev => ({ ...prev, [e.target.name]: e.target.value }))
-
   // state to hold our user Info from our Register Input
   const [userInfo, setUserInfo] = useState({
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
     confirmPassword: ''
@@ -20,11 +19,12 @@ export default function RegisterContainer ({ registerModal, displayLogin, regist
     setUserInfo(prev => ({ ...prev, [e.target.name]: userInput }))
   }
 
-  // post to database userInfo using axios
+  // post to database user's Info using axios
   const registerUrl = 'http://localhost:3001/api/register'
   const userToken = window.localStorage
-  const [userStatus, setStatus] = useContext(loggInStatus)
   const history = useHistory()
+
+  // function that handles our registration and posting to mysql database
   const postRegisteration = async (e) => {
     e.preventDefault()
     const registerData = await axios.post(registerUrl, userInfo)
@@ -35,7 +35,7 @@ export default function RegisterContainer ({ registerModal, displayLogin, regist
       if (registerData.status === 201) {
         console.log(registerData.data.message)
         userToken.setItem('token', registerData.data.token)
-        history.push('/')
+        history.push('/user')
       }
     } catch (e) {
       console.log(e)
@@ -51,6 +51,8 @@ export default function RegisterContainer ({ registerModal, displayLogin, regist
       displayLogin={displayLogin}
       registerClose={registerClose}
       handleRegisteration={postRegisteration}
+      firstName={userInfo.firstName}
+      lastName={userInfo.lastName}
       email={userInfo.email}
       password={userInfo.password}
       confirmPassword={userInfo.confirmPassword}
