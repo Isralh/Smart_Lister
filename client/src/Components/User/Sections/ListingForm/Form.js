@@ -1,38 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import FormLayout from './FormLayout'
+import { firstInput, secondInput, thirdInput } from './DefinedInputs'
 export default function Form ({ viewListingForm }) {
-  // first step form inputs
-  const firstInput = [{
-    id: 1, name: 'address', label: 'Address', type: 'text'
-  }, {
-    id: 2, name: 'cityState', label: 'City, State', type: 'text'
-  }, {
-    id: 3, name: 'zip', label: 'Zipcode', type: 'number'
-  }, {
-    id: 4, name: 'longitude', label: 'Longitude', type: 'number'
-  }, {
-    id: 5, name: 'latitude', label: 'Latitude', type: 'number'
-  }]
-
-  // second step form inputs
-  const secondInput = [{
-    id: 1, name: 'beds', label: 'Beds', type: 'number'
-  }, {
-    id: 2, name: 'baths', label: 'Baths', type: 'number'
-  }, {
-    id: 3, name: 'sqFt', label: 'SqFt', type: 'number'
-  }, {
-    id: 4, name: 'garages', label: 'Garages', type: 'number'
-  }]
-
-  // third step form inputs
-  const thirdInput = [{
-    id: 5, name: 'price', label: 'Price', type: 'number'
-  }, {
-    id: 6, name: 'propertyType', label: 'Property Type', type: 'text'
-  }]
-
-  // state that hold our step views in the form submission process
+  // state that holds our step views in the form submission process
   const [stepView, setStepView] = useState({
     showFirst: true,
     showSecond: false,
@@ -47,15 +17,19 @@ export default function Form ({ viewListingForm }) {
   // function to go to next step on button click
   const showNextStep = (e) => {
     // we're setting prevent default when index is 2 b/c that when our submit button is invoked
+    // and when index is 2 we submit our data to our backend
     if (stepView.index === 2) {
       e.preventDefault()
+      console.log(inputState)
     }
+
+    // go to the next step in the process
     if (stepView.index < 2) {
       setStepView(prev => { return { ...prev, index: prev.index + 1 } })
     }
   }
 
-  // function to go to prev step on button click
+  // function to go to prev step of the submission process on button click
   const showPrevStep = () => {
     setStepView(prev => { return { ...prev, index: prev.index - 1 } })
   }
@@ -99,13 +73,22 @@ export default function Form ({ viewListingForm }) {
     image: []
   })
 
+  // onChange function that get user's input values
   const getUsersInput = (e) => {
     e.persist()
     setInputState(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
-  const getHouseImage = (e) => {
 
+  // onChange function that gets user's image file and sets the image property in our inputState
+  const getHouseImage = (e) => {
+    const imageFiles = e.target.files
+    const filename = []
+    for (const image of imageFiles) {
+      filename.push(image.name)
+    }
+    setInputState(prev => { return { ...prev, image: filename } })
   }
+
   useEffect(() => {
     viewChanges()
   }, [stepView.index, inputState])

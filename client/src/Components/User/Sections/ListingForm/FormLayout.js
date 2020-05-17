@@ -32,7 +32,7 @@ export default function FormLayout ({
                 <input type={input.type} name={input.name} required multiple onChange={handleChange} /> <br />
               </div>)}
             <label>Images</label><br />
-            <input type='file' name='image' required multiple onChange={handleImage}/>
+            <input type='file' name='image' required multiple onChange={handleImage} />
           </ThirdStep>
           {/* changeFlex will change the flex position of the buttons based on if showPrev (show previous button) is true or not */}
           <ButtonContainer changeFlex={showPrevBtn}>

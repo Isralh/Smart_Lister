@@ -10,16 +10,11 @@ export default function LoginContainer ({ loginModal, displayRegister, loginClos
     password: ''
   })
 
-  // function to set the user's email
-  const getEmail = (e) => {
-    const emailInput = e.target.value
-    setUser(prev => { return { ...prev, email: emailInput } })
-  }
-
-  // function to set the user's password
-  const getPassword = (e) => {
-    const passwordInput = e.target.value
-    setUser(prev => { return { ...prev, password: passwordInput } })
+  // function to get user's input and update state
+  const handleUsersinput = (e) => {
+    e.persist()
+    const inputValue = e.target.value
+    setUser(prev => ({ ...prev, [e.target.name]: inputValue }))
   }
 
   const userToken = window.localStorage
@@ -51,8 +46,7 @@ export default function LoginContainer ({ loginModal, displayRegister, loginClos
       loginModal={loginModal}
       displayRegister={displayRegister}
       loginClose={loginClose}
-      handleEmail={getEmail}
-      handlePassword={getPassword}
+      handleChange={handleUsersinput}
       handleSubmit={loginUser}
     />
   )

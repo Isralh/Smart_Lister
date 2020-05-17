@@ -1,9 +1,11 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import Register from './Register'
 import { useHistory } from 'react-router-dom'
 import { loggInStatus } from '../../../../App'
 export default function RegisterContainer ({ registerModal, displayLogin, registerClose }) {
+  // setInputState(prev => ({ ...prev, [e.target.name]: e.target.value }))
+
   // state to hold our user Info from our Register Input
   const [userInfo, setUserInfo] = useState({
     email: '',
@@ -11,29 +13,13 @@ export default function RegisterContainer ({ registerModal, displayLogin, regist
     confirmPassword: ''
   })
 
-  // onChange get user's email registration input
-  const getEmail = (e) => {
-    const userEmail = e.target.value
-    setUserInfo(prev => {
-      return { ...prev, email: userEmail }
-    })
-  }
-  // onChange get user's password registration input
-  const getPassword = (e) => {
-    const userPassword = e.target.value
-    setUserInfo(prev => {
-      return { ...prev, password: userPassword }
-    })
-  }
-  // onChange get user's confirmed Password registration input
-  const getConfirmedPassword = (e) => {
-    const userConfirmedPassword = e.target.value
-    setUserInfo(prev => {
-      return { ...prev, confirmPassword: userConfirmedPassword }
-    })
+  // onChange get user's registration input
+  const getUserInput = (e) => {
+    e.persist()
+    const userInput = e.target.value
+    setUserInfo(prev => ({ ...prev, [e.target.name]: userInput }))
   }
 
-  console.log(userInfo)
   // post to database userInfo using axios
   const registerUrl = 'http://localhost:3001/api/register'
   const userToken = window.localStorage
@@ -55,7 +41,9 @@ export default function RegisterContainer ({ registerModal, displayLogin, regist
       console.log(e)
     }
   }
-
+  useEffect(() => {
+    console.log(userInfo)
+  }, [userInfo])
   // return the view to our Home Component
   return (
     <Register
@@ -66,8 +54,7 @@ export default function RegisterContainer ({ registerModal, displayLogin, regist
       email={userInfo.email}
       password={userInfo.password}
       confirmPassword={userInfo.confirmPassword}
-      handleEmail={getEmail}
-      handlePassword={getPassword}
-      handleConfirmPassword={getConfirmedPassword}    />
+      handleChange={getUserInput}
+    />
   )
 }
