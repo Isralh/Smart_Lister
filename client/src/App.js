@@ -35,7 +35,7 @@ function App () {
           <Switch>
             <Route path='/' exact component={Home} />
             <Route path='/properties' component={Properties} />
-            <Route path='/users' component={User} />
+            <Route path='/user' component={User} />
           </Switch>
           <GlobalStyle />
         </Router>

@@ -1,13 +1,13 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { Container } from './LayoutStyling'
 import { ViewContext } from '../../Section/Container/SectionContainer'
 // presentational component
-export function Layout ({ pageLinks, showLayout, handleActive }) {
+export function Layout ({ pageLinks, showLayout, activeBorder }) {
   return (
 
     <Container>
       {pageLinks.map(link =>
-        <h1 key={link.keyId} onClick={showLayout.bind(this, link)} active={handleActive}> {link.heading} </h1>)}
+        <h1 key={link.keyId} onClick={showLayout.bind(this, link)} active={activeBorder}> {link.heading} </h1>)}
     </Container>
   )
 }
