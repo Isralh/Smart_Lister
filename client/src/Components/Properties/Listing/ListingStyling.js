@@ -136,3 +136,6 @@ background:#19334d;
 margin: 1vh 0vh 0vh 1vh;
 cursor:pointer;
 `
+export const FontAwesomeStyle = {
+  color: 'white', margin: '4px 0px 0px 8px'
+}

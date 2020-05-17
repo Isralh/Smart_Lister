@@ -1,17 +1,7 @@
 import React, { useState } from 'react'
 import { Container, Wrapper, BioContainer, CompanyBio, ButtonContainer, AboutUsButton, CursorButton, CursorButtonChange } from './WhoWeAreStyling'
 
-export default function WhoWeAre () {
-  const [hover, setHover] = useState(false)
-
-  const handleMouseOver = () => {
-    setHover(true)
-  }
-
-  const handleMouseLeave = () => {
-    setHover(false)
-  }
-
+function WhoWeAre ({ handleMouseOver, handleMouseLeave, hover }) {
   return (
     <Container>
       <Wrapper>
@@ -27,5 +17,20 @@ export default function WhoWeAre () {
         </ButtonContainer>
       </Wrapper>
     </Container>
+  )
+}
+
+export default function WhoWeAreContainer () {
+  const [whenHover, setWhenHover] = useState(false)
+
+  const whenMouseOver = () => {
+    setWhenHover(true)
+  }
+
+  const whenMouseLeave = () => {
+    setWhenHover(false)
+  }
+  return (
+    <WhoWeAre handleMouseLeave={whenMouseLeave} handleMouseOver={whenMouseOver} hover={whenHover} />
   )
 }

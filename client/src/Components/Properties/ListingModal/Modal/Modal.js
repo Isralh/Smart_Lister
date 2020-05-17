@@ -7,7 +7,6 @@ import HouseInfo from '../HouseInfo/HouseInfo'
 import Description from '../Description/Description'
 import Area from '../Area/Area'
 import Calculator from '../Calculator/Calculator'
-import SimpleBar from 'simplebar-react'
 export default function Modal ({ closeModal, handleShow }) {
   const data = useContext(listingContext)
   const { showModal, houseInfo } = data

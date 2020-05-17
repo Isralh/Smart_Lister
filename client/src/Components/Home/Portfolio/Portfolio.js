@@ -1,19 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   Container, PortfolioWrapper, TopHeading, OurProperty, CursorButton, MiddleWord, BottomWord, CardsWrapper,
   CursorButtonChange, ButtonContainer, Card
 } from './PortfolioStyling'
 
-export default function Portfolio () {
-  const [hover, setHover] = useState(false)
+export default function Portfolio ({ handleMouseOver, handleMouseLeave, hover }) {
 
-  const handleMouseOver = () => {
-    setHover(true)
-  }
-
-  const handleMouseLeave = () => {
-    setHover(false)
-  }
   return (
     <Container>
       <PortfolioWrapper>
@@ -43,7 +35,7 @@ export default function Portfolio () {
           </Card>
         </CardsWrapper>
         <ButtonContainer>
-          <OurProperty onMouseEnter={handleMouseOver} onMouseLeave={handleMouseLeave}>OUR PROPERTIES</OurProperty>
+          <OurProperty onMouseEnter={handleMouseOver} onMouseLeave={handleMouseLeave}>VIEW LISTINGS</OurProperty>
           <span>{hover === false ? <CursorButton> {'>'} </CursorButton> : <CursorButtonChange> {'>'}</CursorButtonChange>}</span>
         </ButtonContainer>
       </PortfolioWrapper>

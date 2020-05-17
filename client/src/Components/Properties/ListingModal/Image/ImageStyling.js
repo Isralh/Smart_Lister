@@ -65,3 +65,6 @@ margin-right:5%;
 margin-top:10px;
 cursor:pointer;
 `
+export const FontAwesomeStyle = {
+  color: 'white', height: '20px', width: '25px'
+}

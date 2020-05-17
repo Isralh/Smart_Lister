@@ -1,5 +1,5 @@
 import React, { useState, createContext } from 'react'
-import { Container, HouseListing, SectionWrapper, Address, City, Price, AddtoFavorite, ListingWrapper } from './ListingStyling'
+import { Container, HouseListing, SectionWrapper, Address, City, Price, AddtoFavorite, ListingWrapper, FontAwesomeStyle } from './ListingStyling'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
 import { v4 as uuid } from 'uuid'
@@ -37,7 +37,7 @@ export default function Listing ({ house }) {
                 <City>{i.City}</City>
               </ListingWrapper>
               <AddtoFavorite>
-                <Tooltip title='Add to favorite' trigger='mouseenter'><FontAwesomeIcon icon={faEye} style={{ color: 'white', margin: '4px 0px 0px 8px' }} /></Tooltip>
+                <Tooltip title='Add to favorite' trigger='mouseenter'><FontAwesomeIcon icon={faEye} style={FontAwesomeStyle} /></Tooltip>
               </AddtoFavorite>
             </HouseListing>
           )}

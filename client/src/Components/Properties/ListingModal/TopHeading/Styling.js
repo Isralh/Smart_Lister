@@ -24,3 +24,7 @@ button{
     cursor:pointer;
 }
 `
+export const FontAwesomeStyle = {
+  color: 'white',
+  margin: '1vh 0vh 0vh 1vh'
+}

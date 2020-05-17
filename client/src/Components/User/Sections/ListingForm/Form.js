@@ -14,6 +14,38 @@ export default function Form ({ viewListingForm }) {
     viewPrevBtn: false
   })
 
+  // state to that holds our input values when onChange function (getUsersInput) is invoked
+  const [inputState, setInputState] = useState({
+    address: '',
+    cityState: '',
+    zip: '',
+    longitude: '',
+    latitude: '',
+    beds: '',
+    baths: '',
+    sqFt: '',
+    garages: '',
+    price: '',
+    propertyType: '',
+    image: []
+  })
+
+  // onChange function that get user's input values
+  const getUsersInput = (e) => {
+    e.persist()
+    setInputState(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  // onChange function that gets user's image file and sets the image property in our inputState
+  const getHouseImage = (e) => {
+    const imageFiles = e.target.files
+    const filename = []
+    for (const image of imageFiles) {
+      filename.push(image.name)
+    }
+    setInputState(prev => { return { ...prev, image: filename } })
+  }
+
   // function to go to next step on button click
   const showNextStep = (e) => {
     // we're setting prevent default when index is 2 b/c that when our submit button is invoked
@@ -55,38 +87,6 @@ export default function Form ({ viewListingForm }) {
     if (stepView.index === 2) {
       setStepView(prev => { return { ...prev, showFirst: false, showSecond: false, showThird: true, buttonName: 'Submit', btnType: 'Submit' } })
     }
-  }
-
-  // state to that holds our input values when onChange function (getUsersInput) is invoked
-  const [inputState, setInputState] = useState({
-    address: '',
-    cityState: '',
-    zip: '',
-    longitude: '',
-    latitude: '',
-    beds: '',
-    baths: '',
-    sqFt: '',
-    garages: '',
-    price: '',
-    propertyType: '',
-    image: []
-  })
-
-  // onChange function that get user's input values
-  const getUsersInput = (e) => {
-    e.persist()
-    setInputState(prev => ({ ...prev, [e.target.name]: e.target.value }))
-  }
-
-  // onChange function that gets user's image file and sets the image property in our inputState
-  const getHouseImage = (e) => {
-    const imageFiles = e.target.files
-    const filename = []
-    for (const image of imageFiles) {
-      filename.push(image.name)
-    }
-    setInputState(prev => { return { ...prev, image: filename } })
   }
 
   useEffect(() => {

@@ -1,15 +1,15 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container } from './HomeStlying'
 import Nav from '../Nav/Nav'
 import FrontView from '../FrontView/FrontView'
-import WhoWeAre from '../WhoWeAre/WhoWeAre'
-import Portfolio from '../Portfolio/Portfolio'
+import WhoWeAreContainer from '../WhoWeAre/WhoWeAre'
 import Communities from '../Communities/Communities'
 import Footer from '../Footer/Footer'
 import Properties from '../Properties/Properties'
 import axios from 'axios'
 import RegisterContainer from '../Authentication/Register/RegisterContainer'
 import LoginContainer from '../Authentication/Login/LoginContainer'
+import PortfolioContainer from '../Portfolio/PortfolioContainer'
 export default function Home () {
   const [housedata, sethouseData] = useState([])
   const [imageKey, setImageKey] = useState([])
@@ -67,9 +67,9 @@ export default function Home () {
     <Container>
       <Nav toggleRegister={handleRegisterView} navOpen={openNav} setNavOpen={setOpenNav} />
       <FrontView />
-      <WhoWeAre />
+      <WhoWeAreContainer />
       <Properties />
-      <Portfolio />
+      <PortfolioContainer />
       <Communities />
       <RegisterContainer registerModal={registerView} displayLogin={toggleLogin} registerClose={closeRegisterModal} />
       <LoginContainer loginModal={loginView} displayRegister={toggleRegisteration} loginClose={closeLoginModal} />
