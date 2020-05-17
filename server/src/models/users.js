@@ -1,7 +1,7 @@
 const Database = require('../Database/Connection')
 const { DataTypes } = require('sequelize')
 
-const Users = Database.define('users', ({
+module.exports = Database.define('users', ({
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,

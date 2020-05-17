@@ -5,7 +5,7 @@ position:relative;
 z-index:100;
 width: 100%;
 height:100%;
-display: ${props => props.show ? 'none' : 'block'  };
+display: ${props => props.show ?  'block' :  'none'};
 `
 export const ModalWrapper = styled.div`
   position: fixed;

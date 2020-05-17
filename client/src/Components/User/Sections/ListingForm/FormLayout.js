@@ -3,9 +3,9 @@ import { StepHeading, FirstStep, SecondStep, ThirdStep, FormWrapper, Next, ListF
 
 export default function FormLayout ({
   firstStepinput, secondStepinput, thirdStepinput, step, handleNext, handlePrev, firstActive, secondActive,
-  thirdActive, buttonText, buttonType, showPrevBtn, showListingForm, handleChange, handleImage
+  thirdActive, buttonText, buttonType, showPrevBtn, showListingForm, handleChange, handleImage, handleSubmit
 }) {
-  // our multi Step form, we're mapping through an array of input lables,names and types from our FormContianer
+  // our multi Step form, we're mapping through an array of input lables,names and types from our DefinedInputs component
 
   return (
     <Container viewForm={showListingForm}>
@@ -13,7 +13,7 @@ export default function FormLayout ({
         <StepHeading>
           <p>{step}</p>
         </StepHeading>
-        <ListForm>
+        <ListForm onSubmit={handleSubmit}>
           <FirstStep activeStep={firstActive}>
             {firstStepinput.map(input =>
               <div key={input.id}><label>{input.label}</label> <br />

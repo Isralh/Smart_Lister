@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import FormLayout from './FormLayout'
 import { firstInput, secondInput, thirdInput } from './DefinedInputs'
+import axios from 'axios'
 export default function Form ({ viewListingForm }) {
   // state that holds our step views in the form submission process
   const [stepView, setStepView] = useState({
@@ -26,9 +27,11 @@ export default function Form ({ viewListingForm }) {
     sqFt: '',
     garages: '',
     price: '',
-    propertyType: '',
-    image: []
+    propertyType: ''
   })
+
+  // state that holds all the images uploaded, we're sending a post request to the database for each images uploaded
+  const [images, setImages] = useState([])
 
   // onChange function that get user's input values
   const getUsersInput = (e) => {
@@ -43,21 +46,47 @@ export default function Form ({ viewListingForm }) {
     for (const image of imageFiles) {
       filename.push(image.name)
     }
-    setInputState(prev => { return { ...prev, image: filename } })
+    setImages(filename)
+  }
+
+  const submitForm = async (e) => {
+    e.preventDefault()
+    const postData = await axios.post('http://localhost:3001/api/post/propertyInfo', inputState)
+    try {
+      if (postData) console.log(postData)
+    } catch (e) {
+      console.log(e)
+    }
+
+    const postImage = await axios.post('http://localhost:3001/api/post/propertyImage', images)
+    try {
+      if (postImage) console.log(postData)
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   // function to go to next step on button click
-  const showNextStep = (e) => {
-    // we're setting prevent default when index is 2 b/c that when our submit button is invoked
-    // and when index is 2 we submit our data to our backend
-    if (stepView.index === 2) {
-      e.preventDefault()
-      console.log(inputState)
-    }
+  const showNextStep = () => {
+    // go to the next step in the process, last step (2) is the submit button so we don't want to just click over that without submitting form
+    if (stepView.index <= 1) {
+      // on first step check if all inputs are completed if not stay on the same page and send an alert to complete all inputs
+      if (stepView.index === 0 &&
+        (inputState.address.length === 0 || inputState.cityState.length === 0 || inputState.zip.length === 0)) {
+        window.alert('Please complete all the input')
+        return setStepView(prev => { return { ...prev, index: 0 } })
+      }
 
-    // go to the next step in the process
-    if (stepView.index < 2) {
-      setStepView(prev => { return { ...prev, index: prev.index + 1 } })
+      // on second step check if all inputs are completed if not stay on the same page and send an alert to complete all inputs
+      if (stepView.index === 1 &&
+        (inputState.beds.length === 0 || inputState.baths.length === 0 ||
+          inputState.sqFt.length === 0 || inputState.garages.length === 0)) {
+        window.alert('Please complete all the input')
+        return setStepView(prev => { return { ...prev, index: 1 } })
+      }
+
+      // if the all inputs are in go to the next page add 1 to current index
+      else return setStepView(prev => { return { ...prev, index: prev.index + 1 } })
     }
   }
 
@@ -91,7 +120,7 @@ export default function Form ({ viewListingForm }) {
 
   useEffect(() => {
     viewChanges()
-  }, [stepView.index, inputState])
+  }, [stepView.index, images])
   return (
     <FormLayout
       showListingForm={viewListingForm}
@@ -109,6 +138,7 @@ export default function Form ({ viewListingForm }) {
       firstStepinput={firstInput}
       secondStepinput={secondInput}
       thirdStepinput={thirdInput}
+      handleSubmit={submitForm}
 
     />
   )
