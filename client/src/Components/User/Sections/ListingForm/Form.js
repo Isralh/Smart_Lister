@@ -39,7 +39,7 @@ export default function Form ({ viewListingForm }) {
     setInputState(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  // onChange function that gets user's image file and sets the image property in our inputState
+  // onChange function that gets user's image file and sets the images state
   const getHouseImage = (e) => {
     const imageFiles = e.target.files
     const filename = []
@@ -51,16 +51,21 @@ export default function Form ({ viewListingForm }) {
 
   const submitForm = async (e) => {
     e.preventDefault()
-    const postData = await axios.post('http://localhost:3001/api/post/propertyInfo', inputState)
+    // post request to send our property info to the database
+    const postData = await axios({ method: 'post', url: 'http://localhost:3001/api/post/propertyInfo', data: inputState })
     try {
       if (postData) console.log(postData)
     } catch (e) {
       console.log(e)
     }
 
-    const postImage = await axios.post('http://localhost:3001/api/post/propertyImage', images)
+    // make a post request for each image in the images area so we can post the s3 imageUrl in the database individually
+    const imagePost = images.map(image => {
+      return axios({ method: 'post', url: 'http://localhost:3001/api/post/propertyImage', data: { houseImage: image } })
+    })
+    const uploadImage = await axios.all(imagePost)
     try {
-      if (postImage) console.log(postData)
+      if (uploadImage) return console.log(uploadImage)
     } catch (e) {
       console.log(e)
     }
