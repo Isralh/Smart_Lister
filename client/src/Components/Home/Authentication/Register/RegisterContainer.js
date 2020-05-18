@@ -1,62 +1,37 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React from 'react'
 import axios from 'axios'
-import Register from './Register'
+import RegisterForm from './RegisterForm'
 import { useHistory } from 'react-router-dom'
-export default function RegisterContainer ({ registerModal, displayLogin, registerClose }) {
-  // state to hold our user Info from our Register Input
-  const [userInfo, setUserInfo] = useState({
-    firstName: '',
-    lastName: '',
+import * as Yup from 'yup'
+
+export default function RegisterContainer ({ registerModal }) {
+
+  const formValues = {
+    userName: '',
     email: '',
     password: '',
     confirmPassword: ''
+  }
+
+  const validation = Yup.object({
+    userName: Yup.string().max(15, 'Must be 15 characters or less').required('Required'),
+    email: Yup.string().email('invalid e-mail address').required('Required'),
+    password: Yup.string().max(6, 'must be at least charcters').required('Required'),
+    confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match')
   })
 
-  // onChange get user's registration input
-  const getUserInput = (e) => {
-    e.persist()
-    const userInput = e.target.value
-    setUserInfo(prev => ({ ...prev, [e.target.name]: userInput }))
+  const submitForm = (values) => {
+    console.log('hi')
+    console.log(values)
   }
-
-  // post to database user's Info using axios
-  const registerUrl = 'http://localhost:3001/api/register'
-  const userToken = window.localStorage
-  const history = useHistory()
-
-  // function that handles our registration and posting to mysql database
-  const postRegisteration = async (e) => {
-    e.preventDefault()
-    const registerData = await axios.post(registerUrl, userInfo)
-    try {
-      if (registerData.status === 200) {
-        console.log(registerData.message)
-      }
-      if (registerData.status === 201) {
-        console.log(registerData.data.message)
-        userToken.setItem('token', registerData.data.token)
-        history.push('/user')
-      }
-    } catch (e) {
-      console.log(e)
-    }
-  }
-  useEffect(() => {
-    console.log(userInfo)
-  }, [userInfo])
+  console.log()
   // return the view to our Home Component
   return (
-    <Register
+    <RegisterForm
       registerModal={registerModal}
-      displayLogin={displayLogin}
-      registerClose={registerClose}
-      handleRegisteration={postRegisteration}
-      firstName={userInfo.firstName}
-      lastName={userInfo.lastName}
-      email={userInfo.email}
-      password={userInfo.password}
-      confirmPassword={userInfo.confirmPassword}
-      handleChange={getUserInput}
+      initialValues={formValues}
+      validationSchema={validation}
+      handleSubmit={submitForm}
     />
   )
 }
