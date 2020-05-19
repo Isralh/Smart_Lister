@@ -3,20 +3,22 @@ import axios from 'axios'
 import RegisterForm from './RegisterForm'
 import { useHistory } from 'react-router-dom'
 import * as Yup from 'yup'
+import { useState } from 'react'
 
 export default function RegisterContainer ({ registerModal }) {
-
   const formValues = {
-    userName: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
     confirmPassword: ''
   }
 
   const validation = Yup.object({
-    userName: Yup.string().max(15, 'Must be 15 characters or less').required('Required'),
+    firstName: Yup.string().max(15, 'Must be 15 characters or less').required('Required'),
+    lastName: Yup.string().max(15, 'Must be 15 characters or less').required('Required'),
     email: Yup.string().email('invalid e-mail address').required('Required'),
-    password: Yup.string().max(6, 'must be at least charcters').required('Required'),
+    password: Yup.string().max(6, 'must be at least 6 charcters').required('Required'),
     confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match')
   })
 

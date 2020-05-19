@@ -1,0 +1,53 @@
+import React, { useState , useEffect } from 'react'
+import { Formik, Form } from 'formik'
+import { FirstForm, SecondForm, LastForm } from './FormsLayout'
+import { Container, FormWrapper, StepHeading } from './FormStyling'
+import { Schema } from './FormSchema'
+
+export default function FormikContainer ({ viewListingForm }) {
+  const formValues = {
+    address: '',
+    cityState: '',
+    zipcode: '',
+    longitude: '',
+    latitude: '',
+    beds: '',
+    baths: '',
+    sqFt: '',
+    garages: '',
+    price: '',
+    propertyType: ''
+  }
+
+  const [firstView, setFirstView] = useState(true)
+  const [secondView, setSecondView] = useState(false)
+  const [thirdView, setThirdView] = useState(false)
+  const steps = ['Step 1 of 3', 'Step 2 of 3', 'Step 3 of 3']
+
+  const submitForm = (values) => {
+    console.log('hi')
+    console.log(values)
+  }
+  return (
+    <Container viewForm={viewListingForm}>
+      <FormWrapper>
+        <StepHeading>
+          <p>{steps[0]}</p>
+        </StepHeading>
+        <Formik
+          initialValues={formValues}
+          validateOnChange={false}
+          validateOnBlur={false}
+          validationSchema={Schema}
+          onSubmit={submitForm}
+        >
+          <Form>
+            <FirstForm firstActive={firstView} />
+            <SecondForm secondActive={secondView} />
+            <LastForm thirdActive={thirdView} />
+          </Form>
+        </Formik>
+      </FormWrapper>
+    </Container>
+  )
+}

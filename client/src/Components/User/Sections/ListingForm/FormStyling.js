@@ -13,6 +13,22 @@ border-radius:10px;
     padding-bottom:15px;
     width:80%;
 }
+form{
+    input{
+  border: 0;
+  width:95%;
+  height:20px;
+  margin:15px 0 15px 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid lightgray;
+}
+label{
+    color:#19334d;
+    font-size: 16px;
+    font-weight:bold;
+}
+}
 `
 export const StepHeading = styled.div`
 display:flex;
@@ -76,4 +92,10 @@ color:white;
 width:80px;
 border-radius:15px;
 cursor:pointer;
+`
+export const ErrorStyle = styled.div`
+color:red;
+font-weight:normal;
+margin-bottom:5px;
+margin-left:2%;
 `

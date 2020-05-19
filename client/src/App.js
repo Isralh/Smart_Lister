@@ -5,7 +5,7 @@ import { createGlobalStyle } from 'styled-components'
 import DataContext from './Components/HouseData/Data'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import User from './Components/User/Profile/User'
-import FormikWrapper from '../src/Components/Home/Authentication/Register/FormikWrapper'
+import FormikContainer from './Components/User/Sections/ListingForm/FormikContainer'
 // global styling and wrap our app component with it
 const GlobalStyle = createGlobalStyle`
 body{ padding: 0px;
@@ -36,7 +36,7 @@ function App () {
             <Route path='/' exact component={Home} />
             <Route path='/properties' component={Properties} />
             <Route path='/user' component={User} />
-            <Route path='/formik' component={FormikWrapper} />
+            <Route path='/formik' component={FormikContainer} />
           </Switch>
           <GlobalStyle />
         </Router>

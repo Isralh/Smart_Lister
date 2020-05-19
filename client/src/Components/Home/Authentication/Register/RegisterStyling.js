@@ -5,7 +5,7 @@ position:relative;
 z-index:100;
 width: 100%;
 height:100%;
-display: ${props => props.show ?  'none' :  'block'};
+display: ${props => props.show ? 'block' : 'none'};
 `
 export const ModalWrapper = styled.div`
   position: fixed;
@@ -23,12 +23,6 @@ position:relative;
 @media (min-width:320px){
 margin: 5vh 12% 0vh 12%;
 background:white;
-height:475px;
-}
-@media (min-width:450px){
-margin: 5vh 12% 0vh 12%;
-background:white;
-height:490px;
 }
 
 h1{
@@ -58,10 +52,10 @@ export const ButtonWrapper = styled.div`
 display: flex;
 flex-direction:row nowrap;
 justify-content:space-between;
-
+margin-bottom:15px;
 button{
          background:#19334d;
-         margin-right:2.5%;
+         margin-right:7.5%;
          color:white;
         font-size:18px;
         width:90px;

@@ -4,7 +4,7 @@ import LayoutContainer from '../Layout/Layout'
 import Account from '../../Account/Account'
 import Favorties from '../../Favorites/Favorites'
 import Form from '../../ListingForm/Form'
-
+import FormikContainer from '../../ListingForm/FormikContainer'
 // we created context to export our view state to our Layout component so they can be set from there to toggle
 // the different views
 export const ViewContext = createContext()
@@ -40,7 +40,7 @@ export default function SectionContainer () {
       <ViewContext.Provider value={[view, setView]}>
         <LayoutContainer />
         <Account showAccount={pageViews.accountView} />
-        <Form viewListingForm={pageViews.listingFormView} />
+        <FormikContainer viewListingForm={pageViews.listingFormView} />
         <Favorties showFavorites={pageViews.favoritesView} />
       </ViewContext.Provider>
     </Container>
