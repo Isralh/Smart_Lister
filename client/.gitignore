@@ -8,6 +8,10 @@
 # testing
 /coverage
 
+src/Components/Properties/Map/apiKey.js
+
+src/Components/Config/
+
 #ApiKey
 apiKey.js
 
