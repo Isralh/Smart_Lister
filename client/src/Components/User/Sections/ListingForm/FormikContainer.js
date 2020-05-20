@@ -16,7 +16,7 @@ export default function FormikContainer ({ viewListingForm }) {
     imageFileName: [],
     imageUrl: []
   })
-const [images, setImgages] = useState([])
+  const [images, setImages] = useState([])
   // steps in our form
   const steps = ['Step 1 of 2', 'Step 2 0f 2']
 
@@ -35,8 +35,12 @@ const [images, setImgages] = useState([])
 
   // onChange event to handle all the images that are uploaded and set the ValuesContainer(formData)
   const uploadImage = (e) => {
-    const imageFiles = e.target.files
-    setImgages(imageFiles)
+    const file = e.target.files
+    const array = []
+    for (const image of file) {
+      array.push(image)
+    }
+    setImages(array.map(i => i.name))
   }
   // onSubmit event to handle the submission of the form data to aws and our backend
   const submitSecondForm = async (values) => {
@@ -45,25 +49,25 @@ const [images, setImgages] = useState([])
     newArray.push(values)
     setValuesContainer(prev => { return { ...prev, formData: newArray } })
 
-    console.log(valuesContainer.imageFileName.Filelist)
     // for every image make a post request to aws
-
     // const imageData = new FormData()
-    // imageData.append('images', valuesContainer.imageFileName, valuesContainer.imageFileName.name)
+    // for (const image of images) {
+    //   imageData.append('images', image)
+    // }
     // Axios({ method: 'POST', data: imageData, url: 'http://localhost:3001/api/post/image' }).then(data =>
     //   console.log(data)).catch(e => console.log(e))
 
-    // const postAllImages = valuesContainer.imageFileName.map(image => {
-    //   const formdata = new FormData()
-    //   formdata.append('images', image, image.name)
-    //   const config = { headers: { 'content-type': 'multipart/form-data' } }
-    //   return Axios({ method: 'POST', data: formdata, url: 'http://localhost:3001/api/post/image', config })
-    // })
-    // Axios.all(postAllImages).then(data => console.log(data)).catch(e => console.log(e))
+    const postAllImages = images.map(image => {
+      const formdata = new FormData()
+      formdata.append('images', image, image.name)
+      const config = { headers: { 'content-type': 'multipart/form-data' } }
+      return Axios({ method: 'POST', data: formdata, url: 'http://localhost:3001/api/post/image', config })
+    })
+    Axios.all(postAllImages).then(data => console.log(data)).catch(e => console.log(e))
   }
   useEffect(() => {
     console.log(valuesContainer)
-    console.log(images.filelist)
+    console.log(images)
   }, [valuesContainer, images])
   return (
     <Container viewForm={viewListingForm}>

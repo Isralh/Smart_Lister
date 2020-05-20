@@ -35,7 +35,7 @@ const upload = multer({
   })
 })
 
-const singleUpload = upload.single('images')
+const singleUpload = upload.array('images')
 exports.imageupload = async (req, res) => {
   singleUpload(req, res, err => {
     if (err) console.log(err)
