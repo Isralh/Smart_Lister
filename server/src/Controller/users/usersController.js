@@ -2,10 +2,11 @@ const Users = require('../../models/users')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const config = require('../../config/jwtConfig.json')
-
 // function to register user
 exports.register = async (req, res) => {
   const userData = await req.body
+  const { firstName } = userData
+  const { lastName } = userData
   const { email } = userData
   const { password } = userData
   const { confirmPassword } = userData
@@ -28,6 +29,8 @@ exports.register = async (req, res) => {
     }
     // if there isn't existing user create a new user
     Users.create({
+      firstName: firstName,
+      lastName: lastName,
       email: email,
       password: await bcrypt.hash(password, 8),
       confirmPassword: await bcrypt.hash(confirmPassword, 8)

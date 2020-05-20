@@ -6,6 +6,7 @@ import DataContext from './Components/HouseData/Data'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import User from './Components/User/Profile/User'
 import FormikContainer from './Components/User/Sections/ListingForm/FormikContainer'
+import { ProtectedRoute } from './Components/Authentication/ProtectedRoute'
 // global styling and wrap our app component with it
 const GlobalStyle = createGlobalStyle`
 body{ padding: 0px;
@@ -13,35 +14,21 @@ body{ padding: 0px;
      box-sizing: border-box;
 }
 `
-// check if user is logged in
-export const loggInStatus = createContext()
-function App () {
-  const [loggedIn, setLoggedIn] = useState({
-    status: false,
-    user: window.localStorage.getItem('token')
-  })
-  console.log(loggedIn)
-  const token = window.localStorage.getItem('token')
 
-  useEffect(() => {
-    if (token !== undefined || null) {
-      setLoggedIn(prev => { return { ...prev, status: true } })
-    }
-  }, [])
+function App () {
   return (
-    <loggInStatus.Provider value={[loggedIn, setLoggedIn]}>
-      <DataContext>
-        <Router>
-          <Switch>
-            <Route path='/' exact component={Home} />
-            <Route path='/properties' component={Properties} />
-            <Route path='/user' component={User} />
-            <Route path='/formik' component={FormikContainer} />
-          </Switch>
-          <GlobalStyle />
-        </Router>
-      </DataContext>
-    </loggInStatus.Provider>
+    <DataContext>
+      <Router>
+        <Switch>
+          <Route path='/' exact component={Home} />
+          <Route path='/properties' component={Properties} />
+          <ProtectedRoute path='/user' component={User} />
+          <Route path='*' component={() => '404 NOT FOUND '} />
+          <Route path='/formik' component={FormikContainer} />
+        </Switch>
+        <GlobalStyle />
+      </Router>
+    </DataContext>
   )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import { Container, ModalWrapper, Content, ButtonWrapper, ErrorStyle } from './RegisterStyling'
 
-function RegisterForm ({ registerModal, initialValues, validationSchema, handleSubmit, displayLogin, setHeight }) {
+function RegisterForm ({ registerModal, initialValues, validationSchema, handleSubmit, displayLogin, closeModal }) {
   return (
     <Container show={registerModal}>
       <ModalWrapper>
@@ -40,6 +40,7 @@ function RegisterForm ({ registerModal, initialValues, validationSchema, handleS
                 <p>Already a member? <span onClick={displayLogin}>Login</span></p>
                 <button type='submit'>Sign Up</button>
               </ButtonWrapper>
+              <p onClick={closeModal}>Close</p>
             </Form>
           </Formik>
         </Content>

@@ -57,6 +57,9 @@ export default function Home () {
   const closeRegisterModal = () => {
     setRegisterView(false)
   }
+  const closeRegister = () => {
+    setRegisterView(false)
+  }
   const closeLoginModal = () => {
     setLoginView(false)
   }
@@ -71,7 +74,7 @@ export default function Home () {
       <Properties />
       <PortfolioContainer />
       <Communities />
-      <RegisterContainer registerModal={registerView} displayLogin={toggleLogin} registerClose={closeRegisterModal} />
+      <RegisterContainer registerModal={registerView} displayLogin={toggleLogin} registerClose={closeRegisterModal} closeModal={closeRegister}/>
       <LoginContainer loginModal={loginView} displayRegister={toggleRegisteration} loginClose={closeLoginModal} />
       <Footer />
     </Container>

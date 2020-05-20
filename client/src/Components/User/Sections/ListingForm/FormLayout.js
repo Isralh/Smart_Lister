@@ -13,7 +13,7 @@ export default function FormLayout ({
         <StepHeading>
           <p>{step}</p>
         </StepHeading>
-        <ListForm onSubmit={handleSubmit} method='post' enctype='multipart/form-data'>
+        <ListForm onSubmit={handleSubmit} method='post'>
           <FirstStep activeStep={firstActive}>
             {firstStepinput.map(input =>
               <div key={input.id}><label>{input.label}</label> <br />

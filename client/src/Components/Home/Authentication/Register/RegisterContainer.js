@@ -3,9 +3,7 @@ import axios from 'axios'
 import RegisterForm from './RegisterForm'
 import { useHistory } from 'react-router-dom'
 import * as Yup from 'yup'
-import { useState } from 'react'
-
-export default function RegisterContainer ({ registerModal }) {
+export default function RegisterContainer ({ registerModal, closeModal }) {
   const formValues = {
     firstName: '',
     lastName: '',
@@ -22,11 +20,27 @@ export default function RegisterContainer ({ registerModal }) {
     confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match')
   })
 
-  const submitForm = (values) => {
-    console.log('hi')
-    console.log(values)
+  // post to database user's Information using axios
+  const registerUrl = 'http://localhost:3001/api/register'
+  const userToken = window.localStorage
+  const history = useHistory()
+
+  // function that handles our registration and posting to mysql database
+  const submitForm = async (values) => {
+    const registerData = await axios({ method: 'POST', url: registerUrl, data: values })
+    try {
+      if (registerData.status === 200) {
+        console.log(registerData.message)
+      }
+      if (registerData.status === 201) {
+        console.log(registerData.data.message)
+        userToken.setItem('token', registerData.data.token)
+        history.push('/user')
+      }
+    } catch (e) {
+      console.log(e)
+    }
   }
-  console.log()
   // return the view to our Home Component
   return (
     <RegisterForm
@@ -34,6 +48,7 @@ export default function RegisterContainer ({ registerModal }) {
       initialValues={formValues}
       validationSchema={validation}
       handleSubmit={submitForm}
+      closeModal={closeModal}
     />
   )
 }
