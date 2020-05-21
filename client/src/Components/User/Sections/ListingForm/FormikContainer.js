@@ -2,31 +2,34 @@ import React, { useState, useEffect } from 'react'
 import { FirstForm, SecondForm } from './FormsLayout'
 import { Container, FormWrapper, StepHeading } from './FormStyling'
 import { FirstFormSchema, SecondFormSchema, ValidationSchema } from './FormSchema'
-import ReactS3 from 'react-s3'
-import { Awsconfig } from '../../../Config/AwsConfig'
 import Axios from 'axios'
+import jwtDecode from 'jwt-decode'
 export default function FormikContainer ({ viewListingForm }) {
-  const [firstView, setFirstView] = useState(false)
-  const [secondView, setSecondView] = useState(true)
-  const [showPrevBtn, setShowPrevBtn] = useState(true)
+  // jwtDecode to get current user Information
+  const token = window.localStorage.getItem('token')
+  const userInfo = jwtDecode(token)
+  console.log(userInfo.email)
 
+  const [firstView, setFirstView] = useState(true)
+  const [secondView, setSecondView] = useState(false)
+  const [showPrevBtn, setShowPrevBtn] = useState(true)
   // state to hold all of our formdata
   const [valuesContainer, setValuesContainer] = useState({
-    formData: [],
-    imageFileName: [],
-    imageUrl: []
+    firstform: null,
+    secondForm: null,
+    imageFileName: null,
+    imageUrl: null
   })
-  const [images, setImages] = useState([])
   // steps in our form
   const steps = ['Step 1 of 2', 'Step 2 0f 2']
 
   // on step 1 of form submission set the valuesContainer(formData) and go to the next step in the process
   const submitFirstForm = (values) => {
-    console.log('hi')
-    console.log(values)
     setFirstView(false)
     setSecondView(true)
-    setValuesContainer({ formData: values })
+    console.log('hi')
+    const firstForm = values
+    setValuesContainer(prev => { return { ...prev, firstform: firstForm } })
   }
   const previousStep = () => {
     setSecondView(false)
@@ -36,39 +39,36 @@ export default function FormikContainer ({ viewListingForm }) {
   // onChange event to handle all the images that are uploaded and set the ValuesContainer(formData)
   const uploadImage = (e) => {
     const file = e.target.files
-    const array = []
-    for (const image of file) {
-      array.push(image)
-    }
-    setImages(array.map(i => i.name))
+    setValuesContainer(prev => { return { ...prev, imageFileName: file } })
   }
+
   // onSubmit event to handle the submission of the form data to aws and our backend
   const submitSecondForm = async (values) => {
     // first we add to the state valuesContainer(formData) our new data from the second step of the form submission process
-    const newArray = [valuesContainer.formData]
-    newArray.push(values)
-    setValuesContainer(prev => { return { ...prev, formData: newArray } })
-
-    // for every image make a post request to aws
-    // const imageData = new FormData()
-    // for (const image of images) {
-    //   imageData.append('images', image)
-    // }
-    // Axios({ method: 'POST', data: imageData, url: 'http://localhost:3001/api/post/image' }).then(data =>
-    //   console.log(data)).catch(e => console.log(e))
-
-    const postAllImages = images.map(image => {
-      const formdata = new FormData()
-      formdata.append('images', image, image.name)
-      const config = { headers: { 'content-type': 'multipart/form-data' } }
-      return Axios({ method: 'POST', data: formdata, url: 'http://localhost:3001/api/post/image', config })
-    })
-    Axios.all(postAllImages).then(data => console.log(data)).catch(e => console.log(e))
+    const secondForm = values
+    setValuesContainer(prev => { return { ...prev, secondForm: secondForm } })
+    // for every image make a post request to aws and save the imageUrl to our valuesContainer
+    const fileData = new FormData()
+    const selectedFiles = valuesContainer.imageFileName
+    if (selectedFiles) {
+      for (let i = 0; i < selectedFiles.length; i++) {
+        fileData.append('images', selectedFiles[i], selectedFiles[i].name)
+      }
+      const downloadUrl = await Axios.post('http://localhost:3001/api/post/propertyImages', fileData)
+      try {
+        if (downloadUrl) setValuesContainer(prev => { return { ...prev, imageUrl: downloadUrl.data } })
+      } catch (e) {
+        console.log(e)
+      }
+    }
+    const propertyInfo = await Axios({ method: 'POST', url: 'http://localhost:3001/api/post/propertyInfo', data: valuesContainer })
+    try {
+      if (propertyInfo) console.log(propertyInfo)
+    } catch (e) {
+      console.log(e)
+    }
   }
-  useEffect(() => {
-    console.log(valuesContainer)
-    console.log(images)
-  }, [valuesContainer, images])
+
   return (
     <Container viewForm={viewListingForm}>
       <FormWrapper>

@@ -2,7 +2,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const app = express()
-const uploadImage = require('./Router/ImageUpload/uploadImage')
 const properties = require('./Router/Properties/properties')
 const users = require('./Router/Users/Users')
 app.use(express.json())
@@ -13,8 +12,7 @@ app.use(cors())
 
 app.use(express.static('images'))
 // router
-app.use('/', uploadImage)
-app.use('/api/post', properties)
+app.use('/api', properties)
 app.use('/api', users)
 const PORT = process.env.PORT || 3001
 app.listen(PORT, (e) => e ? console.log(e) : console.log(`successfully connected to ${PORT}`))

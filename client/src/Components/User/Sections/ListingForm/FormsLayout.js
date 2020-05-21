@@ -4,7 +4,7 @@ import { ErrorStyle, FirstStep, SecondStep, ThirdStep } from './FormStyling'
 import { FirstStepButton, SecondStepButton } from './Buttons'
 
 export function FirstForm ({
-  firstActive, showButtonText, validateOnBlur, validateOnChange,
+  firstActive, validateOnBlur, validateOnChange,
   formValues, formSchema, handleFirstForm
 }) {
   return (
@@ -84,8 +84,8 @@ export function SecondForm ({
             <ErrorMessage name='propertyType' />
           </ErrorStyle>
           <Field name='propertyType' type='text' placeholder='Property Type' />
-          <input name='image' type='file' placeholder='choose File' multiple required onChange={handleImageUpload} />
-          <SecondStepButton showPrevBtn={prevBtn} handlePrev={prevStep} handleSubmit={submitForm} />
+          <input name='image' type='file' accept='.jpeg .png .jpg' multiple required onChange={handleImageUpload} />
+          <SecondStepButton showPrevBtn={prevBtn} handlePrev={prevStep} />
         </SecondStep>
       </Form>
     </Formik>
