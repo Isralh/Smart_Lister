@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize').Sequelize
-const Database = new Sequelize('the_smith_group', 'root', '1992', {
+const Database = new Sequelize('property_Listing', 'root', '1992', {
   host: 'localhost',
   dialect: 'mysql'
 })

@@ -1,5 +1,6 @@
 const Database = require('../Database/Connection')
 const { DataTypes } = require('sequelize')
+
 module.exports = Database.define('properties', {
   id: {
     type: DataTypes.INTEGER,
@@ -7,28 +8,28 @@ module.exports = Database.define('properties', {
     primaryKey: true,
     autoIncrement: true
   },
-  Address: {
+  address: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true
   },
-  City: {
+  cityState: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: false
   },
-  Zip: {
+  zipcode: {
     type: DataTypes.INTEGER,
     allowNull: false,
     unique: false
   },
   lat: {
     type: DataTypes.DECIMAL(10, 6),
-    allowNull: false
+    allowNull: true
   },
   lng: {
     type: DataTypes.DECIMAL(10, 6),
-    allowNull: false
+    allowNull: true
   },
   Beds: {
     type: DataTypes.INTEGER,
@@ -52,38 +53,14 @@ module.exports = Database.define('properties', {
   },
   DaysOnMarket: {
     type: DataTypes.INTEGER,
-    allowNull: false
-  },
-  propertyTax: {
-    type: DataTypes.FLOAT(3, 2),
-    allowNull: false
+    allowNull: true
   },
   PropertyType: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true
   },
-  Population: {
+  users_id: {
     type: DataTypes.INTEGER,
-    allowNull: false
-  },
-  MedianFamilyIncome: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
-  MedianAge: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  LocalTaxRate: {
-    type: DataTypes.FLOAT(2, 1),
-    allowNull: false
-  },
-  UnemploymentRate: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
-  AreaFeel: {
-    type: DataTypes.STRING,
     allowNull: false
   },
   createdAt: {
@@ -97,7 +74,7 @@ module.exports = Database.define('properties', {
 })
 
 // const test = async () => {
-//   const data = properties.sync()
+//   const data = Property.sync()
 //   try {
 //     if (data) console.log('sucess')
 //   } catch (e) {

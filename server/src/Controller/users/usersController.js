@@ -36,6 +36,8 @@ exports.register = async (req, res) => {
       confirmPassword: await bcrypt.hash(confirmPassword, 8)
     })
     const token = jwt.sign({
+      firstName: firstName,
+      lastName: lastName,
       email: email
     }, config.jwtSecret, {
       expiresIn: '1hr'
@@ -62,7 +64,9 @@ exports.login = async (req, res) => {
       bcrypt.compare(password, existingUser.password).then(result => {
         if (result) {
           const token = jwt.sign({
-            email: existingUser.email
+            email: existingUser.email,
+            firstName: existingUser.firstName,
+            lastName: existingUser.lastName
           }, config.jwtSecret, {
             expiresIn: '1hr'
           })

@@ -12,13 +12,14 @@ export default function FormikContainer ({ viewListingForm }) {
 
   const [firstView, setFirstView] = useState(true)
   const [secondView, setSecondView] = useState(false)
-  const [showPrevBtn, setShowPrevBtn] = useState(true)
+  const [showPrevBtn] = useState(true)
+  const [images, setImages] = useState()
   // state to hold all of our formdata
   const [valuesContainer, setValuesContainer] = useState({
-    firstform: null,
+    firstForm: null,
     secondForm: null,
-    imageFileName: null,
-    imageUrl: null
+    imageUrl: null,
+    user: userInfo
   })
   // steps in our form
   const steps = ['Step 1 of 2', 'Step 2 0f 2']
@@ -29,7 +30,7 @@ export default function FormikContainer ({ viewListingForm }) {
     setSecondView(true)
     console.log('hi')
     const firstForm = values
-    setValuesContainer(prev => { return { ...prev, firstform: firstForm } })
+    setValuesContainer(prev => { return { ...prev, firstForm: firstForm } })
   }
   const previousStep = () => {
     setSecondView(false)
@@ -37,19 +38,20 @@ export default function FormikContainer ({ viewListingForm }) {
   }
 
   // onChange event to handle all the images that are uploaded and set the ValuesContainer(formData)
-  const uploadImage = (e) => {
-    const file = e.target.files
-    setValuesContainer(prev => { return { ...prev, imageFileName: file } })
+  const uploadImage = async (e) => {
+    const file = await e.target.files
+    setImages(file)
+    // setValuesContainer(prev => { return { ...prev, imageFileName: file } })
   }
 
   // onSubmit event to handle the submission of the form data to aws and our backend
   const submitSecondForm = async (values) => {
     // first we add to the state valuesContainer(formData) our new data from the second step of the form submission process
-    const secondForm = values
-    setValuesContainer(prev => { return { ...prev, secondForm: secondForm } })
+    const secondForm = await values
+    setValuesContainer(prev => { return { ...prev, secondForm: secondForm }})
     // for every image make a post request to aws and save the imageUrl to our valuesContainer
     const fileData = new FormData()
-    const selectedFiles = valuesContainer.imageFileName
+    const selectedFiles = images
     if (selectedFiles) {
       for (let i = 0; i < selectedFiles.length; i++) {
         fileData.append('images', selectedFiles[i], selectedFiles[i].name)
@@ -61,14 +63,21 @@ export default function FormikContainer ({ viewListingForm }) {
         console.log(e)
       }
     }
-    const propertyInfo = await Axios({ method: 'POST', url: 'http://localhost:3001/api/post/propertyInfo', data: valuesContainer })
-    try {
-      if (propertyInfo) console.log(propertyInfo)
-    } catch (e) {
-      console.log(e)
-    }
   }
 
+  useEffect(() => {
+    async function postProperty () {
+      if (valuesContainer.secondForm !== null && valuesContainer.imageUrl !== null) {
+        const propertyInfo = await Axios.post('http://localhost:3001/api/post/propertyInfo', [valuesContainer])
+        try {
+          if (propertyInfo) console.log(propertyInfo.data)
+        } catch (e) {
+          console.log(e)
+        }
+      }
+    }
+    postProperty()
+  }, [valuesContainer.secondForm, valuesContainer.imageUrl])
   return (
     <Container viewForm={viewListingForm}>
       <FormWrapper>
