@@ -2,6 +2,8 @@ const Properties = require('../../models/properties')
 const PropertyImages = require('../../models/propertyImages')
 const upload = require('./ImageUploadConfig')
 const Users = require('../../models/users')
+
+// function to handle posting images to amazon web services
 exports.imageupload = async (req, res) => {
   const downloadUrl = []
   upload(req, res, err => {
@@ -14,6 +16,7 @@ exports.imageupload = async (req, res) => {
   })
 }
 
+// function to handle property posting to the database
 exports.propertyInfo = async (req, res) => {
   if (req.body === null || undefined) {
     return res.status(400).send({ message: 'No information recieved, please input data again' })
@@ -33,6 +36,9 @@ exports.propertyInfo = async (req, res) => {
       zipcode: firstForm.zipcode
     }
   })
+
+  // if there is a property already with the same address, city and state return a message with "Property listing already exists"
+  // if not create a new property and save to the database
   try {
     if (property) return res.status(200).send({ message: 'Property listing already exists' })
     else {
@@ -67,5 +73,16 @@ exports.propertyInfo = async (req, res) => {
     return res.status(201).send({ message: 'Property list created successfully' })
   } catch (e) {
     return res.status(404).send({ message: 'Error ' })
+  }
+}
+
+exports.getAllProperties = async (req, res) => {
+  console.log(req.body)
+  const allProperties = await Properties.findAll({ raw: true })
+  const allImages = await PropertyImages.findAll({ raw: true })
+  try {
+    if (allProperties && allImages) return res.status(200).send({ properties: allProperties, images: allImages })
+  } catch (e) {
+    console.log(e)
   }
 }

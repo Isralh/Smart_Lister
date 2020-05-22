@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from 'react'
+import React from 'react'
 import Home from './Components/Home/Home/Home'
 import Properties from './Components/Properties/Properties/Properties'
 import { createGlobalStyle } from 'styled-components'

@@ -5,19 +5,6 @@
 /.pnp
 .pnp.js
 
-# testing
-/coverage
-
-src/Components/Properties/Map/apiKey.js
-
-src/Components/Config/
-
-#ApiKey
-apiKey.js
-
-#vsCode Warning
-/The_Hadero_Group/.vscode
-
 # production
 /build
 

@@ -3,6 +3,7 @@ const multer = require('multer')
 const multerS3 = require('multer-s3')
 const awsConfig = require('../../config/awsConfig')
 
+// exporting configuration to handle image uploading to amazon web services bucket
 aws.config.update({
   secretAccessKey: awsConfig.secretAccessKey,
   accessKeyId: awsConfig.accessKeyId,
@@ -25,7 +26,3 @@ const upload = multer({
 }).array('images', 10)
 
 module.exports = upload
-// upload(req, res, err => {
-//     if (err) console.log(err)
-//     console.log(req.files)
-//   })

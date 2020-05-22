@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react'
+import React, { useState, createContext, useEffect } from 'react'
 import { Container, HouseListing, SectionWrapper, Address, City, Price, AddtoFavorite, ListingWrapper, FontAwesomeStyle } from './ListingStyling'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid'
 import 'react-tippy/dist/tippy.css'
 import { Tooltip } from 'react-tippy'
 import Modal from '../ListingModal/Modal/Modal'
-
+import axios from 'axios'
 export const listingContext = createContext()
 export default function Listing ({ house }) {
   const index = 0
@@ -25,6 +25,17 @@ export default function Listing ({ house }) {
     })
   }
 
+  useEffect(() => {
+    async function getProperties () {
+      const propertyData = await axios.get('http://localhost:3001/api/get/allProperties')
+      try {
+        if (propertyData) console.log(propertyData.data)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+    getProperties()
+  }, [])
   return (
     <listingContext.Provider value={state}>
       <Container>

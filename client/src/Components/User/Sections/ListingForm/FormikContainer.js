@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { FirstForm, SecondForm } from './FormsLayout'
 import { Container, FormWrapper, StepHeading } from './FormStyling'
 import { FirstFormSchema, SecondFormSchema, ValidationSchema } from './FormSchema'
+import { useHistory } from 'react-router-dom'
 import Axios from 'axios'
 import jwtDecode from 'jwt-decode'
 export default function FormikContainer ({ viewListingForm }) {
   // jwtDecode to get current user Information
   const token = window.localStorage.getItem('token')
   const userInfo = jwtDecode(token)
-  console.log(userInfo.email)
-
+  const history = useHistory()
   const [firstView, setFirstView] = useState(true)
   const [secondView, setSecondView] = useState(false)
   const [showPrevBtn] = useState(true)
@@ -71,6 +71,7 @@ export default function FormikContainer ({ viewListingForm }) {
         const propertyInfo = await Axios.post('http://localhost:3001/api/post/propertyInfo', [valuesContainer])
         try {
           if (propertyInfo) console.log(propertyInfo.data)
+          history.push('/')
         } catch (e) {
           console.log(e)
         }
