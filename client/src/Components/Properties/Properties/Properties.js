@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect, createContext, useReducer } from 'react'
 import { Container, ContentContainer, MapContainer, ListingContainer } from './PropertiesStyling'
-import Nav from '../../Home/Nav/Nav'
 import Search from '../Search/Search'
 import Listing from '../Listing/Listing'
 import { DataContext } from '../../HouseData/Data'
 import Select from '../Select/Select'
 import Maps from '../Map/Maps'
 import axios from 'axios'
+import NavContainer from '../../Home/Nav/NavContainer'
 
 export const propertiesContext = createContext()
 export default function Properties () {
@@ -51,7 +51,7 @@ export default function Properties () {
   return (
     <propertiesContext.Provider value={listOfHomes}>
       <Container>
-        <Nav />
+        <NavContainer />
         <ContentContainer>
           <MapContainer>
             <Maps />

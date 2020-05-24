@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import axios from 'axios'
 import RegisterForm from './RegisterForm'
 import { useHistory } from 'react-router-dom'
 import * as Yup from 'yup'
-export default function RegisterContainer ({ registerModal, closeModal }) {
+export default function RegisterContainer ({ registerModal, closeModal, showLogin }) {
   const formValues = {
     firstName: '',
     lastName: '',
@@ -49,6 +49,7 @@ export default function RegisterContainer ({ registerModal, closeModal }) {
       validationSchema={validation}
       handleSubmit={submitForm}
       closeModal={closeModal}
+      displayLogin={showLogin}
     />
   )
 }
