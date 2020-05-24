@@ -16,3 +16,4 @@ const Database = new Sequelize('property_Listing', 'root', '1992', {
 // test()
 
 module.exports = Database
+

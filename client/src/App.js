@@ -8,7 +8,6 @@ import User from './Components/User/Profile/User'
 import FormikContainer from './Components/User/Sections/ListingForm/FormikContainer'
 import { ProtectedRoute } from './Components/Authentication/ProtectedRoute'
 import NotFound from './Components/PageNotFound/NotFound'
-import Practice from './Components/Properties/Properties/Practice'
 // global styling and wrap our app component with it
 const GlobalStyle = createGlobalStyle`
 body{ padding: 0px;
@@ -26,7 +25,6 @@ function App () {
           <Route path='/properties' component={Properties} />
           <ProtectedRoute path='/user' component={User} />
           <Route path='/formik' component={FormikContainer} />
-          <Route path='/practice' component={Practice} />
           <Route path='*' component={NotFound} />
         </Switch>
         <GlobalStyle />

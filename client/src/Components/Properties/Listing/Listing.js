@@ -1,21 +1,18 @@
 import React, { useState, createContext } from 'react'
-import { Container, HouseListing, SectionWrapper, Address, City, Price, AddtoFavorite, ListingWrapper, FontAwesomeStyle } from './ListingStyling'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye } from '@fortawesome/free-solid-svg-icons'
+import { Container, HouseListing, SectionWrapper, Address, City, Price, ListingWrapper } from './ListingStyling'
 import { v4 as uuid } from 'uuid'
 import 'react-tippy/dist/tippy.css'
-import { Tooltip } from 'react-tippy'
 import Modal from '../ListingModal/Modal/Modal'
 export const listingContext = createContext()
 export default function Listing ({ property = [] }) {
   const index = 0
   const [state, setState] = useState({
     showModal: false,
-    houseInfo: []
+    propertyInfo: []
   })
   // const [containerState, setContainerState] = useState(true)
   const handleOpen = (listing) => {
-    setState({ showModal: true, houseInfo: listing })
+    setState({ showModal: true, propertyInfo: listing })
     // setContainerState(!containerState)
   }
   const handleClose = () => {
@@ -43,15 +40,16 @@ export default function Listing ({ property = [] }) {
                   <Address>{listing.address}</Address>
                   <City>{listing.cityState}</City>
                 </ListingWrapper>
-                <AddtoFavorite>
-                  <Tooltip title='Add to favorite' trigger='mouseenter'><FontAwesomeIcon icon={faEye} style={FontAwesomeStyle} /></Tooltip>
-                </AddtoFavorite>
               </HouseListing>
             )}
-                                 </> : <p>Loading...</p>}
+          </> : <p>Loading...</p>}
         </SectionWrapper>
       </Container>
       <Modal handleShow={state.showModal} closeModal={handleClose} />
     </listingContext.Provider>
   )
 }
+
+// <AddtoFavorite onClick={handleFavorites.bind(this, listing)}>
+// <Tooltip title='Add to favorite' trigger='mouseenter'><FontAwesomeIcon icon={faEye} style={FontAwesomeStyle} /></Tooltip>
+// </AddtoFavorite>

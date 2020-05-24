@@ -3,8 +3,8 @@ import { Container } from './SectionStyling'
 import LayoutContainer from '../Layout/Layout'
 import Account from '../../Account/Account'
 import Favorties from '../../Favorites/Favorites'
-import Form from '../../ListingForm/Form'
 import FormikContainer from '../../ListingForm/FormikContainer'
+import NavContainer from '../../../../Home/Nav/NavContainer'
 // we created context to export our view state to our Layout component so they can be set from there to toggle
 // the different views
 export const ViewContext = createContext()

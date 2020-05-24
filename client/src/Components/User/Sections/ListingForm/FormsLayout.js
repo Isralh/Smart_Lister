@@ -1,6 +1,6 @@
 import React from 'react'
 import { Field, ErrorMessage, Form, Formik } from 'formik'
-import { ErrorStyle, FirstStep, SecondStep, ThirdStep } from './FormStyling'
+import { ErrorStyle, FirstStep, SecondStep } from './FormStyling'
 import { FirstStepButton, SecondStepButton } from './Buttons'
 
 export function FirstForm ({

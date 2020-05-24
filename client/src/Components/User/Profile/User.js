@@ -1,12 +1,12 @@
 import React from 'react'
 import { Container, ContentContainer } from './UserStyling'
-import Nav from '../../Home/Nav/Nav'
 import SearchBar from '../SearchBar/SearchBar'
 import SectionContainer from '../Sections/Section/Container/SectionContainer'
+import NavContainer from '../../Home/Nav/NavContainer'
 export default function User () {
   return (
     <Container>
-      <Nav />
+      <NavContainer />
       <ContentContainer>
         <SearchBar />
         <SectionContainer />

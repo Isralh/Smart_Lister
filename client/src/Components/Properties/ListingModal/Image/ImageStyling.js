@@ -68,3 +68,7 @@ cursor:pointer;
 export const FontAwesomeStyle = {
   color: 'white', height: '20px', width: '25px'
 }
+
+export const Tip = styled.div`
+z-index: 100000000;
+`

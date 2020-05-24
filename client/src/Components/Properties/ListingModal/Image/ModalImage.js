@@ -2,8 +2,8 @@ import React from 'react'
 import { Container, MoveLeft, MoveRight, PaginationContainer, FavoriteIcon, ImageCounter, FontAwesomeStyle } from './ImageStyling'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
-import { Tooltip } from 'react-tippy'
-export default function ModalImage ({ backgroundImage, handleRight, handleLeft, currentIndex, indexLength }) {
+import 'react-tippy/dist/tippy.css'
+export default function ModalImage ({ backgroundImage, handleRight, handleLeft, currentIndex, indexLength, addToFavorites }) {
   return (
     <>
       <Container background={backgroundImage} />
@@ -16,7 +16,7 @@ export default function ModalImage ({ backgroundImage, handleRight, handleLeft, 
           <p>{currentIndex} / {indexLength}</p>
         </ImageCounter>
         <FavoriteIcon>
-          <Tooltip title='Add to favorite' trigger='mouseenter'> <FontAwesomeIcon icon={faHeart} style={FontAwesomeStyle} /></Tooltip>
+          <FontAwesomeIcon icon={faHeart} style={FontAwesomeStyle} onClick={addToFavorites} />
         </FavoriteIcon>
       </PaginationContainer>
     </>

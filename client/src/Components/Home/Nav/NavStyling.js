@@ -46,6 +46,7 @@ li{
     font-family: serif;
     font-size: 15px;
     margin: 10px 8px;
+    cursor:pointer;
 }
 }
 `
