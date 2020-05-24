@@ -1,5 +1,4 @@
 const Properties = require('../../models/properties')
-const PropertyImages = require('../../models/propertyImages')
 const upload = require('./ImageUploadConfig')
 const Users = require('../../models/users')
 
@@ -59,16 +58,9 @@ exports.propertyInfo = async (req, res) => {
         Garages: secondForm.garages,
         Price: secondForm.price,
         PropertyType: secondForm.propertyType,
+        images: JSON.stringify([imageUrl]),
         users_id: userId.id
-      }).then(property => {
-        for (let i = 0; i < imageUrl.length; i++) {
-          PropertyImages.create({
-            imageUrl: imageUrl[i],
-            address: property.address,
-            properties_id: property.id
-          })
-        }
-      }).catch(e => console.log(e))
+      })
     }
     return res.status(201).send({ message: 'Property list created successfully' })
   } catch (e) {
@@ -76,13 +68,35 @@ exports.propertyInfo = async (req, res) => {
   }
 }
 
+// function runthis () {
+//   if (state.post.length > 0) {
+//     const propertiesArray = state.post[0].properties
+//     const imagesArray = state.post[0].images
+//     const combinedArray = []
+//     propertiesArray.map(property => {
+//       imagesArray.map(images => {
+//         if (property.id === images.properties_id) {
+//           combinedArray.push({ ...property, images })
+//         }
+//       })
+//     })
+//     const result = combinedArray.filter((property, index, combinedArray) => combinedArray.findIndex(item => (item.id === property.id)) === index)
+//     return result
+//   }
+// }
+// const result = runthis()
+// console.log(result)
+
 exports.getAllProperties = async (req, res) => {
-  console.log(req.body)
-  const allProperties = await Properties.findAll({ raw: true })
-  const allImages = await PropertyImages.findAll({ raw: true })
+  // bring all the properties and images from the db
+  const properties = await Properties.findAll({ raw: true })
+
   try {
-    if (allProperties && allImages) return res.status(200).send({ properties: allProperties, images: allImages })
+    if (properties) {
+      return res.status(200).send(properties)
+    }
   } catch (e) {
     console.log(e)
+    return res.status(400).send({ error: 'Server Error' })
   }
 }

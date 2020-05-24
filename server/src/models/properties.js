@@ -59,6 +59,10 @@ module.exports = Database.define('properties', {
     type: DataTypes.STRING,
     allowNull: true
   },
+  images: {
+    type: DataTypes.JSON,
+    allowNull: false
+  },
   users_id: {
     type: DataTypes.INTEGER,
     allowNull: false

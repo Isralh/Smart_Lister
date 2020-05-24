@@ -23,7 +23,7 @@ position:relative;
 @media (min-width:320px){
 margin: 15vh 5% 0vh 5%;
 background:white;
-height:50vh;
+height:70vh;
 }
 @media (min-width:400px){
 margin: 15vh 15% 0% 15%;
@@ -109,4 +109,20 @@ p{
         }
    }
 
+`
+export const ErrorStyle = styled.div`
+color:red;
+font-weight:normal;
+margin-bottom:5px;
+margin-left:2%;
+`
+export const FiledSignIn = styled.div`
+font-weight:normal;
+margin-bottom:5px;
+margin-left:2%;
+display: ${props => props.failedSignIn ? 'block' : 'none'};
+p{
+    color:red;
+
+}
 `

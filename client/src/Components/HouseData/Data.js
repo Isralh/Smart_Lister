@@ -23,7 +23,7 @@ const Data = (props) => {
     { id: 7, image: [MDFront, MDchairs, MDBack, MDInside, MDLivingRoom], latlng: [40.05, -75.53], Address: '122 Marietta Drive', City: 'West Chester, PA', Zip: 19355, Beds: 5, Baths: 4, SqFt: ' 5,900 SqFt', Garages: 2, Price: 930000, DaysOnMarket: 254, propertyTax: 1.48, Type: 'Residential' },
     { id: 8, image: [OSFront, OSFirePlace, OSCouch, OSInside], latlng: [40.02, -75.51], Address: '202 Orange Street', City: 'West Chester, PA', Zip: 19355, Beds: 5, Baths: 3, SqFt: ' 5,500 SqFt', Garages: 2, Price: 850000, DaysOnMarket: 11, propertyTax: 1.48, Type: 'Residential' },
     { id: 9, image: [RRFront, RRChairs, RRCouch, RROutside, RRSide, RRStairs], latlng: [39.96, -75.6055], Address: '145 Rockhouse Run', City: 'West Chester, PA', Zip: 19380, Beds: 4, Baths: 3, SqFt: ' 4,700 SqFt', Garages: 2, Price: 830000, DaysOnMarket: 122, propertyTax: 1.48, Type: 'Residential' }
-    // { id: 10, image: [WSFront, WSFrontNight, WSFrontSide, WSKitchen, WSPool, WSStairs], Address: '20 Washington Street', City: 'West Chester, PA', Zip: '19380', beds: '5 Beds', baths: '3 Baths', SqFt: ' 5,500 sqFt', Garages: '2 Garages', Price: '$800,000' }
+    // { id: 10, mage: [WSFront, WSFrontNight, WSFrontSide, WSKitchen, WSPool, WSStairs], Address: '20 Washington Street', City: 'West Chester, PA', Zip: '19380', beds: '5 Beds', baths: '3 Baths', SqFt: ' 5,500 sqFt', Garages: '2 Garages', Price: '$800,000' }
 
   ])
   return (

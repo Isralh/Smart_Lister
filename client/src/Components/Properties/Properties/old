@@ -8,14 +8,34 @@ import Select from '../Select/Select'
 import Maps from '../Map/Maps'
 import axios from 'axios'
 
+const initialState = {
+  loading: true,
+  error: '',
+  propertyList: []
+}
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'Success':
+      return {
+        loading: false,
+        propertyList: [action.payload],
+        error: ''
+      }
+    case 'Error':
+      return {
+        loading: false,
+        propertyList: '',
+        error: 'Something went wrong'
+      }
+    default: return state
+  }
+}
 export const propertiesContext = createContext()
 export default function Properties () {
   const houseData = useContext(DataContext)
   const [listOfHomes, setListOfHomes] = useState(houseData[0])
   const [cityName, setCityName] = useState('All')
   const [priceToggle, setPriceToggle] = useState()
-  const [propertyList, setPropertyList] = useState([])
-
   const handelCityToggle = (city) => {
     const cityInput = city
     setCityName(cityInput)
@@ -35,19 +55,35 @@ export default function Properties () {
     setListOfHomes(houseResult)
   }, [cityName, priceToggle])
 
+  const [houseList, setHouseList] = useState()
+  const [state, dispatch] = useReducer(reducer, initialState)
   useEffect(() => {
     const getProperties = async () => {
       const propertyData = await axios.get('http://localhost:3001/api/get/allProperties')
       try {
-        console.log(propertyData)
-        const data = propertyData.data
-        setPropertyList(data)
+        console.log(propertyData.data)
+        dispatch({ type: 'Success', payload: propertyData.data })
       } catch (e) {
-        console.log(e)
+        dispatch({ type: 'Error' })
       }
     }
+
     getProperties()
   }, [])
+
+  useEffect(() => {
+    if (state.propertyList.length > 0) {
+      const currentAddress = state.propertyList[0].properties[0]
+  
+      const propertyImage = state.propertyList[0].images.filter(image => {
+        if (currentAddress.id === image.properties_id) {
+          return image
+        }
+      })
+      console.log(propertyImage)
+    }
+  })
+
   return (
     <propertiesContext.Provider value={listOfHomes}>
       <Container>
@@ -59,7 +95,8 @@ export default function Properties () {
           <ListingContainer>
             <Search />
             <Select getCity={handelCityToggle} orderByPrice={handlePriceToggle} />
-            <Listing property={propertyList} />
+            {state.loading ? <div>Loading Data...</div>
+              : <Listing property={listOfHomes} />}
           </ListingContainer>
         </ContentContainer>
       </Container>
