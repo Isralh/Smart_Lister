@@ -1,47 +1,65 @@
-import React, { useState, useContext } from 'react'
-import { GoogleMap, Marker, InfoWindow } from 'react-google-maps'
-import { propertiesContext } from '../../Properties/Properties/Properties'
-import { v4 as uuid } from 'uuid'
-import styled from 'styled-components'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome } from '@fortawesome/free-solid-svg-icons'
+import React, { useContext, useState, useEffect } from 'react'
+import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api'
+import { apikey } from './apiKey'
+import { mapStyle, containerStyle, mapCenter, InfoWrapper, Image } from './MapsStyling'
+import { propertiesContext } from '../Properties/Properties'
+// google map options
+const mapOptions = {
+  styles: mapStyle,
+  disableDefaultUI: true,
+  zoomControl: true
+}
+// google maps function
 const GoogleMaps = () => {
-  const homes = useContext(propertiesContext)
-  const [selectedHome, setSelectedHome] = useState(null)
-
-  const InfoWrapper = styled.div`
-    img {
-      width: 200px;
-      height: 400px;
-    }
-  `
+  // propertyContext from properties component holds all of our property data
+  const propertyData = useContext(propertiesContext)
+  // state to check if map is loading or not
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: apikey
+  })
+  // state to get the selected home by the user
+  const [selectedProperty, setSelectedProperty] = useState(null)
+  if (loadError) return 'Error loading maps'
+  if (!isLoaded) return 'Loading Maps'
+  const propertyImage = (property) => {
+    const images = property.images
+    const allImages = JSON.parse(images)
+    return allImages[0][0]
+  }
+  if (selectedProperty !== null) {
+    console.log(propertyImage(selectedProperty))
+  }
   return (
-    <GoogleMap defaultZoom={11} defaultCenter={{ lat: 40.04, lng: -75.46 }}>
-      {homes.map(home =>
+    <GoogleMap
+      mapContainerStyle={containerStyle}
+      zoom={11}
+      center={mapCenter}
+      options={mapOptions}
+    >
+      {propertyData.map(property =>
         <Marker
-          key={uuid()}
-          position={{ lat: home.latlng[0], lng: home.latlng[1] }}
-          icon={{
-            url: <FontAwesomeIcon icon={faHome} />,
-            scaledSize: new window.google.maps.Size(20, 20)
-          }}
-          onClick={() => setSelectedHome(home)}
+          key={property.id}
+          position={{ lat: parseFloat(property.lat), lng: parseFloat(property.lng) }}
+          onClick={() => setSelectedProperty(property)}
         />
       )}
-      {selectedHome && (
+      {selectedProperty && (
         <InfoWindow
-          key={uuid()}
-          onCloseClick={() => setSelectedHome(null)}
-          position={{ lat: selectedHome.latlng[0], lng: selectedHome.latlng[1] }}
+          key={selectedProperty.id}
+          onCloseClick={() => setSelectedProperty(null)}
+          position={{ lat: parseFloat(selectedProperty.lat), lng: parseFloat(selectedProperty.lng) }}
         >
           <InfoWrapper>
-            <p>{selectedHome.Address}</p>
-            <p>{selectedHome.City}</p>
-            <p>{selectedHome.Price}</p>
+            <Image image={propertyImage(selectedProperty)}>
+              <p>{selectedProperty.address}</p>
+              <p>{selectedProperty.cityState}</p>
+              <p>{selectedProperty.Price}</p>
+            </Image>
           </InfoWrapper>
         </InfoWindow>
       )}
     </GoogleMap>
   )
 }
+
 export default GoogleMaps

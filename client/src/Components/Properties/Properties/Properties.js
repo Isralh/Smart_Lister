@@ -4,9 +4,9 @@ import Search from '../Search/Search'
 import Listing from '../Listing/Listing'
 import { DataContext } from '../../HouseData/Data'
 import Select from '../Select/Select'
-import Maps from '../Map/Maps'
 import axios from 'axios'
 import NavContainer from '../../Home/Nav/NavContainer'
+import GoogleMaps from '../Map/GoogleMaps'
 
 export const propertiesContext = createContext()
 export default function Properties () {
@@ -49,12 +49,12 @@ export default function Properties () {
     getProperties()
   }, [])
   return (
-    <propertiesContext.Provider value={listOfHomes}>
+    <propertiesContext.Provider value={propertyList}>
       <Container>
         <NavContainer />
         <ContentContainer>
           <MapContainer>
-            <Maps />
+            <GoogleMaps />
           </MapContainer>
           <ListingContainer>
             <Search />
