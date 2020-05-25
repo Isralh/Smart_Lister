@@ -19,7 +19,7 @@ export const Container = styled.div`
   margin-left:25px;
       text-align:start;
     }
-div{
+/* div{
     display:inline-block;
     height: 27px;
     padding-top:7px;
@@ -39,7 +39,35 @@ div{
       height:50px;
       padding-top:28px;
     }
-}
+} */
+`
+export const FontAwesome = styled.div`
+    display:inline-block;
+    height: 27px;
+    padding-top:7px;
+    width: 10%;
+    background:#19334d;
+    text-align:center;
+
+    @media (min-width:1200px){
+      height:29px;
+      padding-top:9px;
+    }
+    @media (min-width:1400px){
+      height:31px;
+      padding-top:12px;
+    }
+    @media (min-width:2560px){
+      height:50px;
+      padding-top:28px;
+    }
+`
+export const Suggestion = styled.div`
+display:flex;
+align-items:flex-start;
+@media (min-width:320px) and (max-width:767px) {
+          margin-left:12%;
+    }
 `
 export const Input = styled.input`
     height: 5vh;

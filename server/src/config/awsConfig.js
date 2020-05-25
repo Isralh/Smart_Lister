@@ -1,8 +1,8 @@
 const awsconfig = {
-  bucketName: 'house-images-list',
+  bucketName: 'property-listing-project',
   region: 'us-east-2',
-  accessKeyId: 'AKIAJGHNKFVU5CSRVWXA',
-  secretAccessKey: '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'
+  accessKeyId: 'AKIAJ7MOHGYJX5QJHXRA',
+  secretAccessKey: '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'
 }
 
 module.exports = awsconfig

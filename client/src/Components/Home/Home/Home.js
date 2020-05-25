@@ -7,20 +7,18 @@ import Footer from '../Footer/Footer'
 import Properties from '../Properties/Properties'
 import PortfolioContainer from '../Portfolio/PortfolioContainer'
 import NavContainer from '../Nav/NavContainer'
+import Nav from '../Nav/Nav'
 export const userStatus = createContext()
 export default function Home () {
-  const [loggedIn, setLoggedIn] = useState(false)
   return (
-    <userStatus.Provider value='loggedIn'>
-      <Container>
-        <NavContainer />
-        <FrontView />
-        <WhoWeAreContainer />
-        <Properties />
-        <PortfolioContainer />
-        <Communities />
-        <Footer />
-      </Container>
-    </userStatus.Provider>
+    <Container>
+      <Nav />
+      <FrontView />
+      <WhoWeAreContainer />
+      <Properties />
+      <PortfolioContainer />
+      <Communities />
+      <Footer />
+    </Container>
   )
 }

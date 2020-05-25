@@ -1,12 +1,13 @@
-import React, { useContext, useState, useEffect, createContext, useReducer } from 'react'
+import React, { useContext, useState, useEffect, createContext } from 'react'
 import { Container, ContentContainer, MapContainer, ListingContainer } from './PropertiesStyling'
-import Search from '../Search/Search'
 import Listing from '../Listing/Listing'
 import { DataContext } from '../../HouseData/Data'
 import Select from '../Select/Select'
 import axios from 'axios'
-import NavContainer from '../../Home/Nav/NavContainer'
 import GoogleMaps from '../Map/GoogleMaps'
+import SearchContainer from '../Search/Search'
+import Nav from '../../Home/Nav/Nav'
+import NavContainer from '../../Home/Nav/NavContainer'
 
 export const propertiesContext = createContext()
 export default function Properties () {
@@ -39,7 +40,7 @@ export default function Properties () {
     const getProperties = async () => {
       const propertyData = await axios.get('http://localhost:3001/api/get/allProperties')
       try {
-        console.log(propertyData)
+        console.log(propertyData.data)
         const data = propertyData.data
         setPropertyList(data)
       } catch (e) {
@@ -57,7 +58,7 @@ export default function Properties () {
             <GoogleMaps />
           </MapContainer>
           <ListingContainer>
-            <Search />
+            <SearchContainer property={propertyList} />
             <Select getCity={handelCityToggle} orderByPrice={handlePriceToggle} />
             <Listing property={propertyList} />
           </ListingContainer>

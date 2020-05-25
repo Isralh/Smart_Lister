@@ -7,7 +7,7 @@ width: 100%;
 display:flex;
 justify-content: space-between;
 top: 0;
-/* z-index: 100; */
+z-index: 1000000000;
 `
 export const CompanyName = styled.div`
 p{
