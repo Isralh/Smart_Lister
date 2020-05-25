@@ -6,9 +6,8 @@ background:#19334d;
 width: 100%;
 display:flex;
 justify-content: space-between;
-position: sticky;
 top: 0;
-z-index: 100;
+/* z-index: 100; */
 `
 export const CompanyName = styled.div`
 p{

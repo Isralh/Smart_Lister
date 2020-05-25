@@ -12,6 +12,10 @@ module.exports = Database.define('favorties', {
     type: DataTypes.INTEGER,
     allowNull: false
   },
+  user_email: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
   user_id: {
     type: DataTypes.INTEGER,
     allowNull: false

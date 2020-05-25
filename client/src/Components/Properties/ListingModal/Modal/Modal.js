@@ -8,6 +8,9 @@ import Description from '../Description/Description'
 import Calculator from '../Calculator/Calculator'
 import axios from 'axios'
 import jwtDecode from 'jwt-decode'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+toast.configure()
 export default function Modal ({ closeModal, handleShow }) {
   const data = useContext(listingContext)
   const { showModal, propertyInfo } = data
@@ -40,12 +43,17 @@ export default function Modal ({ closeModal, handleShow }) {
     const propertyData = propertyInfo
     const user = userInfo()
     if (user !== 'user not logged in') {
-      const postData = await axios.post('http://localhost:3000/api/post/favoriteProperties', [propertyData, user])
+      const postData = await axios.post('http://localhost:3001/api/post/favoriteProperties', [{ data: propertyData, userInfo: user }])
       try {
-        if (postData) console.log(postData.data)
+        if (postData) {
+          console.log(postData.data.message)
+          toast('Successfully added to favorties')
+        }
       } catch (e) {
         console.log(e)
       }
+    } else if (user === 'user not logged in') {
+      return window.alert('Please login in to add to favorties!')
     }
   }
   useEffect(() => {

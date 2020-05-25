@@ -1,6 +1,5 @@
 import React, { useReducer } from 'react'
 import Nav from './Nav'
-
 // we're using useReduce to toggle our sidenav between opening, closing and switching back and forth
 // between the login/register modal
 const initialState = {

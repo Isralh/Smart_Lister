@@ -1,8 +1,8 @@
 import React from 'react'
 import { Container, CompanyName, ListWrapper, NavLink } from './NavStyling'
 import { Link } from 'react-router-dom'
-import RegisterContainer from '../Authentication/Register/RegisterContainer'
-import LoginContainer from '../Authentication/Login/LoginContainer'
+import RegisterContainer from '../../Register_Login/Register/RegisterContainer'
+import LoginContainer from '../../Register_Login/Login/LoginContainer'
 export default function Nav ({
   toggleLogin, navOpen, handleOpen,
   registerView, closeRegister, displayLogin, loginView, showRegister, closeLogin
