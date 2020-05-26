@@ -1,5 +1,5 @@
 import React from 'react'
-import { ModalWrapper, Content, ErrorStyle, FiledSignIn, FontAwesomeStyle } from './LoginStyling'
+import { ModalWrapper, Content, ErrorStyle, FiledSignIn, FontAwesomeStyle, ButtonWrapper } from './LoginStyling'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
@@ -31,10 +31,12 @@ export default function Login ({
               <ErrorMessage name='password' />
             </ErrorStyle>
             <Field name='password' type='text' placeholder='Password' />
-            <button type='submit'>Login</button>
+            <ButtonWrapper>
+              <p>Need an account? <span onClick={displayRegister}>Register</span></p>
+              <button type='submit'>Login</button>
+            </ButtonWrapper>
           </Form>
         </Formik>
-        <p>Need an account? <span onClick={displayRegister}>Register</span></p>
       </Content>
     </ModalWrapper>
   )

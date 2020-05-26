@@ -15,10 +15,33 @@ border:1px solid lightgray;
 border-radius:5px;
 position:relative;
 @media (min-width:320px){
-margin: 15vh 12% 0vh 12%;
+margin: 20vh 15%  0% 15%;
 background:white;
 }
-
+@media (min-width:550px){
+margin: 20vh 22%  0% 22%;
+background:white;
+}
+@media (min-width:768px){
+margin: 20vh 28%  0% 28%;
+background:white;
+}
+@media (min-width:900px){
+margin: 20vh 30%  0% 30%;
+background:white;
+}
+@media (min-width:1000px){
+margin: 20vh 35% 0% 35%;
+background:white;
+}
+@media (min-width:1300px){
+margin: 20vh 38% 0% 38%;
+background:white;
+}
+@media (min-width:2559px){
+margin: 25vh 42% 0% 42%;
+background:white;
+}
 h1{
     padding-top:5%;
     text-align:center;

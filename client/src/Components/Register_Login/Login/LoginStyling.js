@@ -17,38 +17,36 @@ display: ${props => props.show ? 'block' : 'none'};
   background:rgb(0,0,0,0.5);
 `
 export const Content = styled.div`
-border:2px solid darkgray;
-border-radius:10px;
+border:1px solid lightgray;
+border-radius:5px;
 position:relative;
 @media (min-width:320px){
-margin: 15vh 5% 0vh 5%;
+margin: 30vh 15%  0% 15%;
 background:white;
-height:70vh;
 }
-@media (min-width:400px){
-margin: 15vh 15% 0% 15%;
+@media (min-width:550px){
+margin: 30vh 22%  0% 22%;
 background:white;
-height:50vh;
 }
-@media (min-width:500px){
-margin: 15vh 25% 0% 25%;
+@media (min-width:768px){
+margin: 30vh 28%  0% 28%;
 background:white;
-height:50vh;
 }
-@media (min-width:650px){
-margin: 15vh 30% 0% 30%;
+@media (min-width:900px){
+margin: 30vh 30%  0% 30%;
 background:white;
-height:50vh;
 }
-@media (min-width:850px){
-margin: 15vh 35% 0% 35%;
+@media (min-width:1000px){
+margin: 30vh 35% 0% 35%;
 background:white;
-height:50vh;
 }
-@media (min-width:850px){
-margin: 15vh 36% 0% 36%;
+@media (min-width:1300px){
+margin: 30vh 38% 0% 38%;
 background:white;
-height:50vh;
+}
+@media (min-width:2559px){
+margin: 35vh 42% 0% 42%;
+background:white;
 }
 h1{
     padding-top:5%;
@@ -57,57 +55,21 @@ h1{
     font-size:28px;
 }
 form{
-    padding-top:10px;
+    padding-top:5px;
     input{
-        margin-left:2%;
-        margin-bottom:3%;
-        height:30px;
-        width:95%;
-        border:1px solid lightgray;
-        ::-webkit-input-placeholder { 
-padding-left:5px;
-font-weight:bold;
-}
-:-moz-placeholder { 
-    padding-left:5px;
-    font-weight:bold;
-}
-::-moz-placeholder { 
-    padding-left:5px;
-    font-weight:bold;
-
-}
-:-ms-input-placeholder { 
-    padding-left:5px;
-    font-weight:bold;
-
-}
-::-ms-input-placeholder { 
-    padding-left:5px;
-    font-weight:bold;
-
-}
+        border: 0;
+  width:90%;
+  height:20px;
+  margin:0 0 25px 2%;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid lightgray;
 } 
-   button{
-    margin-left:2%;
-        width:95%;
-         background:#19334d;
-         color:white;
-        font-size:25px;       
-        border-radius:10px;
-         cursor:pointer;
-   }
-
+label{
+  margin-left:2%;
+color:#19334d;
 }
-p{
-        text-align:center;
-        color:#19334d;
-        font-size:18px;
-
-        span{
-            cursor:pointer;
-        }
-   }
+}
 
 `
 export const ErrorStyle = styled.div`
@@ -133,3 +95,33 @@ export const FontAwesomeStyle = {
   cursor: 'pointer'
 
 }
+export const ButtonWrapper = styled.div`
+display: flex;
+flex-direction:row nowrap;
+justify-content:space-between;
+margin-bottom:15px;
+button{
+         background:#19334d;
+         margin-right:7.5%;
+         color:white;
+        font-size:18px;
+        width:90px;
+        height:45px;       
+        border-radius:10px;
+         cursor:pointer;
+         :hover{
+             color:#19334d;
+             background:white;
+             font-weight:bolder;
+
+         }
+} p{
+    margin-left:2%;
+        color:#19334d;
+        font-size:15px;
+        span{
+            cursor:pointer;
+            font-weight:bolder;
+        }
+}
+`
