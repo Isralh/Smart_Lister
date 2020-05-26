@@ -13,7 +13,6 @@ export const Container = styled.div`
     grid-template-columns: repeat(auto-fit, (100%));
     display: grid;
   }
-  /* overflow: ${props => props.overflow ? 'auto' : 'hidden'} */
 `
 export const SectionWrapper = styled.div`
   width: 100%;
@@ -44,7 +43,6 @@ export const SectionWrapper = styled.div`
   }
   ::-webkit-scrollbar{
 width:5px;
-/* color:black; */
 }
 ::-webkit-scrollbar-track{
   background:gray;
@@ -97,7 +95,7 @@ export const Price = styled.h1`
        margin-top:-1px;
       margin-left: 5px;
       font-size: 22px;
-      z-index: 1;
+      /* z-index: 1; */
       color:  white;
       @media (min-width: 768px) {
         font-size: 20px;
@@ -108,7 +106,7 @@ export const Address = styled.p`
   margin-left: 5px;
   margin-top: -15px;
   font-size: 16px;
-  z-index: 1;
+  /* z-index: 1; */
   color:  white;
   @media (min-width: 768px) {
     font-size: 14px;
@@ -120,7 +118,7 @@ export const City = styled.p`
   margin-left: 5px;
   margin-top: -15px;
   font-size: 16px;
-  z-index: 1;
+  /* z-index: 1; */
   color:  white;
   @media (min-width: 768px) {
     font-size: 14px;

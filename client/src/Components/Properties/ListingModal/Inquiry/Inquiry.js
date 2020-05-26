@@ -8,9 +8,6 @@ export default function Inquiry () {
    setThisModal(!thisModal)
   }
   return (
-    <InquiryIcon>
-      <FontAwesomeIcon icon={faEnvelope} style={FontAwesomeStyle} onClick={handleInquiry} />
-      <div show={thisModal} />
-    </InquiryIcon>
+
   )
 }

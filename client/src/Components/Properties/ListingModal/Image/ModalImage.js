@@ -17,7 +17,6 @@ export default function ModalImage ({ backgroundImage, handleRight, handleLeft, 
           <p>{currentIndex} / {indexLength}</p>
         </ImageCounter>
         <FavoriteIcon>
-          <Inquiry />
           <FontAwesomeIcon icon={faHeart} style={FontAwesomeStyle} onClick={addToFavorites} />
         </FavoriteIcon>
       </PaginationContainer>

@@ -7,7 +7,7 @@ width: 100%;
 display:flex;
 justify-content: space-between;
 top: 0;
-z-index: 10000000;
+/* z-index: 2; */
 `
 export const CompanyName = styled.div`
 p{
@@ -20,6 +20,7 @@ p{
 
 `
 export const ListWrapper = styled.div`
+z-index:1;
 ul{
     list-style:none;
     display:flex;
@@ -60,7 +61,7 @@ display:flex;
 justify-content:space-around;
 flex-flow:column nowrap;
 /* margin-top: 5px; */
-z-index:10000;
+z-index: 2;
 display:none;
 cursor: pointer;
 @media (max-width:765px) {
@@ -91,7 +92,6 @@ export const AccountContainer = styled.div`
 display:${props => props.initialView ? 'block' : 'none'};
 background:#19334d;
 color:white;
-z-index:100000;
 /* height: 10vh; */
 div{
     color:white;

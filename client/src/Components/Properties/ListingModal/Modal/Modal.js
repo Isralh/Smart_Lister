@@ -10,6 +10,7 @@ import axios from 'axios'
 import jwtDecode from 'jwt-decode'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Inquiry from '../Inquiry/Inquiry'
 toast.configure()
 export default function Modal ({ closeModal, handleShow }) {
   const data = useContext(listingContext)
