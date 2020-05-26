@@ -15,15 +15,15 @@ export default function SectionContainer () {
   // these state are dynamically set from the context we passed to our Layout container component
   // initially set Favorites to true b/c we want to show it when the user visits the page
   const [pageViews, setPageViews] = useState({
-    accountView: false,
     listingFormView: true,
+    accountView: false,
     favoritesView: false
   })
 
   // function to ran on page load and through out state change to chage views
   const handlePageViews = () => {
-    if (view === 'Favorites') { return setPageViews({ accountView: false, listingFormView: false, favoritesView: true }) }
-    if (view === 'List House') { return setPageViews({ accountView: false, listingFormView: true, favoritesView: false }) }
+    if (view === 'List Property') { return setPageViews({ accountView: false, listingFormView: true, favoritesView: false }) }
+    if (view === 'Favorites') { return setPageViews(prev => { return { accountView: false, listingFormView: false, favoritesView: true } }) }
     if (view === 'Account') { return setPageViews({ accountView: true, listingFormView: false, favoritesView: false }) }
   }
 
