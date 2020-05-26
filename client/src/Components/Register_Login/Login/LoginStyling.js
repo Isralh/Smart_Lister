@@ -5,9 +5,9 @@ position:relative;
 z-index:100;
 width: 100%;
 height:100%;
-display: ${props => props.show ? 'block' : 'none'};
 `
 export const ModalWrapper = styled.div`
+display: ${props => props.show ? 'block' : 'none'};
   position: fixed;
   z-index: 1;
   left: 0;
@@ -126,3 +126,10 @@ p{
 
 }
 `
+export const FontAwesomeStyle = {
+  float: 'right',
+  color: '#19334d',
+  fontSize: '20px',
+  cursor: 'pointer'
+
+}

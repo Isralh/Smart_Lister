@@ -2,11 +2,11 @@ import React from 'react'
 import { Container, ContentContainer } from './UserStyling'
 import SearchBar from '../SearchBar/SearchBar'
 import SectionContainer from '../Sections/Section/Container/SectionContainer'
-import NavContainer from '../../Home/Nav/NavContainer'
+import Nav from '../../Home/Nav/Nav'
 export default function User () {
   return (
     <Container>
-      <NavContainer />
+      <Nav />
       <ContentContainer>
         <SearchBar />
         <SectionContainer />

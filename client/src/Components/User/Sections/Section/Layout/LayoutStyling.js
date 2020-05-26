@@ -11,7 +11,6 @@ h1{
     color:#19334d;
     font-size: 18px;
     height:20px;
-    border-bottom: ${props => props.active ? '2px solid #19334d' : 'none'};
     :hover {
         border-bottom: 2px solid #19334d;
         cursor:pointer;

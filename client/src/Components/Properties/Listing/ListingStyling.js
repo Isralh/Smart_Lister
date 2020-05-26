@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   position:relative;
-  z-index:-1;
   @media (min-width: 320px) {
     width: 100%;
     grid-template-columns: repeat(auto-fit, (100%));

@@ -7,7 +7,6 @@ import axios from 'axios'
 import GoogleMaps from '../Map/GoogleMaps'
 import SearchContainer from '../Search/Search'
 import Nav from '../../Home/Nav/Nav'
-import NavContainer from '../../Home/Nav/NavContainer'
 
 export const propertiesContext = createContext()
 export default function Properties () {
@@ -52,7 +51,7 @@ export default function Properties () {
   return (
     <propertiesContext.Provider value={propertyList}>
       <Container>
-        <NavContainer />
+        <Nav />
         <ContentContainer>
           <MapContainer>
             <GoogleMaps />

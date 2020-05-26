@@ -7,7 +7,7 @@ width: 100%;
 display:flex;
 justify-content: space-between;
 top: 0;
-z-index: 1000000000;
+z-index: 100;
 `
 export const CompanyName = styled.div`
 p{
@@ -61,6 +61,7 @@ flex-flow:column nowrap;
 /* margin-top: 5px; */
 z-index:10000;
 display:none;
+cursor: pointer;
 @media (max-width:765px) {
 display:flex;
 justify-content:space-around;
@@ -82,6 +83,25 @@ div{
     }
     &:nth-child(3){
         transform: ${prop => prop.open ? 'rotate(-45deg)' : 'rotate(0)'}
+    }
+}
+`
+export const AccountContainer = styled.div`
+display:${props => props.initialView ? 'block' : 'none'};
+background:#19334d;
+color:white;
+/* height: 10vh; */
+div{
+    color:white;
+    font-family: serif;
+    font-size: 15px;
+    margin-top: 10px;
+    padding-bottom:5px;
+    cursor:pointer;
+    background:#19334d;
+    :hover{
+        background:white;
+        color:#19334d;
     }
 }
 `

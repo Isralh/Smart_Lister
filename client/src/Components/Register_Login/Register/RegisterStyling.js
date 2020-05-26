@@ -1,13 +1,7 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
-position:relative;
-z-index:100;
-width: 100%;
-height:100%;
-display: ${props => props.show ? 'block' : 'none'};
-`
 export const ModalWrapper = styled.div`
+display: ${props => props.show ? 'block' : 'none'};
   position: fixed;
   z-index: 1;
   left: 0;
@@ -21,7 +15,7 @@ border:1px solid lightgray;
 border-radius:5px;
 position:relative;
 @media (min-width:320px){
-margin: 5vh 12% 0vh 12%;
+margin: 15vh 12% 0vh 12%;
 background:white;
 }
 
@@ -84,3 +78,10 @@ font-weight:normal;
 margin-bottom:5px;
 margin-left:2%;
 `
+export const FontAwesomeStyle = {
+  float: 'right',
+  color: '#19334d',
+  fontSize: '20px',
+  cursor: 'pointer'
+
+}
