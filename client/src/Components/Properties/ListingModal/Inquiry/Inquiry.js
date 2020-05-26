@@ -1,17 +1,16 @@
-import React from 'react'
-import { FormWrapper } from './InquiryStyling'
+import React, { useState } from 'react'
+import { InquiryIcon, FontAwesomeStyle } from './InquiryStyling'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 export default function Inquiry () {
+ const [thisModal, setThisModal] = useState(false)
+  const handleInquiry = () => {
+   setThisModal(!thisModal)
+  }
   return (
-    <FormWrapper>
-      <p>Request more info</p>
-      <form>
-        <input type='text' placeholder='First Name' />
-        <input type='text' placeholder='Last Name' />
-        <input type='text' placeholder='E-mail' />
-        <input type='text' placeholder='Phone Number' />
-        <input style={{ height: '80px', width: '93%' }} type='text' placeholder='Please send me more info' />
-      </form>
-      <button type='submit'> Send </button>
-    </FormWrapper>
+    <InquiryIcon>
+      <FontAwesomeIcon icon={faEnvelope} style={FontAwesomeStyle} onClick={handleInquiry} />
+      <div show={thisModal} />
+    </InquiryIcon>
   )
 }

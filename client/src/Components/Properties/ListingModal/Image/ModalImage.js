@@ -3,6 +3,7 @@ import { Container, MoveLeft, MoveRight, PaginationContainer, FavoriteIcon, Imag
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import 'react-tippy/dist/tippy.css'
+import Inquiry from '../Inquiry/Inquiry'
 export default function ModalImage ({ backgroundImage, handleRight, handleLeft, currentIndex, indexLength, addToFavorites }) {
   return (
     <>
@@ -16,6 +17,7 @@ export default function ModalImage ({ backgroundImage, handleRight, handleLeft, 
           <p>{currentIndex} / {indexLength}</p>
         </ImageCounter>
         <FavoriteIcon>
+          <Inquiry />
           <FontAwesomeIcon icon={faHeart} style={FontAwesomeStyle} onClick={addToFavorites} />
         </FavoriteIcon>
       </PaginationContainer>

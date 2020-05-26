@@ -32,7 +32,7 @@ const GoogleMaps = () => {
   return (
     <GoogleMap
       mapContainerStyle={containerStyle}
-      zoom={11}
+      zoom={10}
       center={mapCenter}
       options={mapOptions}
     >

@@ -7,7 +7,7 @@ width: 100%;
 display:flex;
 justify-content: space-between;
 top: 0;
-z-index: 100;
+z-index: 10000000;
 `
 export const CompanyName = styled.div`
 p{
@@ -24,6 +24,7 @@ ul{
     list-style:none;
     display:flex;
     flex-flow: row nowrap;
+    padding-right: 10px;
     @media (max-width:765px){
         transform:${prop => prop.open ? 'translateX(0%)' : 'translateX(100%)'};
         flex-flow:column nowrap;
@@ -90,6 +91,7 @@ export const AccountContainer = styled.div`
 display:${props => props.initialView ? 'block' : 'none'};
 background:#19334d;
 color:white;
+z-index:100000;
 /* height: 10vh; */
 div{
     color:white;

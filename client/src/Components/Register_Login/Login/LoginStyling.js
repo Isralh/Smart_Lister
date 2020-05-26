@@ -9,7 +9,7 @@ height:100%;
 export const ModalWrapper = styled.div`
 display: ${props => props.show ? 'block' : 'none'};
   position: fixed;
-  z-index: 1;
+  z-index: 100000;
   left: 0;
   top: 0;
   width: 100%;
