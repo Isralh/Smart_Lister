@@ -21,7 +21,6 @@ input{
     margin-bottom: 15px;
     margin-left:10px;
     font-weight:bold;
-    border-radius: 25px;
     input::placeholder {
     color: #19334d;
     padding-left: 5px;

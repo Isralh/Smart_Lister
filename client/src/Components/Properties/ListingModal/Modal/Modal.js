@@ -8,10 +8,7 @@ import Description from '../Description/Description'
 import Calculator from '../Calculator/Calculator'
 import axios from 'axios'
 import jwtDecode from 'jwt-decode'
-import { toast, ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import Inquiry from '../Inquiry/Inquiry'
-toast.configure()
+import InquiryForm from '../Inquiry/InquiryForm'
 export default function Modal ({ closeModal, handleShow }) {
   const data = useContext(listingContext)
   const { showModal, propertyInfo } = data
@@ -19,8 +16,13 @@ export default function Modal ({ closeModal, handleShow }) {
   const [image, setImage] = useState()
   const [length, setlength] = useState()
   const [index, setIndex] = useState(0)
-
-  // function to handle pagination of our house pictures in the Modal
+  const [inputInfo, setInputInfo] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  })
+  // function to handle pagination of our property pictures in the Modal
   const handleRightClick = () => {
     setIndex(index + 1)
     if (index >= length - 1) {
@@ -34,27 +36,49 @@ export default function Modal ({ closeModal, handleShow }) {
     }
   }
 
+  // check user's Info if they're not logged in alert them to login or register before adding properties to thier
+  // favorite list
   const userInfo = () => {
     if (token !== null || undefined) {
       const user = jwtDecode(token)
       return user.email
     } else return 'user not logged in'
   }
+  // function to handle posting user's favorite property to the database
   const handleFavorite = async () => {
-    const propertyData = propertyInfo
     const user = userInfo()
     if (user !== 'user not logged in') {
-      const postData = await axios.post('http://localhost:3001/api/post/favoriteProperties', [{ data: propertyData, userInfo: user }])
+      const postData = await axios.post('http://localhost:3001/api/post/favoriteProperties', [{ data: propertyInfo, userInfo: user }])
       try {
         if (postData) {
           console.log(postData.data.message)
-          toast('Successfully added to favorties')
         }
       } catch (e) {
         console.log(e)
       }
     } else if (user === 'user not logged in') {
       return window.alert('Please login in to add to favorties!')
+    }
+  }
+
+  // function to handle user's contact input onChange
+  const contactInputs = (e) => {
+    e.persist()
+    const inputValue = e.target.value
+    setInputInfo(prev => { return { ...prev, [e.target.name]: inputValue } })
+  }
+
+  // function to handle user's contact input submission, we'll send it to the db and from there use NodeMailer
+  // to send the email to the property lister
+  const handleContact = async (e) => {
+    e.preventDefault()
+    const postInquiry = await axios.post('http://localhost:3001/api/post/userInquiry', [{ property: propertyInfo, senderInfo: inputInfo }])
+    try {
+      if (postInquiry) {
+        console.log(postInquiry.data)
+      }
+    } catch (e) {
+      console.log(e)
     }
   }
   useEffect(() => {
@@ -68,7 +92,8 @@ export default function Modal ({ closeModal, handleShow }) {
       setIndex(0)
     }
     userInfo()
-  }, [propertyInfo, showModal])
+    console.log(inputInfo)
+  }, [propertyInfo, showModal, inputInfo])
 
   return (
     <Container show={handleShow}>
@@ -84,13 +109,14 @@ export default function Modal ({ closeModal, handleShow }) {
               currentIndex={index + 1}
               indexLength={length}
               addToFavorites={handleFavorite}
-            /> : null}
+                                   /> : null}
             <HouseInfo
               price={new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(propertyInfo.Price)}
               Beds={propertyInfo.Beds} Baths={propertyInfo.Baths} SqFt={`${new Intl.NumberFormat().format(propertyInfo.SqFt)} SqFt`} daysonMarket={propertyInfo.DaysOnMarket}
             />
             <Description numberOfBeds={propertyInfo.Beds} numberOfBath={propertyInfo.Baths} numberOfGarage={propertyInfo.Garages} city={propertyInfo.cityState} />
             <Calculator />
+            <InquiryForm handleSubmit={handleContact} handleInput={contactInputs} />
           </HouseDescription>
         </Content>
       </ListingModal>

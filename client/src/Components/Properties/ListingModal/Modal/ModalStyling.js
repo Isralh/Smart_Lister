@@ -3,6 +3,7 @@ export const Container = styled.div`
 width: 100%;
 height:100%;
 display: ${props => props.show ? 'block' : 'none'}; 
+/* display: ${props => props.show ? 'none' : 'block'};  */
 position:relative;
 `
 export const ListingModal = styled.div`
