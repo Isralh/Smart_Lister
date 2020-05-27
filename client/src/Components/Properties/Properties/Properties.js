@@ -1,7 +1,6 @@
-import React, { useContext, useState, useEffect, createContext } from 'react'
+import React, { useState, useEffect, createContext } from 'react'
 import { Container, ContentContainer, MapContainer, ListingContainer } from './PropertiesStyling'
 import Listing from '../Listing/Listing'
-import { DataContext } from '../../HouseData/Data'
 import Select from '../Select/Select'
 import axios from 'axios'
 import GoogleMaps from '../Map/GoogleMaps'
@@ -10,11 +9,26 @@ import Nav from '../../Home/Nav/Nav'
 
 export const propertiesContext = createContext()
 export default function Properties () {
-  const houseData = useContext(DataContext)
-  const [listOfHomes, setListOfHomes] = useState(houseData[0])
   const [cityName, setCityName] = useState('All')
   const [priceToggle, setPriceToggle] = useState()
   const [propertyList, setPropertyList] = useState([])
+
+  useEffect(() => {
+    const getProperties = async () => {
+      const propertyData = await axios.get('http://localhost:3001/api/get/allProperties')
+      try {
+        if (propertyData) {
+          const data = propertyData.data.filter(property => {
+            return cityName === 'All' ? property : property.cityState === `${cityName}, PA`
+          })
+          setPropertyList(data)
+        }
+      } catch (e) {
+        console.log(e)
+      }
+    }
+    getProperties()
+  }, [cityName])
 
   const handelCityToggle = (city) => {
     const cityInput = city
@@ -24,30 +38,11 @@ export default function Properties () {
     const priceOrdering = priceOrder
     setPriceToggle(priceOrdering)
   }
-  const houseResult = houseData[0].filter(house => {
-    return cityName === 'All' ? house : house.City === `${cityName}, PA`
-  })
 
-  const priceComparison = houseResult.sort((a, b) => {
+  const priceComparison = propertyList.sort((a, b) => {
     return priceToggle === 'Ascending' ? a.Price - b.Price : b.Price - a.Price
   })
-  useEffect(() => {
-    setListOfHomes(houseResult)
-  }, [cityName, priceToggle])
 
-  useEffect(() => {
-    const getProperties = async () => {
-      const propertyData = await axios.get('http://localhost:3001/api/get/allProperties')
-      try {
-        console.log(propertyData.data)
-        const data = propertyData.data
-        setPropertyList(data)
-      } catch (e) {
-        console.log(e)
-      }
-    }
-    getProperties()
-  }, [])
   return (
     <propertiesContext.Provider value={propertyList}>
       <Container>

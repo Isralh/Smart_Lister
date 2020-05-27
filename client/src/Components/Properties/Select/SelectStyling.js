@@ -36,7 +36,7 @@ button{
 `
 export const PriceContainer = styled.div`
     position:absolute;
-    /* z-index:1; */
+    z-index:2;
     display: ${props => props.display ? 'block' : 'none'};
     background:#19334d;
     color:white;
@@ -70,7 +70,7 @@ button{
 `
 export const CityContainer = styled.div`
     position:absolute;
-    /* z-index:1; */
+    z-index:2;
     display: ${props => props.display ? 'block' : 'none'};
     background:#19334d;
     color:white;

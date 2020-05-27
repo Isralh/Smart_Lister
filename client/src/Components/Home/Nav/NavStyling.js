@@ -45,7 +45,7 @@ ul{
 li{
     color:white;
     font-family: serif;
-    font-size: 15px;
+    font-size: 18px;
     margin: 10px 8px;
     cursor:pointer;
 }
@@ -96,7 +96,7 @@ color:white;
 div{
     color:white;
     font-family: serif;
-    font-size: 15px;
+    font-size: 18px;
     margin-top: 10px;
     padding-bottom:5px;
     cursor:pointer;
