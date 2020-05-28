@@ -1,7 +1,7 @@
 import React, { useState, useEffect, createContext } from 'react'
 import { Container, ContentContainer, MapContainer, ListingContainer } from './PropertiesStyling'
 import Listing from '../Listing/Listing'
-import Select from '../Select/Select'
+import Filter from '../Filter/Filter'
 import axios from 'axios'
 import GoogleMaps from '../Map/GoogleMaps'
 import SearchContainer from '../Search/Search'
@@ -43,17 +43,21 @@ export default function Properties () {
     return priceToggle === 'Ascending' ? a.Price - b.Price : b.Price - a.Price
   })
 
+  const googleApiProperty = (selectedProperty) => {
+    console.log(selectedProperty)
+    //  setPropertyList(selectedProperty)
+  }
   return (
     <propertiesContext.Provider value={propertyList}>
       <Container>
         <Nav />
         <ContentContainer>
           <MapContainer>
-            <GoogleMaps />
+            <GoogleMaps showProperty={googleApiProperty} />
           </MapContainer>
           <ListingContainer>
             <SearchContainer property={propertyList} />
-            <Select getCity={handelCityToggle} orderByPrice={handlePriceToggle} />
+            <Filter getCity={handelCityToggle} orderByPrice={handlePriceToggle} />
             <Listing property={propertyList} />
           </ListingContainer>
         </ContentContainer>

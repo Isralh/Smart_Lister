@@ -4,16 +4,14 @@ import { v4 as uuid } from 'uuid'
 import 'react-tippy/dist/tippy.css'
 import Modal from '../ListingModal/Modal/Modal'
 export const listingContext = createContext()
-export default function Listing ({ property = [] }) {
+export default function Listing ({ property }) {
   const index = 0
   const [state, setState] = useState({
     showModal: false,
     propertyInfo: []
   })
-  // const [containerState, setContainerState] = useState(true)
   const handleOpen = (listing) => {
     setState({ showModal: true, propertyInfo: listing })
-    // setContainerState(!containerState)
   }
   const handleClose = () => {
     setState(prev => {
@@ -27,7 +25,7 @@ export default function Listing ({ property = [] }) {
       return allImages[0][index]
     }
   }
-  // console.log(run(property, 1, 3))
+  
   return (
     <listingContext.Provider value={state}>
       <Container>
@@ -42,7 +40,7 @@ export default function Listing ({ property = [] }) {
                 </ListingWrapper>
               </HouseListing>
             )}
-          </> : <p>Loading...</p>}
+            </> : <p>Loading...</p>}
         </SectionWrapper>
       </Container>
       <Modal handleShow={state.showModal} closeModal={handleClose} />

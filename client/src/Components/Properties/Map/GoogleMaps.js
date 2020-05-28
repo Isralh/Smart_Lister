@@ -3,6 +3,7 @@ import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps
 import { apikey } from './apiKey'
 import { mapStyle, containerStyle, mapCenter, InfoWrapper, ListingWrapper, Price, Address, City } from './MapsStyling'
 import { propertiesContext } from '../Properties/Properties'
+import Modal from '../ListingModal/Modal/Modal'
 // google map options
 const mapOptions = {
   styles: mapStyle,
@@ -10,7 +11,7 @@ const mapOptions = {
   zoomControl: true
 }
 // google maps function
-const GoogleMaps = () => {
+const GoogleMaps = ({ showProperty }) => {
   // propertyContext from properties component holds all of our property data
   const propertyData = useContext(propertiesContext)
   // state to check if map is loading or not
@@ -49,7 +50,7 @@ const GoogleMaps = () => {
           onCloseClick={() => setSelectedProperty(null)}
           position={{ lat: parseFloat(selectedProperty.lat), lng: parseFloat(selectedProperty.lng) }}
         >
-          <InfoWrapper image={propertyImage(selectedProperty)}>
+          <InfoWrapper image={propertyImage(selectedProperty)} onClick={showProperty.bind(this, selectedProperty)}>
             <ListingWrapper>
               <Price>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(selectedProperty.Price)}</Price>
               <Address>{selectedProperty.address}</Address>

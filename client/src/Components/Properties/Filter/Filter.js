@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Container, Heading, Price, City, PriceContainer, CityContainer } from './SelectStyling'
+import { Container, Heading, Price, City, PriceContainer, CityContainer } from './FilterStyling'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { v4 as uuid } from 'uuid'
@@ -9,7 +9,7 @@ export default function Select ({ getCity, orderByPrice }) {
   const [showCity, setShowCity] = useState(false)
 
   // our list of cities and iterate through them to show the cities in an <li></li> format for the user to choose from
-  const cityName = ['All', 'King of Prussia', 'Malvern', 'Philadelphia', 'West Chester']
+  const cityName = ['All', 'King of Prussia', 'Malvern', 'West Chester']
   const priceSelector = ['Ascending', 'Descending']
 
   // On price button click show the div with the price dropdown list

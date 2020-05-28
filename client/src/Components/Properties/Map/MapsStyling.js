@@ -8,6 +8,7 @@ export const InfoWrapper = styled.div`
   background-size: cover;
   background-position: 50% 50%;
   position:relative;
+  cursor:pointer;
 `
 export const mapCenter = {
   lat: 40.04,

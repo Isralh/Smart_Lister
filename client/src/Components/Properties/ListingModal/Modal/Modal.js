@@ -109,7 +109,7 @@ export default function Modal ({ closeModal, handleShow }) {
               currentIndex={index + 1}
               indexLength={length}
               addToFavorites={handleFavorite}
-                                   /> : null}
+            /> : null}
             <HouseInfo
               price={new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(propertyInfo.Price)}
               Beds={propertyInfo.Beds} Baths={propertyInfo.Baths} SqFt={`${new Intl.NumberFormat().format(propertyInfo.SqFt)} SqFt`} daysonMarket={propertyInfo.DaysOnMarket}
