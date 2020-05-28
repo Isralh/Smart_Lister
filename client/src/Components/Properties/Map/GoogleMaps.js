@@ -3,7 +3,6 @@ import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps
 import { apikey } from './apiKey'
 import { mapStyle, containerStyle, mapCenter, InfoWrapper, ListingWrapper, Price, Address, City } from './MapsStyling'
 import { propertiesContext } from '../Properties/Properties'
-import Modal from '../ListingModal/Modal/Modal'
 // google map options
 const mapOptions = {
   styles: mapStyle,

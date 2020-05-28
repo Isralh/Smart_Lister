@@ -1,8 +1,8 @@
 
 import styled from 'styled-components'
 export const InfoWrapper = styled.div`
- width: 200px;
-  height: 200px;
+ width: 250px;
+  height: 180px;
   background: url(${(prop) => prop.image});
   background-repeat: no-repeat;
   background-size: cover;

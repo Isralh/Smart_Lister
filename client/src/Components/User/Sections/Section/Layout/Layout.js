@@ -15,7 +15,7 @@ export function Layout ({ pageLinks, showLayout, activeBorder }) {
 // container component
 // our heading/links for the users proflie page
 export default function LayoutContainer () {
-  const links = [{ keyId: 1, heading: 'List Property' }, { keyId: 2, heading: 'Favorites' }, { keyId: 3, heading: 'Account' }]
+  const links = [{ keyId: 1, heading: 'My Listing' }, { keyId: 2, heading: 'Post Property' }, { keyId: 3, heading: 'Favorites' }, { keyId: 4, heading: 'Account' }]
 
   // bring in viewContext from the section container component to toggle between the different viewlink onClick function
   const [context, setContext] = useContext(ViewContext)

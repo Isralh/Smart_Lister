@@ -3,9 +3,9 @@ import { Container, ContentContainer, MapContainer, ListingContainer } from './P
 import Listing from '../Listing/Listing'
 import Filter from '../Filter/Filter'
 import axios from 'axios'
-import GoogleMaps from '../Map/GoogleMaps'
 import SearchContainer from '../Search/Search'
 import Nav from '../../Home/Nav/Nav'
+import Maps from '../Map/Maps'
 
 export const propertiesContext = createContext()
 export default function Properties () {
@@ -43,17 +43,13 @@ export default function Properties () {
     return priceToggle === 'Ascending' ? a.Price - b.Price : b.Price - a.Price
   })
 
-  const googleApiProperty = (selectedProperty) => {
-    console.log(selectedProperty)
-    //  setPropertyList(selectedProperty)
-  }
   return (
     <propertiesContext.Provider value={propertyList}>
       <Container>
         <Nav />
         <ContentContainer>
           <MapContainer>
-            <GoogleMaps showProperty={googleApiProperty} />
+            <Maps />
           </MapContainer>
           <ListingContainer>
             <SearchContainer property={propertyList} />

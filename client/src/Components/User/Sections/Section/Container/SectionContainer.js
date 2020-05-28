@@ -22,7 +22,7 @@ export default function SectionContainer () {
 
   // function to ran on page load and through out state change to chage views
   const handlePageViews = () => {
-    if (view === 'List Property') { return setPageViews({ accountView: false, listingFormView: true, favoritesView: false }) }
+    if (view === 'Post Property') { return setPageViews({ accountView: false, listingFormView: true, favoritesView: false }) }
     if (view === 'Favorites') { return setPageViews(prev => { return { accountView: false, listingFormView: false, favoritesView: true } }) }
     if (view === 'Account') { return setPageViews({ accountView: true, listingFormView: false, favoritesView: false }) }
   }

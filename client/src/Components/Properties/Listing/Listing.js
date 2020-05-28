@@ -2,7 +2,7 @@ import React, { useState, createContext } from 'react'
 import { Container, HouseListing, SectionWrapper, Address, City, Price, ListingWrapper } from './ListingStyling'
 import { v4 as uuid } from 'uuid'
 import 'react-tippy/dist/tippy.css'
-import Modal from '../ListingModal/Modal/Modal'
+import ModalContainer from '../ListingModal/Modal/ModalContainer'
 export const listingContext = createContext()
 export default function Listing ({ property }) {
   const index = 0
@@ -43,7 +43,7 @@ export default function Listing ({ property }) {
             </> : <p>Loading...</p>}
         </SectionWrapper>
       </Container>
-      <Modal handleShow={state.showModal} closeModal={handleClose} />
+      <ModalContainer openModal={state.showModal} closeModal={handleClose} />
     </listingContext.Provider>
   )
 }
