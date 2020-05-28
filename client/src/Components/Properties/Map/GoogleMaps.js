@@ -1,7 +1,7 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState } from 'react'
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api'
 import { apikey } from './apiKey'
-import { mapStyle, containerStyle, mapCenter, InfoWrapper, Image } from './MapsStyling'
+import { mapStyle, containerStyle, mapCenter, InfoWrapper, ListingWrapper, Price, Address, City } from './MapsStyling'
 import { propertiesContext } from '../Properties/Properties'
 // google map options
 const mapOptions = {
@@ -49,12 +49,12 @@ const GoogleMaps = () => {
           onCloseClick={() => setSelectedProperty(null)}
           position={{ lat: parseFloat(selectedProperty.lat), lng: parseFloat(selectedProperty.lng) }}
         >
-          <InfoWrapper>
-            <Image image={propertyImage(selectedProperty)}>
-              <p>{selectedProperty.address}</p>
-              <p>{selectedProperty.cityState}</p>
-              <p>{selectedProperty.Price}</p>
-            </Image>
+          <InfoWrapper image={propertyImage(selectedProperty)}>
+            <ListingWrapper>
+              <Price>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(selectedProperty.Price)}</Price>
+              <Address>{selectedProperty.address}</Address>
+              <City>{selectedProperty.cityState}</City>
+            </ListingWrapper>
           </InfoWrapper>
         </InfoWindow>
       )}

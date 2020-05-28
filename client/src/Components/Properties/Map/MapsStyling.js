@@ -1,15 +1,12 @@
 
 import styled from 'styled-components'
 export const InfoWrapper = styled.div`
- width: 100px;
-  height: 100px;
-`
-export const Image = styled.div`
+ width: 200px;
+  height: 200px;
   background: url(${(prop) => prop.image});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
-  position:relative;
   position:relative;
 `
 export const mapCenter = {
@@ -20,7 +17,35 @@ export const containerStyle = {
   width: '100%',
   height: '98vh'
 }
-
+export const ListingWrapper = styled.div`
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    /* margin-top: 37.6vh; */
+    height: 60px;
+    width: 150px;
+    background:#19334d;
+    cursor:pointer;
+    bottom:0;
+`
+export const Price = styled.p`
+       margin-top:5px;
+      margin-left: 5px;
+      font-size: 14px;
+      color:  white;
+`
+export const Address = styled.p`
+  margin-left: 5px;
+  margin-top: -15px;
+  font-size: 14px;
+  color:  white;
+`
+export const City = styled.p`
+  margin-left: 5px;
+  margin-top: -15px;
+  font-size: 14px;
+  color:  white;
+`
 export const mapStyle =
 [
   {
