@@ -45,7 +45,7 @@ ul{
 li{
     color:white;
     font-family: serif;
-    font-size: 18px;
+    font-size: 16px;
     margin: 10px 8px;
     cursor:pointer;
 }

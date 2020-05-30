@@ -25,7 +25,6 @@ export default function Listing ({ property }) {
       return allImages[0][index]
     }
   }
-  
   return (
     <listingContext.Provider value={state}>
       <Container>

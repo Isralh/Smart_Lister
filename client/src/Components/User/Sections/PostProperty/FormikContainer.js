@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { FirstForm, SecondForm } from './FormsLayout'
-import { Container, FormWrapper, StepHeading } from './FormStyling'
+import { Container, FormWrapper, StepHeading, LayOutWrapper } from './FormStyling'
 import { FirstFormSchema, SecondFormSchema, ValidationSchema } from './FormSchema'
 import { useHistory } from 'react-router-dom'
 import Axios from 'axios'
 import jwtDecode from 'jwt-decode'
+import Nav from '../../../Home/Nav/Nav'
+import Layout from '../Section/Layout/Layout'
 export default function FormikContainer ({ viewListingForm }) {
   // jwtDecode to get current user Information
   const token = window.localStorage.getItem('token')
@@ -48,7 +50,7 @@ export default function FormikContainer ({ viewListingForm }) {
   const submitSecondForm = async (values) => {
     // first we add to the state valuesContainer(formData) our new data from the second step of the form submission process
     const secondForm = await values
-    setValuesContainer(prev => { return { ...prev, secondForm: secondForm }})
+    setValuesContainer(prev => { return { ...prev, secondForm: secondForm } })
     // for every image make a post request to aws and save the imageUrl to our valuesContainer
     const fileData = new FormData()
     const selectedFiles = images
@@ -80,7 +82,11 @@ export default function FormikContainer ({ viewListingForm }) {
     postProperty()
   }, [valuesContainer.secondForm, valuesContainer.imageUrl])
   return (
-    <Container viewForm={viewListingForm}>
+    <Container>
+      <Nav />
+      <LayOutWrapper>
+        <Layout />
+      </LayOutWrapper>
       <FormWrapper>
         <StepHeading>
           <p>{steps[0]}</p>

@@ -1,8 +1,7 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api'
 import { apikey } from './apiKey'
 import { mapStyle, containerStyle, mapCenter, InfoWrapper, ListingWrapper, Price, Address, City } from './MapsStyling'
-import { propertiesContext } from '../Properties/Properties'
 // google map options
 const mapOptions = {
   styles: mapStyle,
@@ -10,9 +9,8 @@ const mapOptions = {
   zoomControl: true
 }
 // google maps function
-const GoogleMaps = ({ showProperty }) => {
-  // propertyContext from properties component holds all of our property data
-  const propertyData = useContext(propertiesContext)
+const GoogleMaps = ({ showProperty, propertyInfo }) => {
+
   // state to check if map is loading or not
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: apikey
@@ -36,7 +34,7 @@ const GoogleMaps = ({ showProperty }) => {
       center={mapCenter}
       options={mapOptions}
     >
-      {propertyData.map(property =>
+      {propertyInfo.map(property =>
         <Marker
           key={property.id}
           position={{ lat: parseFloat(property.lat), lng: parseFloat(property.lng) }}

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Container } from './AccountStyling'
-export default function Account ({ showAccount }) {
+export default function Account ({ accountSetting }) {
   return (
-    <Container viewAccount={showAccount}>
+    <Container viewAccount={accountSetting}>
             Account
     </Container>
   )

@@ -2,7 +2,15 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
 width:100%;
-display: ${props => props.viewForm ? 'block' : 'none'};
+background:white;
+height:100vh;
+/* display: ${props => props.viewForm ? 'block' : 'none'}; */
+`
+export const LayOutWrapper = styled.div`
+margin: 0vh 1% 0 1%;
+@media (min-width:500px){
+    margin: 5vh 10% 0 10%;
+}
 `
 export const FormWrapper = styled.div`
 background:white;

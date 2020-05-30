@@ -1,33 +1,16 @@
-import React, { useContext } from 'react'
-import { Container } from './LayoutStyling'
-import { ViewContext } from '../../Section/Container/SectionContainer'
-// presentational component
-export function Layout ({ pageLinks, showLayout, activeBorder }) {
-  return (
+import React from 'react'
+import { Container, MyListing, PostProperty, Favorties, Account } from './LayoutStyling'
+import { Link } from 'react-router-dom'
+const Layout = () => {
 
+  return (
     <Container>
-      {pageLinks.map(link =>
-        <h1 key={link.keyId} onClick={showLayout.bind(this, link)} active={activeBorder}> {link.heading} </h1>)}
+      <Link style={{ textDecoration: 'none' }} to='/user/mylisting'><h1>MY LISTING</h1> </Link>
+      <Link style={{ textDecoration: 'none' }} to='/user/postproperty'> <h1>POST PROPERTY</h1></Link>
+      <Link style={{ textDecoration: 'none' }} to='/user/favorites'><h1>FAVORITES</h1></Link>
+      <Link style={{ textDecoration: 'none' }} to='/user/myaccount'> <h1>ACCOUNT</h1></Link>
     </Container>
   )
 }
 
-// container component
-// our heading/links for the users proflie page
-export default function LayoutContainer () {
-  const links = [{ keyId: 1, heading: 'My Listing' }, { keyId: 2, heading: 'Post Property' }, { keyId: 3, heading: 'Favorites' }, { keyId: 4, heading: 'Account' }]
-
-  // bring in viewContext from the section container component to toggle between the different viewlink onClick function
-  const [context, setContext] = useContext(ViewContext)
-
-  // function to set the view from the section container through the context we passed through, this function sets the view
-  // and changes it dynamically on click... the function passed through as props comes from our layout component and binds the
-  // links we have in the user's page
-  const layoutView = (link) => {
-    const data = link.heading
-    setContext(data)
-  }
-  return (
-    <Layout pageLinks={links} showLayout={layoutView} />
-  )
-}
+export default Layout

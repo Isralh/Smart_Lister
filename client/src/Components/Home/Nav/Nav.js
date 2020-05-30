@@ -134,7 +134,7 @@ export default function Nav () {
             {userInfo() === 'user not logged in' ? <li onClick={openLogin}>Login/Register</li>
               : <li onClick={handleDropDown}>Welcome, {userInfo()[0]} <FontAwesomeIcon icon={faCaretDown} style={{ paddingLeft: '5px' }} />
                 <AccountContainer initialView={state.showDropDown}>
-                  <Link style={{ textDecoration: 'none' }} to='/user'>  <div onClick={handleMyAccount}>My Account</div></Link>
+                  <Link style={{ textDecoration: 'none' }} to='/user/mylisting'>  <div onClick={handleMyAccount}>My Account</div></Link>
                   <div onClick={handleLogOut}>Logout</div>
                 </AccountContainer>
               </li>}

@@ -68,25 +68,6 @@ exports.propertyInfo = async (req, res) => {
   }
 }
 
-// function runthis () {
-//   if (state.post.length > 0) {
-//     const propertiesArray = state.post[0].properties
-//     const imagesArray = state.post[0].images
-//     const combinedArray = []
-//     propertiesArray.map(property => {
-//       imagesArray.map(images => {
-//         if (property.id === images.properties_id) {
-//           combinedArray.push({ ...property, images })
-//         }
-//       })
-//     })
-//     const result = combinedArray.filter((property, index, combinedArray) => combinedArray.findIndex(item => (item.id === property.id)) === index)
-//     return result
-//   }
-// }
-// const result = runthis()
-// console.log(result)
-
 exports.getAllProperties = async (req, res) => {
   // bring all the properties and images from the db
   const properties = await Properties.findAll({ raw: true })
@@ -98,5 +79,18 @@ exports.getAllProperties = async (req, res) => {
   } catch (e) {
     console.log(e)
     return res.status(400).send({ error: 'Server Error' })
+  }
+}
+
+exports.getPropertyByUseId = async (req, res) => {
+  const userId = await req.params.id
+  const userProperty = await Properties.findOne({
+    where: { users_id: userId }
+  })
+  try {
+    if (userProperty) return res.status(200).send({ data: userProperty, message: 'Successfully found property' })
+    else return res.status(200).send({ message: 'user doesnt have property listed ' })
+  } catch (e) {
+    return res.status(404).send({ message: 'Server Error' })
   }
 }

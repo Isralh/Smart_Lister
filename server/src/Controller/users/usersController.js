@@ -34,15 +34,17 @@ exports.register = async (req, res) => {
       email: email,
       password: await bcrypt.hash(password, 8),
       confirmPassword: await bcrypt.hash(confirmPassword, 8)
-    })
-    const token = jwt.sign({
-      firstName: firstName,
-      lastName: lastName,
-      email: email
-    }, config.jwtSecret, {
-      expiresIn: '1hr'
-    })
-    return res.status(201).send({ message: 'user created successfully', token: token })
+    }).then(user => {
+      const token = jwt.sign({
+        userId: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email
+      }, config.jwtSecret, {
+        expiresIn: '1hr'
+      })
+      return res.status(201).send({ message: 'user created successfully', token: token })
+    }).catch(e => console.log(e))
   } catch (e) {
     console.log(e)
     return res.status(404).send({ message: 'server error', e })
@@ -64,6 +66,7 @@ exports.login = async (req, res) => {
       bcrypt.compare(password, existingUser.password).then(result => {
         if (result) {
           const token = jwt.sign({
+            userId: existingUser.id,
             email: existingUser.email,
             firstName: existingUser.firstName,
             lastName: existingUser.lastName

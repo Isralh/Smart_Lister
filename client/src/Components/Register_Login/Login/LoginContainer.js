@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import Login from './Login'
 import { useHistory } from 'react-router-dom'
@@ -33,7 +33,7 @@ export default function LoginContainer ({ loginModal, displayRegister, loginClos
       if (login.status === 202) {
         console.log(login.data.message)
         userToken.setItem('token', login.data.token)
-        history.push('/user')
+        history.push('/user/mylisting')
       }
     } catch (e) {
       console.log(e)

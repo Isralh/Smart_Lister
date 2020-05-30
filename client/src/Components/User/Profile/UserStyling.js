@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
 width: 100%;
 height:100vh;
+background:whitesmoke;
 `
 export const ContentContainer = styled.div`
 @media (min-width:320px) {
