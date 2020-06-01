@@ -1,21 +1,24 @@
 import React from 'react'
 import { Doughnut } from 'react-chartjs-2'
-import { GraphContainer, GraphWrapper, MonthlyPaymentContainer } from './GraphStyling'
-export default function Graph ({ principalPayment, tax, insurancePayment, payment, monthlyPaymentInfo }) {
+import { GraphContainer, GraphWrapper } from './GraphStyling'
+export default function Graph ({ principalPayment, tax, insurancePayment, payment }) {
   const doughnutGraph = {
-    labels: ['Principal & Interest', 'Taxes'],
+    labels: ['Principal & Interest', 'Taxes', 'Insurance'
+    ],
     datasets: [
       {
         label: 'Rainfall',
         backgroundColor: [
           '#B21F00',
-          '#C9DE00'
+          '#C9DE00',
+          '#2FDE00'
         ],
         hoverBackgroundColor: [
           '#501800',
-          '#4B5000'
+          '#4B5000',
+          '#175000'
         ],
-        data: [principalPayment, tax]
+        data: [principalPayment, tax, insurancePayment]
       }
     ]
   }
@@ -25,6 +28,8 @@ export default function Graph ({ principalPayment, tax, insurancePayment, paymen
         <GraphWrapper>
           <Doughnut
             data={doughnutGraph}
+            width={150}
+            height={100}
             options={{
               legend: {
                 display: true,
@@ -37,9 +42,7 @@ export default function Graph ({ principalPayment, tax, insurancePayment, paymen
               }
             }}
           />
-          <MonthlyPaymentContainer>
-            {isNaN(monthlyPaymentInfo) ? null : <p>Monthly payment is {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(payment)}</p>}
-          </MonthlyPaymentContainer>
+          <p>Monthly payment is {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(payment)}</p>
         </GraphWrapper>
       </GraphContainer>
     </>

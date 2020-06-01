@@ -1,57 +1,33 @@
-import React, { useState, useEffect } from 'react'
-import Jwt from 'jwt-decode'
-import axios from 'axios'
-import NoResult from '../SharedComponent/NoResult'
-import ViewComponent from '../SharedComponent/ViewComponent'
-const Favorites = () => {
-  const token = window.localStorage.getItem('token')
-  const user = Jwt(token)
-  const userId = user.userId
-  const [property, setProperty] = useState([])
-  const [image, setImage] = useState()
-  // const propertyImages = (property) => {
-  //   if (property.length > 0) {
-  //     const images = property.images
-  //     const allImages = JSON.parse(images)
-  //     setImage(allImages[0])
-  //   }
-  // }
-  function initialImage (property, key, index) {
-    if (property.length > 0) {
-      const images = property[key].images
-      const allImages = JSON.parse(images)
-      return allImages[0][index]
-    }
-  }
-  const index = 0
-  useEffect(() => {
-    const getUserProperty = async () => {
-      const propertyData = await axios.get(`http://localhost:3001/api/get/favorites/${userId}`)
-      try {
-        if (propertyData) {
-          setProperty(propertyData.data.data)
-          console.log(propertyData)
-        }
-      } catch (e) {
-        console.log(e)
-      }
-    }
-    getUserProperty()
-  }, [])
-
-  useEffect(() => {
-    console.log(property)
-    console.log(initialImage(property, 0, 0))
-  }, [property])
+import React, { useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import { Container, ImageContainer, ListingWrapper, Price, Address, City, ContentWrapper, FontAwesomeStyle, FontAwesomeContainer, TopHeading, LayOutWrapper } from './FavortiesStyling'
+import Nav from '../../../Home/Nav/Nav'
+import Layout from '../Section/Layout/Layout'
+const Favorites = ({ propertiesImage, price, address, cityState, underLineActive }) => {
   return (
-    <>
-      {property.length > 0
-        ? <ViewComponent
-          heading='MY FAVORITES'
-          propertyInfo={property}
-        />
-        : <NoResult notFound='No Favorites Found' />}
-    </>
+    <Container>
+      <Nav />
+      <LayOutWrapper>
+        <Layout />
+      </LayOutWrapper>
+      {propertiesImage !== undefined
+        ? <ContentWrapper>
+          <TopHeading>
+            <h1>CURRENT LISTING</h1>
+          </TopHeading>
+          <FontAwesomeContainer>
+            <FontAwesomeIcon icon={faTimesCircle} style={FontAwesomeStyle} onClick={(e) => console.log('delete')} />
+          </FontAwesomeContainer>
+          <ImageContainer imageUrl={propertiesImage[0]}>
+            <ListingWrapper>
+              <Price>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(price)}</Price>
+              <Address>{address}</Address>
+              <City>{cityState}</City>
+            </ListingWrapper>
+          </ImageContainer>
+        </ContentWrapper> : null}
+    </Container>
   )
 }
 

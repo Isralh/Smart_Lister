@@ -4,6 +4,7 @@ export const Container = styled.div`
 width:100%;
 background:white;
 height:100vh;
+/* display: ${props => props.viewMyListing ? 'block' : 'none'} */
 `
 export const LayOutWrapper = styled.div`
 margin: 0vh 1% 0 1%;
@@ -21,35 +22,18 @@ margin: 5vh 1% 0 1%;
 }
 `
 export const TopHeading = styled.div`
-margin-top: 8vh;
+margin-top: 5vh;
 h1{
-    font-size: 22px;
+    font-size: 15px;
     color:#19334d;
 }
 `
-export const Updates = styled.div`
-margin-top:20px;
+export const FontAwesomeContainer = styled.div`
 height:20px;
 display:flex;
 justify-content:flex-end;
 @media (min-width:768px){
     width:50%;
-}
-div{
-    height:10x;
-width:60px;
-/* margin-top:5px; */
-/* margin-top:-10px; */
-background:#19334d;
-cursor:pointer;
-border:1px solid white;
-p{
-    font-size:13px;
-    margin-top:0px;
-    text-align:center;
-    color:white;
-    font:bold;
-}
 }
 `
 export const ImageContainer = styled.div`
@@ -59,18 +43,18 @@ export const ImageContainer = styled.div`
   background-position: 50% 50%;
   position:relative;
   cursor:pointer;
-  display:flex;
+  display:block;
 @media (min-width:320px){
-    height:45vh;
+    height:40vh;
 }
 @media (min-width:375px){
-    height:45vh;
+    height:50vh;
 }
 @media (min-width:600px){
-    height:55vh;
+    height:60vh;
 }
 @media (min-width:768px){
-    height:50vh;
+    height:60vh;
     width:50%;
 }
 `
@@ -78,6 +62,7 @@ export const ListingWrapper = styled.div`
     position: absolute;
     display: flex;
     flex-direction: column;
+    /* margin-top: 37.6vh; */
     height: 60px;
     width: 170px;
     background:#19334d;
@@ -87,7 +72,6 @@ export const ListingWrapper = styled.div`
         height: 80px;
         width: 170px;
 }
-
 `
 export const Price = styled.p`
        margin-top:5px;
@@ -116,8 +100,9 @@ export const City = styled.p`
         font-size: 16px;
 }
 `
-export const NoListing = styled.h1`
-margin: 30vh 0 0 0;
-text-align: center;
-color:#19334d;
-`
+export const FontAwesomeStyle = {
+  float: 'right',
+  color: '#19334d',
+  fontSize: '20px',
+  cursor: 'pointer'
+}

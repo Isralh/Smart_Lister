@@ -73,7 +73,7 @@ export default function FormikContainer ({ viewListingForm }) {
         const propertyInfo = await Axios.post('http://localhost:3001/api/post/propertyInfo', [valuesContainer])
         try {
           if (propertyInfo) console.log(propertyInfo.data)
-          history.push('/user/mylisting')
+          history.push('/')
         } catch (e) {
           console.log(e)
         }

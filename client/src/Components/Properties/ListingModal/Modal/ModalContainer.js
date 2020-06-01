@@ -93,10 +93,10 @@ const ModalContainer = ({ openModal, closeModal }) => {
       setIndex(0)
     }
     userInfo()
+    console.log(inputInfo)
   }, [propertyInfo, showModal, inputInfo])
   return (
     <Modal
-      property={data}
       handleShow={openModal}
       closeModal={closeModal}
       handleNext={nextImage}
@@ -115,6 +115,7 @@ const ModalContainer = ({ openModal, closeModal }) => {
       garages={propertyInfo.Garages}
       citState={propertyInfo.cityState}
       sqFt={propertyInfo.SqFt}
+
     />
   )
 }

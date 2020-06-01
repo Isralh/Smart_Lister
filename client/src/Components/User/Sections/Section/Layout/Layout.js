@@ -1,7 +1,8 @@
 import React from 'react'
-import { Container } from './LayoutStyling'
+import { Container, MyListing, PostProperty, Favorties, Account } from './LayoutStyling'
 import { Link } from 'react-router-dom'
-const Layout = ({ myActiveListing }) => {
+const Layout = () => {
+
   return (
     <Container>
       <Link style={{ textDecoration: 'none' }} to='/user/mylisting'><h1>MY LISTING</h1> </Link>

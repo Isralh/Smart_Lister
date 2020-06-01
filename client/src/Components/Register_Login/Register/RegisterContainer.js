@@ -35,7 +35,7 @@ export default function RegisterContainer ({ registerModal, closeModal, showLogi
       if (registerData.status === 201) {
         console.log(registerData.data.message)
         userToken.setItem('token', registerData.data.token)
-        history.push('/user/mylisting')
+        history.push('/user')
       }
     } catch (e) {
       console.log(e)
