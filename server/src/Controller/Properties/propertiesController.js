@@ -94,3 +94,17 @@ exports.getPropertyByUseId = async (req, res) => {
     return res.status(404).send({ message: 'Server Error' })
   }
 }
+
+exports.deleteProperty = async (req, res) => {
+  const propertyId = req.params.id
+  const property = await Properties.findByPk(propertyId)
+  try {
+    if (property) {
+      await property.destroy()
+      return res.status(200).send({ message: 'Successfully deleted property' })
+    }
+    return res.status(404).send({ message: 'Unable to find property' })
+  } catch (e) {
+    return res.status(404).send({ message: 'server error' })
+  }
+}
