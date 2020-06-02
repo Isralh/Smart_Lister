@@ -29,7 +29,6 @@ h1{
 }
 `
 export const ContentContainer = styled.div`
-margin-top:20px;
 display:flex;
 flex-direction:column;
 flex-wrap: nowrap;
@@ -55,6 +54,7 @@ margin-top:25px;
 export const Section = styled.div`
 position:relative;
 width:100%;
+margin:15px 0 10px 0;
 @media (min-width:600px){
     flex-basis:45%;
 }

@@ -94,6 +94,10 @@ exports.getPropertyByUseId = async (req, res) => {
     return res.status(404).send({ message: 'Server Error' })
   }
 }
+exports.getPropertyByCity = async (req, res) => {
+  const cityName = await req.params.id
+  console.log(cityName)
+}
 
 exports.deleteProperty = async (req, res) => {
   const propertyId = req.params.id
