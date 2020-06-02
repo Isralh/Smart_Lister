@@ -3,8 +3,8 @@ import { Container } from './SectionStyling'
 import Layout from '../Layout/Layout'
 import MyListingContainer from '../../MyListing/MyListingContainer'
 import FormikContainer from '../../PostProperty/FormikContainer'
-import Favorites from '../../Favorites/Favorites'
 import Account from '../../Account/Account'
+import SavedSearchContainer from '../../Favorites/FavoritesContainer'
 
 export default function SectionContainer () {
 
@@ -13,7 +13,7 @@ export default function SectionContainer () {
       <Layout />
       <MyListingContainer />
       <FormikContainer />
-      <Favorites />
+      <SavedSearchContainer />
       <Account />
     </Container>
   )

@@ -45,6 +45,7 @@ export const Message = styled.input`
     font-weight:bold;
     @media(min-width:600px){
         width:50%;
+        text-align:justify;
 
 }
 `

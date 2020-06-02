@@ -6,7 +6,7 @@ import DataContext from './Components/HouseData/Data'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import MyListingContainer from './Components/User/Sections/MyListing/MyListingContainer'
 import FormikContainer from './Components/User/Sections/PostProperty/FormikContainer'
-import Favorites from './Components/User/Sections/Favorites/Favorites'
+import FavoritesContainer from './Components/User/Sections/Favorites/FavoritesContainer'
 import { ProtectedRoute } from './Components/Authentication/ProtectedRoute'
 import NotFound from './Components/PageNotFound/NotFound'
 // global styling and wrap our app component with it
@@ -24,9 +24,9 @@ function App () {
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/properties' component={Properties} />
-          <ProtectedRoute path='/user/mylisting' component={MyListingContainer} />
-          <ProtectedRoute path='/user/postproperty' component={FormikContainer} />
-          <ProtectedRoute path='/user/favorites' component={Favorites} />
+          <ProtectedRoute path='/user/myListing' component={MyListingContainer} />
+          <ProtectedRoute path='/user/postProperty' component={FormikContainer} />
+          <ProtectedRoute path='/user/favorites' component={FavoritesContainer} />
           <Route path='*' component={NotFound} />
         </Switch>
         <GlobalStyle />

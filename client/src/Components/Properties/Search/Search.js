@@ -6,31 +6,38 @@ import { v4 as uuid } from 'uuid'
 const Search = ({ searchInput, results, keyid }) => {
   return (
     <Container>
-      <Input type='text' placeholder='City, State, Zip' onChange={searchInput} />
+      <Input type='text' placeholder='Adress, City, State' onChange={searchInput} />
       <FontAwesome><FontAwesomeIcon icon={faSearch} color='white' /></FontAwesome>
     </Container>
   )
 }
 
-const SearchContainer = ({ property }) => {
-  const [data, setData] = useState()
-  const [suggestionMatch, setSuggestionMatch] = useState('hi')
-  const handleInput = (e) => {
-    let suggestion = data.filter(list => {
-      const regex = new RegExp(`${e.target.value}`, 'gi')
-      return list.address.match(regex)
-    })
-    if (e.target.value === 0) {
-      suggestion = []
-    }
-    setSuggestionMatch(suggestion)
-  }
+const SearchContainer = ({ inputValue }) => {
+  // const [items, setItems] = useState({
+  //   item: ['David', 'Damien', 'Sara', 'Jane']
+  // })
+  // const [suggestion, setSuggestion] = useState([])
 
-  useEffect(() => {
-    setData(property)
-  }, [property, suggestionMatch])
+  // const inputValue = (e) => {
+  //   const empty = []
+  //   const values = e.target.value
+  //   if (values.length === 0) {
+  //     setSuggestion(empty)
+  //   } else {
+  //     const regex = new RegExp(`^${values}`, 'i')
+  //     const suggestions = items.item.sort().filter(v => regex.test(v))
+  //     setSuggestion([suggestions])
+  //   }
+  // }
+  // useEffect(() => {
+  //   if (suggestion.length === 0) {
+  //     console.log(null)
+  //   } else {
+  //     console.log(suggestion.map(s => s))
+  //   }
+  // }, [suggestion, items])
   return (
-    <Search searchInput={handleInput} />
+    <Search searchInput={inputValue} />
   )
 }
 

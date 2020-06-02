@@ -14,7 +14,7 @@ margin: 0vh 1% 0 1%;
 export const ContentWrapper = styled.div`
 /* width:100%; */
 position:relative;
-margin-top:15%;
+/* margin-top:15%; */
 margin: 5vh 1% 0 1%;
 @media (min-width:500px){
     margin: 5vh 10% 0 10%;
@@ -33,7 +33,7 @@ height:20px;
 display:flex;
 justify-content:flex-end;
 @media (min-width:768px){
-    width:50%;
+    width:40%;
 }
 div{
     height:10x;
@@ -44,7 +44,7 @@ background:#19334d;
 cursor:pointer;
 border:1px solid white;
 p{
-    font-size:13px;
+    font-size:15px;
     margin-top:0px;
     text-align:center;
     color:white;
@@ -70,8 +70,8 @@ export const ImageContainer = styled.div`
     height:55vh;
 }
 @media (min-width:768px){
-    height:50vh;
-    width:50%;
+    height:55vh;
+    width:40%;
 }
 `
 export const ListingWrapper = styled.div`

@@ -12,7 +12,7 @@ margin: 0vh 1% 0 1%;
     margin: 5vh 10% 0 10%;
 }
 `
-export const ContentWrapper = styled.div`
+export const SectiontWrapper = styled.div`
 /* width:100%; */
 position:relative;
 margin-top:15%;
@@ -22,18 +22,41 @@ margin: 5vh 1% 0 1%;
 }
 `
 export const TopHeading = styled.div`
-margin-top: 5vh;
+margin-top: 8vh;
 h1{
-    font-size: 15px;
+    font-size: 22px;
     color:#19334d;
 }
 `
+export const ContentContainer = styled.div`
+margin-top:20px;
+display:flex;
+flex-direction:column;
+flex-wrap: nowrap;
+justify-content:flex-start;
+width:100%;
+
+@media (min-width:600px){
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content:space-between;
+}
+`
+
 export const FontAwesomeContainer = styled.div`
 height:20px;
 display:flex;
 justify-content:flex-end;
-@media (min-width:768px){
+margin-top:25px;
+/* @media (min-width:768px){
     width:50%;
+} */
+`
+export const Section = styled.div`
+position:relative;
+width:100%;
+@media (min-width:600px){
+    flex-basis:45%;
 }
 `
 export const ImageContainer = styled.div`
@@ -42,20 +65,44 @@ export const ImageContainer = styled.div`
   background-size: cover;
   background-position: 50% 50%;
   position:relative;
+  width:100%;
   cursor:pointer;
-  display:block;
+  /* flex-basis:100%; */
+  /* display:block; */
 @media (min-width:320px){
     height:40vh;
 }
 @media (min-width:375px){
     height:50vh;
 }
-@media (min-width:600px){
-    height:60vh;
-}
-@media (min-width:768px){
+/* @media (min-width:768px){
     height:60vh;
     width:50%;
+} */
+`
+export const Updates = styled.div`
+margin-top:20px;
+height:20px;
+display:flex;
+justify-content:flex-end;
+/* @media (min-width:768px){
+    width:40%;
+} */
+div{
+    height:10x;
+width:60px;
+/* margin-top:5px; */
+/* margin-top:-10px; */
+background:#19334d;
+cursor:pointer;
+border:1px solid white;
+p{
+    font-size:15px;
+    margin-top:0px;
+    text-align:center;
+    color:white;
+    font:bold;
+}
 }
 `
 export const ListingWrapper = styled.div`

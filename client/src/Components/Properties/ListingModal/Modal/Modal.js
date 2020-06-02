@@ -34,7 +34,6 @@ export default function Modal ({
                   Beds={beds} Baths={baths} SqFt={`${new Intl.NumberFormat().format(sqFt)} SqFt`} daysonMarket={daysonMarket}
                 />
                 <Description numberOfBeds={beds} numberOfBath={baths} numberOfGarage={garages} city={citState} />
-                <Calculator priceHolder={price} />
                 <InquiryForm handleSubmit={handleContact} handleInput={contactInputs} />
               </HouseDescription>
               </Content> : null}
@@ -43,3 +42,4 @@ export default function Modal ({
     </PropertyContext.Provider>
   )
 }
+                // <Calculator priceHolder={price} />

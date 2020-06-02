@@ -12,7 +12,7 @@ export default function Properties () {
   const [cityName, setCityName] = useState('All')
   const [priceToggle, setPriceToggle] = useState()
   const [propertyList, setPropertyList] = useState([])
-
+  const [propertyData, setPropertyData] = useState()
   useEffect(() => {
     const getProperties = async () => {
       const propertyData = await axios.get('http://localhost:3001/api/get/allProperties')
@@ -43,6 +43,30 @@ export default function Properties () {
     return priceToggle === 'Ascending' ? a.Price - b.Price : b.Price - a.Price
   })
 
+  const [inputSuggestion, setInputSuggestion] = useState([])
+  const searchInput = (e) => {
+    const values = e.target.value
+    if (!values) {
+      setInputSuggestion([])
+    }
+    const expression = new RegExp(`^${values}`, 'i')
+    const address = propertyList.map(property => property.address).sort().filter(text => expression.test(text))
+    const newProperty = []
+    address.map(newAddress => {
+      propertyData.map(oldAddress => {
+        if (newAddress === oldAddress.address) {
+          newProperty.push(oldAddress)
+        }
+      })
+    })
+    setPropertyList(newProperty)
+    // setInputSuggestion(address)
+  }
+  useEffect(() => {
+    // console.log(inputSuggestion)
+    setPropertyData(propertyList)
+    console.log(propertyData)
+  }, [propertyList, inputSuggestion, propertyData])
   return (
     <propertiesContext.Provider value={propertyList}>
       <Container>
@@ -52,7 +76,7 @@ export default function Properties () {
             <Maps />
           </MapContainer>
           <ListingContainer>
-            <SearchContainer property={propertyList} />
+            <SearchContainer inputValue={searchInput} />
             <Filter getCity={handelCityToggle} orderByPrice={handlePriceToggle} />
             <Listing property={propertyList} />
           </ListingContainer>

@@ -5,13 +5,13 @@ import Layout from '../Section/Layout/Layout'
 const NoResult = ({ notFound }) => {
   return (
     <Container>
-      <Nav />
-      <LayOutWrapper>
-        <Layout />
-      </LayOutWrapper>
       <NoListing>{notFound}</NoListing>
     </Container>
   )
 }
 
 export default NoResult
+// <Nav />
+// <LayOutWrapper>
+//   <Layout />
+// </LayOutWrapper>
