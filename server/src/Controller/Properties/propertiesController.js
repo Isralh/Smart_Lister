@@ -96,9 +96,47 @@ exports.getPropertyByUseId = async (req, res) => {
 }
 exports.getPropertyByCity = async (req, res) => {
   const cityName = await req.params.id
-  console.log(cityName)
+  if (cityName === 'All') {
+    const allProperties = await Properties.findAll({ raw: true })
+    try {
+      if (allProperties) return res.status(200).send({ message: 'successfull', data: allProperties })
+      return res.status(404).send({ message: 'no content found' })
+    } catch (e) {
+      return res.status(404).send({ message: 'Server error' })
+    }
+  } else {
+    const properties = await Properties.findAll({
+      where: { cityState: `${cityName}, PA` }
+    })
+    try {
+      if (properties) return res.status(200).send({ message: 'success', data: properties })
+      return res.status(404).send({ message: 'no content found' })
+    } catch (e) {
+      return res.status(404).send({ message: 'Server error' })
+    }
+  }
 }
-
+exports.getPropertyByAddress = async (req, res) => {
+  const addressRequest = await req.params.id
+  if (addressRequest === 'All') {
+    const property = await Properties.findAll({ raw: true })
+    try {
+      if (property) return res.status(200).send({ message: 'Success', data: property })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  const address = addressRequest.split(', ')
+  const properties = []
+  for (let i = 0; i < address.length; i++) {
+    const property = await Properties.findOne({
+      where: { address: address[i] }
+    })
+    properties.push(property)
+  }
+  console.log(properties)
+  return res.status(200).send({ message: 'Success', data: properties })
+}
 exports.deleteProperty = async (req, res) => {
   const propertyId = req.params.id
   const property = await Properties.findByPk(propertyId)

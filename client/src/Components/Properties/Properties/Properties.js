@@ -12,15 +12,13 @@ export default function Properties () {
   const [cityName, setCityName] = useState('All')
   const [priceToggle, setPriceToggle] = useState()
   const [propertyList, setPropertyList] = useState([])
-  const [propertyData, setPropertyData] = useState()
+
   useEffect(() => {
     const getProperties = async () => {
-      const propertyData = await axios.get('http://localhost:3001/api/get/allProperties')
+      const propertyData = await axios.get(`http://localhost:3001/api/get/property/city/${cityName}`)
       try {
         if (propertyData) {
-          const data = propertyData.data.filter(property => {
-            return cityName === 'All' ? property : property.cityState === `${cityName}, PA`
-          })
+          const data = propertyData.data.data
           setPropertyList(data)
         }
       } catch (e) {
@@ -44,29 +42,38 @@ export default function Properties () {
   })
 
   const [inputSuggestion, setInputSuggestion] = useState([])
-  const searchInput = (e) => {
+  const searchInput = async (e) => {
     const values = e.target.value
     if (!values) {
-      setInputSuggestion([])
+      const propertyData = await axios.get('http://localhost:3001/api/get/property/address/All')
+      try {
+        if (propertyData) {
+          setPropertyList(propertyData.data.data)
+        }
+      } catch (e) {
+        console.log(e)
+      }
     }
     const expression = new RegExp(`^${values}`, 'i')
     const address = propertyList.map(property => property.address).sort().filter(text => expression.test(text))
-    const newProperty = []
-    address.map(newAddress => {
-      propertyData.map(oldAddress => {
-        if (newAddress === oldAddress.address) {
-          newProperty.push(oldAddress)
-        }
-      })
-    })
-    setPropertyList(newProperty)
-    // setInputSuggestion(address)
+    setInputSuggestion(address.join(', '))
   }
+
+  const [address, setAddress] = useState('')
   useEffect(() => {
-    // console.log(inputSuggestion)
-    setPropertyData(propertyList)
-    console.log(propertyData)
-  }, [propertyList, inputSuggestion, propertyData])
+    const propertyByCiy = async (req, res) => {
+      const propertyData = await axios.get(`http://localhost:3001/api/get/property/address/${inputSuggestion}`)
+      try {
+        if (propertyData) {
+          setPropertyList(propertyData.data.data)
+        }
+      } catch (e) {
+        console.log(e)
+      }
+    }
+    propertyByCiy()
+    console.log(address)
+  }, [inputSuggestion, address])
   return (
     <propertiesContext.Provider value={propertyList}>
       <Container>

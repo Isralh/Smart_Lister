@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid'
 const Search = ({ searchInput, results, keyid }) => {
   return (
     <Container>
-      <Input type='text' placeholder='Adress, City, State' onChange={searchInput} />
+      <Input type='text' placeholder='Search by address...' onChange={searchInput} />
       <FontAwesome><FontAwesomeIcon icon={faSearch} color='white' /></FontAwesome>
     </Container>
   )
