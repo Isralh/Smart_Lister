@@ -1,5 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
-import { DataContext } from '../../HouseData/Data'
+import React, { useState, useEffect } from 'react'
 import {
   Container, SelectedProperties, PropertiesWrapper, Price,
   Address, CityStateZip, RightArrow, LeftArrow, ContentWrapper, TopHeading
@@ -18,11 +17,7 @@ const Properties = () => {
 
   const [featuredListing, setFeaturedListing] = useState()
   const [image, setImage] = useState()
-  const [imageKey, setImageKey] = useState([])
-  const [selectedHouse, setSelectedHouse] = useState({
-    house: [],
-    image: ''
-  })
+
   const featured = ['1346 Columbia Avenue', '1051 Fruitville Pike', '145 Rockhouse Run']
   const getProperties = async () => {
     const properties = await axios.get(`http://localhost:3001/api/get/property/address/${featured[index]}`)
@@ -37,17 +32,6 @@ const Properties = () => {
   useEffect(() => {
     getProperties()
   }, [index])
-
-  const [properties] = useContext(DataContext)
-  const results = properties.filter(r => {
-    return ['1346 Columbia Avenue', '1051 Fruitville Pike', '145 Rockhouse Run'].indexOf(r.Address) !== -1
-  })
-
-  useEffect(() => {
-    if (featuredListing !== undefined) {
-      console.log(featuredListing[0])
-    }
-  }, [featuredListing])
 
   useEffect(() => {
     if (featuredListing !== undefined) {
@@ -80,7 +64,8 @@ const Properties = () => {
               {index > 0 ? <LeftArrow> <h1 onClick={handleLeft}>{'<'}</h1></LeftArrow> : null}
             </PropertiesWrapper>
           </ContentWrapper>
-        </Container> : null}
+        </Container> 
+        : null}
     </>
   )
 }
