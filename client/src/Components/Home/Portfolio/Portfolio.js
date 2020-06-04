@@ -10,7 +10,7 @@ export default function Portfolio ({ handleMouseOver, handleMouseLeave, hover })
     <Container>
       <PortfolioWrapper>
         <TopHeading>
-          <h1>What Makes Us Stand Out</h1>
+          <h1>Why List With Us</h1>
         </TopHeading>
         <CardsWrapper>
           <Card>
@@ -31,7 +31,7 @@ export default function Portfolio ({ handleMouseOver, handleMouseLeave, hover })
           <Card>
             <h1>$10</h1>
             <MiddleWord>MILLION</MiddleWord>
-            <BottomWord>total assets</BottomWord>
+            <BottomWord>current listings</BottomWord>
           </Card>
         </CardsWrapper>
         <ButtonContainer>

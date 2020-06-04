@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
 
-// router
+// routers
 app.use('/api', properties)
 app.use('/api', users)
 app.use('/api', favorties)

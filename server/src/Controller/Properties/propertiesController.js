@@ -68,21 +68,26 @@ exports.propertyInfo = async (req, res) => {
   }
 }
 
+// function that gets all the properties and sends to the user
 exports.getAllProperties = async (req, res) => {
   // bring all the properties and images from the db
   const properties = await Properties.findAll({ raw: true })
 
   try {
     if (properties) {
-      return res.status(200).send(properties)
+      return res.status(200).send({ message: 'sucess', data: properties })
     }
+    return req.status(200).send({ message: 'no proprties found' })
   } catch (e) {
-    console.log(e)
-    return res.status(400).send({ error: 'Server Error' })
+    return res.status(404).send({ error: 'Server Error' })
   }
 }
 
-exports.getPropertyByUseId = async (req, res) => {
+// function that gets propeties by the userId posted
+exports.getPropertyByUserId = async (req, res) => {
+
+  // get the requester userId then find the id from the properties table and send the property
+  // with the corresponding userId
   const userId = await req.params.id
   const userProperty = await Properties.findOne({
     where: { users_id: userId }
@@ -94,7 +99,12 @@ exports.getPropertyByUseId = async (req, res) => {
     return res.status(404).send({ message: 'Server Error' })
   }
 }
+
+// function to get properties by the city
 exports.getPropertyByCity = async (req, res) => {
+
+  // get the requested city (if all send all the properties) (else get the property by city from the properties table)
+  // then send the data to the user
   const cityName = await req.params.id
   if (cityName === 'All') {
     const allProperties = await Properties.findAll({ raw: true })
@@ -116,6 +126,10 @@ exports.getPropertyByCity = async (req, res) => {
     }
   }
 }
+
+// function to get property by address, sometimes we will recieve request for a bunch of addresses together
+// if that's the case loop over the addresses and put each property in the property array and send
+// the data to the user
 exports.getPropertyByAddress = async (req, res) => {
   const addressRequest = await req.params.id
   if (addressRequest === 'All') {
@@ -137,7 +151,10 @@ exports.getPropertyByAddress = async (req, res) => {
   console.log(properties)
   return res.status(200).send({ message: 'Success', data: properties })
 }
+
+// function to delete user's property listing from the database
 exports.deleteProperty = async (req, res) => {
+  // get the property Id throught the request params and find it in the properties table then delete
   const propertyId = req.params.id
   const property = await Properties.findByPk(propertyId)
   try {

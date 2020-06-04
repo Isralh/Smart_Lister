@@ -32,7 +32,6 @@ display:block;
 border-top: 1px solid #19334d;
 @media(min-width:600px){
     grid-column: 2/3;
-    display:block;
     border-top: 1px solid #19334d;
 }
 h1{
