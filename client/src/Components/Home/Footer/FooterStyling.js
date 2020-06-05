@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const SectionWrapper = styled.div`
-margin-top: 250px;
+margin-top:100px;
 width: 100%;
 background:  #19334d;
 grid-template-columns: 15% 70% 15%;

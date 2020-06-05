@@ -83,10 +83,13 @@ div{
 `
 export const First = styled.div`
     background-color:${props => props.color ? '#19334d' : 'gray'};
+    cursor:pointer;
 `
 export const Second = styled.div`
     background-color:${props => props.color ? '#19334d' : 'gray'};
+    cursor:pointer;
 `
 export const Third = styled.div`
     background-color:${props => props.color ? '#19334d' : 'gray'};
+    cursor:pointer;
 `
