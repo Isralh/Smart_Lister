@@ -36,3 +36,57 @@ h1{
     }
 }
 `
+export const TestimonyContainer = styled.div`
+grid-column:2/3;
+display:block;
+text-align:center;
+color:#19334d;
+img{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+h1{
+    font-size:22px;
+}
+p{
+    font-size: 20px;
+    margin-top:40px;
+    line-height:45px;
+}
+`
+export const FirstTestimonyWrapper = styled.div`
+    margin-top:20px;
+    display:${props => props.show ? 'block' : 'none'};
+`
+export const SecondTestimonyWrapper = styled.div`
+    margin-top:20px;
+    display:${props => props.show ? 'block' : 'none'};
+`
+export const ThirdTestimonyWrapper = styled.div`
+    margin-top:20px;
+    display:${props => props.show ? 'block' : 'none'};
+`
+
+export const PaginationWrapper = styled.div`
+grid-column:2/3;
+margin-top:40px;
+text-align:center;
+display:block;
+div{
+    display:inline-block;
+    height:20px;
+    width:20px;
+    border-radius: 50%;
+    margin-left:10px;
+}
+`
+export const First = styled.div`
+    background-color:${props => props.color ? '#19334d' : 'gray'};
+`
+export const Second = styled.div`
+    background-color:${props => props.color ? '#19334d' : 'gray'};
+`
+export const Third = styled.div`
+    background-color:${props => props.color ? '#19334d' : 'gray'};
+`
