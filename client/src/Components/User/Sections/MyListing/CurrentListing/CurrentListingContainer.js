@@ -1,26 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
 import Jwt from 'jwt-decode'
-import MyListing from './MyListing'
-import { Container, LayOutWrapper, NoListing } from './MyListingStyling'
-import Nav from '../../../Home/Nav/Nav'
-import Layout from '../Section/Layout/Layout'
+import CurrentListing from './CurrentListing'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-
-const MyListingContainer = () => {
+const CurrentListingContainer = () => {
   const token = window.localStorage.getItem('token')
   const user = Jwt(token)
   const userId = user.userId
-  const [property, setProperty] = useState()
-  const [image, setImage] = useState()
-  const propertyImages = (property) => {
-    if (property) {
-      const images = property.images
-      const allImages = JSON.parse(images)
-      setImage(allImages[0])
-    }
-  }
+  const [property, setProperty] = useState([])
+  const index = 0
+  const [currentListingView, setCurrentListingView] = useState(true)
+  const [showUpdateForm, setshowUpdateForm] = useState(false)
   // sucess message notification if property was deleted from the database successfuly
   toast.configure()
   const notify = () => toast.success('Successfully deleted Listing', {
@@ -32,7 +23,6 @@ const MyListingContainer = () => {
       try {
         if (propertyData) {
           setProperty(propertyData.data.data)
-          propertyImages(propertyData.data.data)
         }
       } catch (e) {
         console.log(e)
@@ -57,27 +47,24 @@ const MyListingContainer = () => {
     }
   }
 
+  const updatePropertyListing = (property) => {
+    console.log(property)
+    setCurrentListingView(false)
+    setshowUpdateForm(true)
+  }
+
   return (
     <>
-      {property !== undefined
-        ? <MyListing
-          propertiesImage={image}
-          price={property.Price}
-          address={property.address}
-          cityState={property.cityState}
-          handleDelete={deleteProperty}
-          update='UPDATE'
-          heading='CURRENT LISTING'
-        />
-        : <Container>
-          <Nav />
-          <LayOutWrapper>
-            <Layout />
-          </LayOutWrapper>
-          <NoListing>No Listing Found</NoListing>
-        </Container>}
+      <CurrentListing
+        index={index}
+        propertyData={property}
+        handleDelete={deleteProperty}
+        handleUpdate={updatePropertyListing}
+        viewListing={currentListingView}
+        viewUpdateForm={showUpdateForm}
+      />
     </>
   )
 }
 
-export default MyListingContainer
+export default CurrentListingContainer

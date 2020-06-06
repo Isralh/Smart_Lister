@@ -4,7 +4,7 @@ import Properties from './Components/Properties/Properties/Properties'
 import { createGlobalStyle } from 'styled-components'
 import DataContext from './Components/HouseData/Data'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import MyListingContainer from './Components/User/Sections/MyListing/MyListingContainer'
+import CurrentListingContainer from './Components/User/Sections/MyListing/CurrentListing/CurrentListingContainer'
 import FormikContainer from './Components/User/Sections/PostProperty/FormikContainer'
 import FavoritesContainer from './Components/User/Sections/Favorites/FavoritesContainer'
 import { ProtectedRoute } from './Components/Authentication/ProtectedRoute'
@@ -24,7 +24,7 @@ function App () {
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/properties' component={Properties} />
-          <ProtectedRoute path='/user/myListing' component={MyListingContainer} />
+          <ProtectedRoute path='/user/myListing' component={CurrentListingContainer} />
           <ProtectedRoute path='/user/postProperty' component={FormikContainer} />
           <ProtectedRoute path='/user/favorites' component={FavoritesContainer} />
           <Route path='*' component={NotFound} />

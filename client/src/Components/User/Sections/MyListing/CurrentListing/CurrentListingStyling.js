@@ -11,11 +11,12 @@ margin: 0vh 1% 0 1%;
     margin: 5vh 10% 0 10%;
 }
 `
-export const ContentWrapper = styled.div`
+export const SectiontWrapper = styled.div`
 /* width:100%; */
 position:relative;
-/* margin-top:15%; */
+margin-top:15%;
 margin: 5vh 1% 0 1%;
+display: ${props => props.viewMyListing ? 'block' : 'none'};
 @media (min-width:500px){
     margin: 5vh 10% 0 10%;
 }
@@ -27,13 +28,44 @@ h1{
     color:#19334d;
 }
 `
-export const Updates = styled.div`
-margin-top:20px;
+export const ContentContainer = styled.div`
+display:flex;
+flex-direction:column;
+flex-wrap: nowrap;
+justify-content:flex-start;
+width:100%;
+
+@media (min-width:600px){
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content:space-between;
+}
+`
+
+export const FontAwesomeContainer = styled.div`
 height:20px;
 display:flex;
 justify-content:flex-end;
+margin-top:25px;
+/* @media (min-width:768px){
+    width:50%;
+} */
+`
+export const Section = styled.div`
+position:relative;
+width:100%;
+margin:15px 0 10px 0;
+@media (min-width:600px){
+    flex-basis:45%;
+}
+`
+export const Updates = styled.div`
+margin-top:20px;
+height:25px;
+display:flex;
+justify-content:flex-end;
 @media (min-width:768px){
-    width:40%;
+    /* width:40%; */
 }
 div{
     height:10x;
@@ -43,9 +75,11 @@ width:60px;
 background:#19334d;
 cursor:pointer;
 border:1px solid white;
+margin-left:2px;
+
 p{
     font-size:15px;
-    margin-top:0px;
+    margin-top:2px;
     text-align:center;
     color:white;
     font:bold;
@@ -58,21 +92,20 @@ export const ImageContainer = styled.div`
   background-size: cover;
   background-position: 50% 50%;
   position:relative;
+  width:100%;
   cursor:pointer;
-  display:flex;
+  /* flex-basis:100%; */
+  /* display:block; */
 @media (min-width:320px){
-    height:45vh;
+    height:40vh;
 }
 @media (min-width:375px){
-    height:45vh;
+    height:50vh;
 }
-@media (min-width:600px){
-    height:55vh;
-}
-@media (min-width:768px){
-    height:55vh;
-    width:40%;
-}
+/* @media (min-width:768px){
+    height:60vh;
+    width:50%;
+} */
 `
 export const ListingWrapper = styled.div`
     position: absolute;
@@ -87,7 +120,6 @@ export const ListingWrapper = styled.div`
         height: 80px;
         width: 170px;
 }
-
 `
 export const Price = styled.p`
        margin-top:5px;
@@ -116,8 +148,10 @@ export const City = styled.p`
         font-size: 16px;
 }
 `
-export const NoListing = styled.h1`
-margin: 30vh 0 0 0;
-text-align: center;
-color:#19334d;
-`
+export const FontAwesomeStyle = {
+  float: 'right',
+  color: '#19334d',
+  fontSize: '20px',
+  cursor: 'pointer'
+}
+

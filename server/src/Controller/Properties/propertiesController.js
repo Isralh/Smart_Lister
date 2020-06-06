@@ -85,7 +85,6 @@ exports.getAllProperties = async (req, res) => {
 
 // function that gets propeties by the userId posted
 exports.getPropertyByUserId = async (req, res) => {
-
   // get the requester userId then find the id from the properties table and send the property
   // with the corresponding userId
   const userId = await req.params.id
@@ -93,7 +92,7 @@ exports.getPropertyByUserId = async (req, res) => {
     where: { users_id: userId }
   })
   try {
-    if (userProperty) return res.status(200).send({ data: userProperty, message: 'Successfully found property' })
+    if (userProperty) return res.status(200).send({ data: [userProperty], message: 'Successfully found property' })
     else return res.status(200).send({ message: 'user doesnt have property listed ' })
   } catch (e) {
     return res.status(404).send({ message: 'Server Error' })

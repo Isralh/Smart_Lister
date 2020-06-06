@@ -2,12 +2,14 @@ import React from 'react'
 import {
   Container, LayOutWrapper, SectiontWrapper, TopHeading, ContentContainer, ImageContainer,
   Section, City, ListingWrapper, Price, Address, Updates
-} from './FavortiesStyling'
-import Nav from '../../../Home/Nav/Nav'
-import Layout from '../Section/Layout/Layout'
-import NoResult from '../SharedComponent/NoResult'
+} from './CurrentListingStyling'
+import Nav from '../../../../Home/Nav/Nav'
+import Layout from '../../Section/Layout/Layout'
+import NoResult from '../../SharedComponent/NoResult'
+import UpdateListing from '../UpdateListing/UpdateListing'
 // import { v4 as uuid } from 'uuid'
-const Favorites = ({ propertyData = [], index }) => {
+const CurrentListing = ({ propertyData = [], index, handleDelete, property, handleUpdate,
+  viewListing, viewUpdateForm }) => {
   function initialImage (propertyData, key, index) {
     if (propertyData.length > 0) {
       const images = propertyData[key].images
@@ -22,16 +24,19 @@ const Favorites = ({ propertyData = [], index }) => {
         <Layout />
       </LayOutWrapper>
       {propertyData.length > 0
-        ? <SectiontWrapper>
+        ? <SectiontWrapper viewMyListing={viewListing}>
           <TopHeading>
-            <h1>SAVED SEARCHES</h1>
+            <h1>CURRENT LISTING</h1>
           </TopHeading>
           <ContentContainer>
             {propertyData.map((property, i) =>
               <Section key={property.id}>
                 <Updates>
                   <div>
-                    <p>DELETE</p>
+                    <p onClick={handleUpdate.bind(this, property)}>UPDATE</p>
+                  </div>
+                  <div>
+                    <p onClick={handleDelete}>DELETE</p>
                   </div>
                 </Updates>
                 <ImageContainer imageUrl={initialImage(propertyData, i, index)}>
@@ -43,10 +48,12 @@ const Favorites = ({ propertyData = [], index }) => {
                 </ImageContainer>
               </Section>)}
           </ContentContainer>
-          </SectiontWrapper> : <NoResult notFound='No Saved Searches' />}
+        </SectiontWrapper> : <NoResult notFound='No Listing Found' />}
+      <UpdateListing
+        viewForm={viewUpdateForm}
+      />
     </Container>
   )
 }
 
-export default Favorites
-
+export default CurrentListing

@@ -52,7 +52,7 @@ display: block;
 }
 `
 export const SelectedProperties = styled.div`
-height: 120px;
+height: 100px;
 width: 250px;
 background:#19334d;
 position: absolute;
@@ -63,7 +63,8 @@ cursor:pointer;
 `
 export const Price = styled.div`
 padding-left: 10px;
-margin-top:-10px;
+margin-top:3px;
+/* margin-top:-5px; */
 h1{
     font-size: 30px;
     background:white;
@@ -74,7 +75,7 @@ h1{
 }
 `
 export const Address = styled.div`
-margin-top:-25px;
+margin-top:-45px;
 padding-left: 10px;
 p{
     display:inline-block;
@@ -88,7 +89,7 @@ p{
 `
 export const CityStateZip = styled.div`
 padding-left: 10px;
-margin-top:-35px;
+margin-top:-45px;
 p{
     display:inline-block;
     font-size: 20px;

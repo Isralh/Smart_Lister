@@ -59,6 +59,33 @@ margin:15px 0 10px 0;
     flex-basis:45%;
 }
 `
+export const Updates = styled.div`
+margin-top:20px;
+height:25px;
+display:flex;
+justify-content:flex-end;
+@media (min-width:768px){
+    /* width:40%; */
+}
+div{
+    height:10x;
+width:60px;
+/* margin-top:5px; */
+/* margin-top:-10px; */
+background:#19334d;
+cursor:pointer;
+border:1px solid white;
+margin-left:2px;
+
+p{
+    font-size:15px;
+    margin-top:2px;
+    text-align:center;
+    color:white;
+    font:bold;
+}
+}
+`
 export const ImageContainer = styled.div`
   background: url(${(prop) => prop.imageUrl});
   background-repeat: no-repeat;
@@ -79,31 +106,6 @@ export const ImageContainer = styled.div`
     height:60vh;
     width:50%;
 } */
-`
-export const Updates = styled.div`
-margin-top:20px;
-height:20px;
-display:flex;
-justify-content:flex-end;
-/* @media (min-width:768px){
-    width:40%;
-} */
-div{
-    height:10x;
-width:60px;
-/* margin-top:5px; */
-/* margin-top:-10px; */
-background:#19334d;
-cursor:pointer;
-border:1px solid white;
-p{
-    font-size:15px;
-    margin-top:0px;
-    text-align:center;
-    color:white;
-    font:bold;
-}
-}
 `
 export const ListingWrapper = styled.div`
     position: absolute;
