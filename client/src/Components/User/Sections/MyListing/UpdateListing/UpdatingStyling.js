@@ -38,3 +38,104 @@ p{
     text-align:center;
 }
 `
+export const ErrorStyle = styled.div`
+color:red;
+font-weight:normal;
+margin-bottom:5px;
+margin-left:2%;
+`
+export const FirstStep = styled.div`
+display: ${props => props.activeStep ? 'block' : 'none'};
+margin-left:5%;
+`
+export const SecondStep = styled.div`
+display: ${props => props.activeStep ? 'block' : 'none'};
+margin-left:5%;
+`
+export const ButtonContainer = styled.div`
+margin-top:15px;
+display:flex;
+flex-direction:row nowrap;
+/* justify-content:${props => props.changeFlex ? 'space-between' : 'flex-end'}; */
+justify-content: space-between;
+margin:15px 5% 0% 5%;
+`
+export const Previous = styled.button`
+height:40px;
+background:#19334d;
+color:white;
+width:80px;
+border-radius:15px;
+/* display: ${props => props.showButton ? 'block' : 'none'}; */
+cursor:pointer;
+`
+export const Cancel = styled.button`
+height:40px;
+background:#19334d;
+color:white;
+width:80px;
+border-radius:15px;
+cursor:pointer;
+`
+export const Next = styled.button`
+height:40px;
+background:#19334d;
+color:white;
+width:80px;
+border-radius:15px;
+cursor:pointer;
+`
+export const ImagePreview = styled.div`
+display:flex;
+flex-direction:column;
+flex-wrap: nowrap;
+justify-content:flex-start;
+width:95%;
+margin:0% 0% 5% 0%;
+@media (min-width:600px){
+    flex-direction:row;
+    flex-wrap: wrap;
+    /* justify-content:space-between; */
+    /* justify-content:flex-start; */
+
+}
+
+`
+export const ImageContainer = styled.div`
+position:relative;
+width:95%;
+margin-top:3%;
+@media (min-width:600px){
+    flex-basis:45%;
+}
+@media (min-width:1024px){
+    flex-basis:32%;
+    margin-left: 1%;
+}
+`
+export const Images = styled.div`
+  background: url(${(prop) => prop.imageUrl});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  position:relative;
+  width:100%;
+  cursor:pointer;
+  height:40vh;
+  @media (min-width:1024px){
+      height:45vh;
+  }
+`
+export const DeletButton = styled.div`
+width:100%;
+height:25px;
+display:flex;
+justify-content:flex-end;
+`
+export const FontAwesomeStyle = {
+  float: 'right',
+  color: '#19334d',
+  fontSize: '20px',
+  cursor: 'pointer',
+  margin: '5px 0 0 0'
+}

@@ -1,13 +1,15 @@
 import React from 'react'
 import {
-  SectiontWrapper, TopHeading, ContentContainer, ImageContainer,
+  Container, LayOutWrapper, SectiontWrapper, TopHeading, ContentContainer, ImageContainer,
   Section, City, ListingWrapper, Price, Address, Updates
 } from './CurrentListingStyling'
+import Nav from '../../../../Home/Nav/Nav'
+import Layout from '../../Section/Layout/Layout'
 import NoResult from '../../SharedComponent/NoResult'
 // import { v4 as uuid } from 'uuid'
 const CurrentListing = ({
   propertyData = [], index, handleDelete, property, handleUpdate,
-  viewListing
+  viewListing, viewUpdateForm
 }) => {
   function initialImage (propertyData, key, index) {
     if (propertyData.length > 0) {
@@ -17,7 +19,11 @@ const CurrentListing = ({
     }
   }
   return (
-    <>
+    <Container>
+      <Nav />
+      <LayOutWrapper>
+        <Layout />
+      </LayOutWrapper>
       {propertyData.length > 0
         ? <SectiontWrapper viewMyListing={viewListing}>
           <TopHeading>
@@ -44,7 +50,7 @@ const CurrentListing = ({
               </Section>)}
           </ContentContainer>
         </SectiontWrapper> : <NoResult notFound='No Listing Found' />}
-    </>
+    </Container>
   )
 }
 

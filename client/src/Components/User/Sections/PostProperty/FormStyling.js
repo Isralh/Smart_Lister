@@ -73,10 +73,6 @@ export const SecondStep = styled.div`
 display: ${props => props.activeStep ? 'block' : 'none'};
 margin-left:5%;
 `
-export const ThirdStep = styled.div`
-display: ${props => props.activeStep ? 'block' : 'none'};
-margin-left:5%;
-`
 export const ButtonContainer = styled.div`
 margin-top:15px;
 display:flex;

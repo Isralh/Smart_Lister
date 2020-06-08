@@ -24,7 +24,7 @@ export default function FormikContainer ({ viewListingForm }) {
     user: userInfo
   })
   // steps in our form
-  const steps = ['Step 1 of 2', 'Step 2 0f 2']
+  const steps = ['Step 1 of 2', 'Step 2 of 2']
 
   // on step 1 of form submission set the valuesContainer(formData) and go to the next step in the process
   const submitFirstForm = (values) => {
