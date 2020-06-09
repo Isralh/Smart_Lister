@@ -9,16 +9,13 @@ const mapOptions = {
   zoomControl: true
 }
 // google maps function
-const GoogleMaps = ({
-  showProperty, propertyInfo, selectedProperty, selectProperty,
-  closeSelectedProperty, property
-}) => {
+const GoogleMaps = ({ showProperty, propertyInfo }) => {
   // state to check if map is loading or not
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: apikey
   })
   // state to get the selected home by the user
-  // const [selectedProperty, setSelectedProperty] = useState(null)
+  const [selectedProperty, setSelectedProperty] = useState(null)
   if (loadError) return 'Error loading maps'
   if (!isLoaded) return 'Loading Maps'
   const propertyImage = (property) => {
@@ -37,13 +34,13 @@ const GoogleMaps = ({
         <Marker
           key={property.id}
           position={{ lat: parseFloat(property.lat), lng: parseFloat(property.lng) }}
-          onClick={selectProperty.bind(this, property)}
+          onClick={() => setSelectedProperty(property)}
         />
       )}
       {selectedProperty && (
         <InfoWindow
           key={selectedProperty.id}
-          onCloseClick={closeSelectedProperty}
+          onCloseClick={() => setSelectedProperty(null)}
           position={{ lat: parseFloat(selectedProperty.lat), lng: parseFloat(selectedProperty.lng) }}
         >
           <InfoWrapper image={propertyImage(selectedProperty)} onClick={showProperty.bind(this, selectedProperty)}>

@@ -8,10 +8,21 @@ import Layout from '../../Section/Layout/Layout'
 import CurrentListing from '../CurrentListing/CurrentListing'
 import { Container, LayOutWrapper } from './MyListingStyles'
 import UpdateListing from '../UpdateListing/UpdateListing'
-
+import Modal from '../../../../Properties/ListingModal/Modal/Modal'
 export const ListingContext = createContext()
 
 const MyListing = () => {
+  // state to toggle modal
+  const [showModal, setShowModal] = useState()
+  // state for modal property
+  const [modalProperty, setModalPropety] = useState()
+  const modalClose = () => {
+    setShowModal(false)
+  }
+  const modalOpen = (property) => {
+    setShowModal(true)
+    setModalPropety(property)
+  }
   const token = window.localStorage.getItem('token')
   const user = Jwt(token)
   const userId = user.userId
@@ -41,9 +52,9 @@ const MyListing = () => {
     getUserProperty()
   }, [])
 
-  const deleteProperty = async () => {
+  const deleteProperty = async (property) => {
     const propertyId = property.id
-    const propertyData = await Axios.post(`http://localhost:3001/api/delete/property/${propertyId}`)
+    const propertyData = await Axios.delete(`http://localhost:3001/api/delete/property/${propertyId}`)
     try {
       if (propertyData) {
         notify()
@@ -67,26 +78,35 @@ const MyListing = () => {
     setCurrentListingView(true)
     setshowUpdateForm(false)
   }
+
   return (
-    <Container>
-      <Nav />
-      <LayOutWrapper>
-        <Layout />
-      </LayOutWrapper>
-      <CurrentListing
-        index={index}
-        propertyData={property}
-        handleDelete={deleteProperty}
-        handleUpdate={updatePropertyListing}
-        viewListing={currentListingView}
-      />
-      <ListingContext.Provider value={currentListing}>
-        <UpdateListing
-          viewForm={showUpdateForm}
-          handleCancel={cancelUpdate}
+    <>
+      <Container>
+        <Nav />
+        <LayOutWrapper>
+          <Layout />
+        </LayOutWrapper>
+        <CurrentListing
+          index={index}
+          propertyData={property}
+          handleDelete={deleteProperty}
+          handleUpdate={updatePropertyListing}
+          viewListing={currentListingView}
+          openModal={modalOpen}
         />
-      </ListingContext.Provider>
-    </Container>
+        <ListingContext.Provider value={currentListing}>
+          <UpdateListing
+            viewForm={showUpdateForm}
+            handleCancel={cancelUpdate}
+          />
+        </ListingContext.Provider>
+      </Container>
+      <Modal
+        handleShow={showModal}
+        closeModal={modalClose}
+        propertyData={modalProperty}
+      />
+    </>
   )
 }
 

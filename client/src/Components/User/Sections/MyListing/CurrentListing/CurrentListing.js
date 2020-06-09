@@ -7,7 +7,7 @@ import NoResult from '../../SharedComponent/NoResult'
 // import { v4 as uuid } from 'uuid'
 const CurrentListing = ({
   propertyData = [], index, handleDelete, property, handleUpdate,
-  viewListing
+  viewListing, openModal
 }) => {
   function initialImage (propertyData, key, index) {
     if (propertyData.length > 0) {
@@ -31,10 +31,10 @@ const CurrentListing = ({
                     <p onClick={handleUpdate.bind(this, property)}>UPDATE</p>
                   </div>
                   <div>
-                    <p onClick={handleDelete}>DELETE</p>
+                    <p onClick={handleDelete.bind(this, property)}>DELETE</p>
                   </div>
                 </Updates>
-                <ImageContainer imageUrl={initialImage(propertyData, i, index)}>
+                <ImageContainer imageUrl={initialImage(propertyData, i, index)} onClick={openModal.bind(this, property)}>
                   <ListingWrapper>
                     <Price>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(property.Price)}</Price>
                     <Address>{property.address}</Address>

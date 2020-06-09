@@ -22,15 +22,44 @@ const SavedSearchContainer = () => {
     }
   }
 
+  const removeProperty = async (property) => {
+    const propertyId = property.id
+    const deleteData = { property: propertyId, user: userId }
+    console.log(deleteData)
+    const deleteProperty = await axios.post('http://localhost:3001/api/delete/favoriteProperties', deleteData)
+    try {
+      if (deleteProperty) {
+        console.log(deleteProperty)
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  }
   useEffect(() => {
     getFavorites()
-    console.log(property)
   }, [])
+
+  // state to toggle modal
+  const [modalStatus, setModalStatus] = useState(false)
+  // state for modal property
+  const [favortieProperty, setFavoriteProperty] = useState()
+  const closeModal = () => {
+    setModalStatus(false)
+  }
+  const modalOpen = (property) => {
+    setModalStatus(true)
+    setFavoriteProperty(property)
+  }
   return (
     <div>
       <Favorites
         index={index}
         propertyData={property}
+        showModal={modalStatus}
+        modalClose={closeModal}
+        modalProperty={favortieProperty}
+        handleModal={modalOpen}
+        deleteFavorite={removeProperty}
       />
     </div>
   )

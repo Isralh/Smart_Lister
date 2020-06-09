@@ -16,8 +16,10 @@ exports.addFavorites = async (req, res) => {
       where: { user_email: userInfo, propertyId: data.id }
     })
     try {
-      if (property > 0) return res.status(200).send({ message: 'property already exist in ysers favorites' })
-      if (property < 1) {
+      if (property) {
+        return res.status(200).send({ message: 'property already exist in users favorites' })
+      }
+      if (!property) {
         const existingUser = await Users.findOne({
           where: { email: userInfo }
         })
@@ -29,7 +31,7 @@ exports.addFavorites = async (req, res) => {
         return res.status(201).send({ message: 'Successfully added to favorites list ' })
       }
     } catch (e) {
-      return res.status(200).send({ message: 'Unable to add to favorites' })
+      return res.status(400).send({ message: 'Unable to add to favorites' })
     }
   } else res.status(404).send({ message: 'Please enter valid data' })
 }
