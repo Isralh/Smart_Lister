@@ -49,7 +49,7 @@ export default function Modal ({
   // sucess message notification if property was added to the database successfuly
   toast.configure()
   const successNotify = () => toast.success('Successfully added to favorites', {
-    autoClose: 4000
+    autoClose: 2000
   })
   // function to handle posting user's favorite property to the database
   const userFavorite = async () => {

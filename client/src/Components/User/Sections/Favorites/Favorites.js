@@ -12,7 +12,7 @@ const Favorites = ({
   propertyData = [], index, showModal, modalClose,
   modalProperty, handleModal, property, deleteFavorite
 }) => {
-  function initialImage (propertyData, key, index) {
+  function initialImage (key) {
     if (propertyData.length > 0) {
       const images = propertyData[key].images
       const allImages = JSON.parse(images)
@@ -39,7 +39,7 @@ const Favorites = ({
                       <p onClick={deleteFavorite.bind(this, property)}>DELETE</p>
                     </div>
                   </Updates>
-                  <ImageContainer onClick={handleModal.bind(this, property)} imageUrl={initialImage(propertyData, i, index)}>
+                  <ImageContainer onClick={handleModal.bind(this, property)} imageUrl={initialImage(i)}>
                     <ListingWrapper>
                       <Price>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(property.Price)}</Price>
                       <Address>{property.address}</Address>
@@ -60,3 +60,4 @@ const Favorites = ({
 }
 
 export default Favorites
+// <ImageContainer onClick={handleModal.bind(this, property)} imageUrl={initialImage(propertyData, i, index)}>

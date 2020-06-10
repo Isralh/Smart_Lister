@@ -5,7 +5,7 @@ import RegisterContainer from '../../Register_Login/Register/RegisterContainer'
 import LoginContainer from '../../Register_Login/Login/LoginContainer'
 import jwtDecode from 'jwt-decode'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import { faCaretDown, faHome } from '@fortawesome/free-solid-svg-icons'
 import Logout from '../../Authentication/Logout'
 const initialState = {
   openNav: false,
@@ -106,20 +106,10 @@ export default function Nav () {
     history.push('/')
     console.log('logout')
   }
-  const handleFavorties = () => {
-    // Logout()
-    // history.push('/')
-    console.log('Favorties')
-  }
-  const handleProperty = () => {
-    // Logout()
-    // history.push('/')
-    console.log('Property')
-  }
   return (
     <Container>
       <CompanyName>
-        <Link style={{ textDecoration: 'none' }} to='/'><p>The Smith Group</p></Link>
+        <Link style={{ textDecoration: 'none' }} to='/'><p> <FontAwesomeIcon icon={faHome} /> SmartLister</p></Link>
       </CompanyName>
       <NavLink open={state.openNav} onClick={handleSideNav}>
         <div />

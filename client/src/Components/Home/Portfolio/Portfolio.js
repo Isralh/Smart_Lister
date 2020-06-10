@@ -1,11 +1,10 @@
 import React from 'react'
 import {
-  Container, PortfolioWrapper, TopHeading, OurProperty, CursorButton, MiddleWord, BottomWord, CardsWrapper,
-  CursorButtonChange, ButtonContainer, Card
+  Container, PortfolioWrapper, TopHeading, OurProperty, CursorButton,
+  MiddleWord, BottomWord, CardsWrapper, CursorButtonChange, ButtonContainer, Card
 } from './PortfolioStyling'
 
 export default function Portfolio ({ handleMouseOver, handleMouseLeave, hover }) {
-
   return (
     <Container>
       <PortfolioWrapper>

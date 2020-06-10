@@ -1,11 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Container, Wrapper, BioContainer, CompanyBio, ButtonContainer, AboutUsButton, CursorButton, CursorButtonChange } from './WhoWeAreStyling'
 
 function WhoWeAre ({ handleMouseOver, handleMouseLeave, hover }) {
+  const bioRef = useRef(null)
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => console.log(entry))
+  }, {
+    root: null,
+    threshold: 0.3,
+    rootMargin: '-150px'
+  })
+
+  useEffect(() => {
+    observer.observe(bioRef.current)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
   return (
     <Container>
       <Wrapper>
-        <BioContainer>
+        <BioContainer ref={bioRef}>
           <h1>Who We Are</h1>
           <CompanyBio>
             <p>At the Smith Group we’re proud to be one of the most trusted real estate firms in the Greater Philadelphia area. We pride ourselves in exceptional customer service and educating our clients about the housing market. Our priority is to help you find your dream home.</p>
@@ -23,14 +40,19 @@ function WhoWeAre ({ handleMouseOver, handleMouseLeave, hover }) {
 export default function WhoWeAreContainer () {
   const [whenHover, setWhenHover] = useState(false)
 
-  const whenMouseOver = () => {
+  const mouseOver = () => {
     setWhenHover(true)
   }
 
-  const whenMouseLeave = () => {
+  const mouseLeave = () => {
     setWhenHover(false)
   }
+
   return (
-    <WhoWeAre handleMouseLeave={whenMouseLeave} handleMouseOver={whenMouseOver} hover={whenHover} />
+    <WhoWeAre
+      handleMouseLeave={mouseLeave}
+      handleMouseOver={mouseOver}
+      hover={whenHover}
+    />
   )
 }
