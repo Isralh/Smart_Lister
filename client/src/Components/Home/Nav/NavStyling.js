@@ -7,7 +7,6 @@ width: 100%;
 display:flex;
 justify-content: space-between;
 top: 0;
-/* z-index: 2; */
 `
 export const CompanyName = styled.div`
 p{
@@ -16,8 +15,8 @@ p{
     color:white;
     margin-top:15px;
     margin-left: 15px;
+    
 }
-
 `
 export const ListWrapper = styled.div`
 z-index:1;
@@ -25,7 +24,7 @@ ul{
     list-style:none;
     display:flex;
     flex-flow: row nowrap;
-    padding-right: 10px;
+    padding-right:10px;
     @media (max-width:765px){
         transform:${prop => prop.open ? 'translateX(0%)' : 'translateX(100%)'};
         flex-flow:column nowrap;
@@ -33,8 +32,6 @@ ul{
         position:fixed;
         top:0;
         right:0;
-        /* height:100vh;
-        width:150px; */
         padding-top: 50px;
         transition: transform 0.3s ease-in-out;
         li{
@@ -96,7 +93,7 @@ color:white;
 div{
     color:white;
     font-family: serif;
-    font-size: 18px;
+    /* font-size: 18px; */
     margin-top: 10px;
     padding-bottom:5px;
     cursor:pointer;

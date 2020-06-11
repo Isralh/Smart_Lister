@@ -1,28 +1,34 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Container, Wrapper, BioContainer, CompanyBio, ButtonContainer, AboutUsButton, CursorButton, CursorButtonChange } from './WhoWeAreStyling'
+import {
+  Container, Wrapper, BioContainer, CompanyBio, ButtonContainer, AboutUsButton,
+  CursorButton, CursorButtonChange
+} from './WhoWeAreStyling'
 
 function WhoWeAre ({ handleMouseOver, handleMouseLeave, hover }) {
   const bioRef = useRef(null)
-
   const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => console.log(entry))
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        console.log(entry.target)
+        bioRef.current.style.transform = 'translateX(0%)'
+        bioRef.current.style.transition = 'transform 5s ease-in-out'
+      }
+      observer.unobserve(entry.target)
+    })
   }, {
     root: null,
-    threshold: 0.3,
+    threshold: 0,
     rootMargin: '-150px'
   })
 
   useEffect(() => {
     observer.observe(bioRef.current)
-
-    return () => {
-      observer.disconnect()
-    }
   }, [])
+
   return (
-    <Container>
+    <Container ref={bioRef}>
       <Wrapper>
-        <BioContainer ref={bioRef}>
+        <BioContainer>
           <h1>Who We Are</h1>
           <CompanyBio>
             <p>At the Smith Group we’re proud to be one of the most trusted real estate firms in the Greater Philadelphia area. We pride ourselves in exceptional customer service and educating our clients about the housing market. Our priority is to help you find your dream home.</p>

@@ -1,21 +1,18 @@
 import React from 'react'
-import { CACouch } from '../../../Public/HouseImages/ColumbiaAvenue/Export'
-import { FPKitchen } from '../../../Public/HouseImages/FruitvillePK/Exports'
-import { MDLivingRoom } from '../../../Public/HouseImages/MarrietaDrive/Export'
-import { WSFrontSide } from '../../../Public/HouseImages/WashingtonSt/Export'
 import { Container, WelcomeMessage, ButtonContainer } from './FrontViewStyling'
-
-const images = [CACouch, FPKitchen, MDLivingRoom, WSFrontSide]
+import { Link } from 'react-router-dom'
 
 export default function FrontView () {
   return (
-    <Container FrontImage={images[3]}>
+    <Container>
       <WelcomeMessage>
         <h1>Find Your Next Home</h1>
         <ButtonContainer>
-          <button>See Listings</button>
+          <Link style={{ textDecoration: 'none' }} to='/properties'><button>See Listings</button></Link>
         </ButtonContainer>
       </WelcomeMessage>
     </Container>
   )
 }
+// <Container FrontImage={images[0]}>
+// <button>See Listings</button>

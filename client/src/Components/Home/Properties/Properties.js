@@ -7,14 +7,6 @@ import Pagination from '../Testimonials/Pagination'
 import axios from 'axios'
 
 const Properties = () => {
-  // const [index, setIndex] = useState(0)
-
-  // const handleRight = () => {
-  //   setIndex(prev => prev + 1)
-  // }
-  // const handleLeft = () => {
-  //   setIndex(prev => prev - 1)
-  // }
 
   const [featuredListing, setFeaturedListing] = useState()
   const [image, setImage] = useState()

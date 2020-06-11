@@ -6,9 +6,9 @@ height: 90vh;
 width:100%;
 background:url(${prop => prop.FrontImage});
 background-repeat:no-repeat;
-background-size:cover;
-/* opacity:1; */
-}
+background-size: cover;
+  background-position: 50% 50%;
+  position:relative;
 `
 export const ButtonContainer = styled.div`
 margin-top: 15px;
@@ -62,5 +62,10 @@ h1{
   color:white;
   font-size: 30px;
   font-weight:bolder;
+
+  @media (min-width:768px){
+    font-size: 50px;
+
+  }
 }
 `

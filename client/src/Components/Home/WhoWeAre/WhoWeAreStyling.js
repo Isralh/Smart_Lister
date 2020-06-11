@@ -1,4 +1,23 @@
 import styled from 'styled-components'
+// export const observer = (reference) => {
+//   const observer = new IntersectionObserver((entries, observer) => {
+//     entries.forEach(entry => {
+//       if (entry.isIntersecting) {
+//         reference.current.style.transform = 'translateX(0%)'
+//         reference.current.style.transition = 'transform 5s ease-in-out'
+//       } else {
+//         reference.current.style.transform = 'translateX(-100%)'
+//         observer.unobserve(entry.target)
+//       }
+//     })
+//   }, {
+//     root: null,
+//     threshold: 0,
+//     rootMargin: '-150px'
+//   }, [])
+
+//   return observer
+// }
 
 export const Container = styled.div`
 grid-column: 100%;
