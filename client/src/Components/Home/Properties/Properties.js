@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Container, SelectedProperties, PropertiesWrapper, Price,
-  Address, CityStateZip, RightArrow, LeftArrow, ContentWrapper, TopHeading
+  Container, SelectedProperties, PropertiesWrapper, Price, OurProperty,
+  Address, CityStateZip, RightArrow, LeftArrow, ContentWrapper, TopHeading,
+  CursorButton, CursorButtonChange, ButtonContainer
 } from './PropertiesStyling'
 import Pagination from '../Testimonials/Pagination'
 import axios from 'axios'
-
+import Modal from '../../Properties/ListingModal/Modal/Modal'
+import { Link } from 'react-router-dom'
 const Properties = () => {
   const [featuredListing, setFeaturedListing] = useState()
   const [image, setImage] = useState()
@@ -55,6 +57,28 @@ const Properties = () => {
     setPropertyPagination(prev => { return { ...prev, index: propertyPagination.index - 1 } })
   }
 
+  // state to handle Modal
+  const [modalStatus, setModalStatus] = useState(false)
+  const [modalProperty, setModalProperty] = useState()
+  const handleModal = () => {
+    setModalStatus(true)
+    setModalProperty(featuredListing[0])
+  }
+
+  const handleCloseModal = () => {
+    setModalStatus(false)
+  }
+
+  // state to toggle view property button color
+  const [hover, setHover] = useState(false)
+
+  const handleMouseOver = () => {
+    setHover(true)
+  }
+
+  const handleMouseLeave = () => {
+    setHover(false)
+  }
   return (
     <>
       {featuredListing !== undefined
@@ -66,7 +90,7 @@ const Properties = () => {
             <PropertiesWrapper imageurl={image}>
               {propertyPagination.index < 2 ? <RightArrow> <h1 onClick={handleRight}>{'>'}</h1> </RightArrow> : null}
               {propertyPagination.index > 0 ? <LeftArrow> <h1 onClick={handleLeft}>{'<'}</h1></LeftArrow> : null}
-              <SelectedProperties>
+              <SelectedProperties onClick={handleModal}>
                 <Price>
                   <h1>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(featuredListing[0].Price)}</h1>
                 </Price>
@@ -86,9 +110,18 @@ const Properties = () => {
               secondCircleColor={propertyPagination.secondColor}
               thidCircleColor={propertyPagination.thirdColor}
             />
+            <ButtonContainer>
+              <Link to='/properties'> <OurProperty onMouseEnter={handleMouseOver} onMouseLeave={handleMouseLeave}>VIEW PROPERTIES</OurProperty></Link>
+              <span>{hover === false ? <CursorButton> {'>'} </CursorButton> : <CursorButtonChange> {'>'}</CursorButtonChange>}</span>
+            </ButtonContainer>
           </ContentWrapper>
-          </Container>
+        </Container>
         : null}
+      <Modal
+        handleShow={modalStatus}
+        closeModal={handleCloseModal}
+        propertyData={modalProperty}
+      />
     </>
   )
 }

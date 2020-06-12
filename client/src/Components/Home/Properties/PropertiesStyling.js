@@ -135,3 +135,40 @@ h1{
     }
 }
 `
+export const ButtonContainer = styled.div`
+margin-top: 40px;
+grid-column: 2/3;
+text-align: center;
+`
+export const OurProperty = styled.button`
+height: 45px;
+width: 150px;
+color:white;
+background:#19334d;
+cursor:pointer;
+font-weight: bolder;
+border: 1px solid #19334d;
+&:hover{
+    color:#19334d;
+background:white;
+    font-weight: bolder;
+}
+`
+export const CursorButton = styled.button`
+height: 45px;
+width: 40px;
+color:#19334d;
+background:white;
+cursor:pointer;
+font-weight: bolder;
+border: 1px solid #19334d;
+`
+export const CursorButtonChange = styled.button`
+height: 45px;
+width: 40px;
+color:white;
+background:#19334d;
+cursor:pointer;
+font-weight: bolder;
+border: 1px solid #19334d;
+`

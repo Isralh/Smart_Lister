@@ -1,9 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import {
   SectionWrapper, AboutCompanyWrapper, CompanyInfoWrapper, LinksSectionWrapper,
-  UpdatesWrapper, SignUp, Input, Form, Button, CopyrightWrapper
+  UpdatesWrapper, SignUp, Input, Form, Button, CopyrightWrapper, FontAwesomeContainer, FontAwesomeStyle
 } from './FooterStyling'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTwitter, faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons'
 const Footer = () => {
   return (
     <SectionWrapper>
@@ -16,6 +17,17 @@ const Footer = () => {
           <p>info@Allangroup.com</p>
         </CompanyInfoWrapper>
       </AboutCompanyWrapper>
+      <LinksSectionWrapper>
+        <FontAwesomeContainer>
+          <FontAwesomeIcon icon={faTwitter} style={FontAwesomeStyle} />
+        </FontAwesomeContainer>
+        <FontAwesomeContainer>
+          <FontAwesomeIcon icon={faFacebook} style={FontAwesomeStyle} />
+        </FontAwesomeContainer>
+        <FontAwesomeContainer>
+          <FontAwesomeIcon icon={faInstagram} style={FontAwesomeStyle} />
+        </FontAwesomeContainer>
+      </LinksSectionWrapper>
       <UpdatesWrapper>
         <SignUp>Sign-Up for Our Newsletters!</SignUp>
         <Form>
@@ -33,8 +45,3 @@ const Footer = () => {
 }
 
 export default Footer
-// <LinksSectionWrapper>
-// <Link to='/'>About</Link>
-// <Link to='/'>Home Search</Link>
-// <Link to='/'>Communities</Link>
-// </LinksSectionWrapper>

@@ -14,5 +14,3 @@ export default function FrontView () {
     </Container>
   )
 }
-// <Container FrontImage={images[0]}>
-// <button>See Listings</button>

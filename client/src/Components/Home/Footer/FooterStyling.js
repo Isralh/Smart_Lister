@@ -17,7 +17,7 @@ display:grid;
 }
 `
 export const AboutCompanyWrapper = styled.div`
-padding-top: 40px;
+margin-top: 60px;
 width: 100%;
 text-align:center;
 grid-column: 2/3;
@@ -29,7 +29,7 @@ display:grid;
 `
 export const CompanyInfoWrapper = styled.div`
 h1 {
-    font-size: 24px;
+    font-size: 18px;
     font-family: Helvetica, sans-serif;
     color: white;
     font-weight: bold;
@@ -52,28 +52,34 @@ h1 {
 `
 export const LinksSectionWrapper = styled.div`
 width: 100%;
-padding-top:40px;
-text-align: center;
+margin-top:40px;
 grid-column: 2/3;
-display:grid;
+display:flex;
+flex-direction:row;
+flex-wrap:nowrap;
+justify-content:space-around;
 @media (min-width:600px) {
-    display:grid;
-    grid-column: 2/3;
+    flex-direction:column;
 }
-a{
-    font-size: 16px;
-    font-family: Helvetica, sans-serif;
-    color: white;
-    font-weight: bold;
-    line-height: 15px;
-    text-decoration: underline;
-    margin-top:15px;
-    @media (min-width:600px) {
-        line-height: 0px;
-
-}
+@media (min-width:768px) {
+    flex-direction:row;
 }
 `
+export const FontAwesomeContainer = styled.div`
+    color:white;
+    font-size:25px;
+    @media (min-width:600px) {
+        font-size:35px;
+        margin-left:50%;
+    }
+    @media (min-width:768px) {
+        font-size:35px;
+        margin:25% 0 0 0;
+    }
+`
+export const FontAwesomeStyle = {
+  cursor: 'pointer'
+}
 export const UpdatesWrapper = styled.div`
 padding-top: 40px;
 grid-column: 2/3;
@@ -86,16 +92,13 @@ display:grid;
 export const SignUp = styled.p`
 font-size: 18px;
 text-align: center;
-/* margin-top: 50px; */
 font-family: Helvetica, sans-serif;
 color: white;
 font-weight: bold;
 `
 export const Input = styled.input`
-/* padding-top: 10px; */
 width: 70%;
 margin-top: 10px;
-/* margin-left: 20px; */
 @media (min-width:600px) {
     height:25px;
 

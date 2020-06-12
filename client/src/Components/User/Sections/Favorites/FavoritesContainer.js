@@ -49,31 +49,7 @@ const SavedSearchContainer = () => {
     }
     deletePropertyFromDB()
   }, [deletedProperty])
-  // const removeProperty = async (property) => {
-  //   const propertyId = property.id
-  //   const deleteData = { property: propertyId, user: userId }
-  //   console.log(deleteData)
-  //   const deleteProperty = await axios.post('http://localhost:3001/api/delete/favoriteProperties', deleteData)
-  //   try {
-  //     if (deleteProperty) {
-  //       const newFavoriteList = property.filter(properties => properties !== property)
-  //       setProperty(newFavoriteList)
-  //     }
-  //   } catch (e) {
-  //     console.log(e)
-  //   }
-  // }
 
-  // useEffect(() => {
-  //   const filterDeletedProperty = () => {
-  //     if (property !== undefined) {
-  //       const favoriteList = property.filter(properties => properties !== deletedProperty)
-  //       setProperty(favoriteList)
-  //     }
-  //   }
-  //   filterDeletedProperty()
-  // }, [deletedProperty])
-  // state to toggle modal
   const [modalStatus, setModalStatus] = useState(false)
   // state for modal property
   const [favortieProperty, setFavoriteProperty] = useState()
