@@ -1,26 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Container, SelectedProperties, PropertiesWrapper, Price, OurProperty,
-  Address, CityStateZip, RightArrow, LeftArrow, ContentWrapper, TopHeading,
-  CursorButton, CursorButtonChange, ButtonContainer
+  Container, SelectedProperties, PropertiesWrapper, Price,
+  Address, CityStateZip, RightArrow, LeftArrow, ContentWrapper, TopHeading
 } from './PropertiesStyling'
 import Pagination from '../Testimonials/Pagination'
 import axios from 'axios'
 import Modal from '../../Properties/ListingModal/Modal/Modal'
-import { Link } from 'react-router-dom'
+import Buttons from './Buttons'
 const Properties = () => {
   const [featuredListing, setFeaturedListing] = useState()
   const [image, setImage] = useState()
   const [propertyPagination, setPropertyPagination] = useState({
     firstColor: true,
     secondColor: false,
-    thirdColor: false,
-    index: 0
+    thirdColor: false
   })
-
+  const [index, setIndex] = useState(0)
   const featured = ['145 Rockhouse Run', '1346 Columbia Avenue', '1051 Fruitville Pike']
   const getProperties = async () => {
-    const properties = await axios.get(`http://localhost:3001/api/get/property/address/${featured[propertyPagination.index]}`)
+    const properties = await axios.get(`http://localhost:3001/api/get/property/address/${featured[index]}`)
     try {
       if (properties) {
         setFeaturedListing(properties.data.data)
@@ -31,7 +29,7 @@ const Properties = () => {
   }
   useEffect(() => {
     getProperties()
-  }, [propertyPagination.index])
+  }, [index])
 
   useEffect(() => {
     if (featuredListing !== undefined) {
@@ -42,20 +40,38 @@ const Properties = () => {
   }, [featuredListing])
 
   const showFirstProperty = () => {
-    setPropertyPagination({ firstColor: true, secondColor: false, thirdColor: false, index: 0 })
+    setIndex(0)
+    setPropertyPagination({ firstColor: true, secondColor: false, thirdColor: false })
   }
   const showSecondProperty = () => {
-    setPropertyPagination({ firstColor: false, secondColor: true, thirdColor: false, index: 1 })
+    setIndex(1)
+    setPropertyPagination({ firstColor: false, secondColor: true, thirdColor: false })
   }
   const showThirdProperty = () => {
-    setPropertyPagination({ firstColor: false, secondColor: false, thirdColor: true, index: 2 })
+    setIndex(2)
+    setPropertyPagination({ firstColor: false, secondColor: false, thirdColor: true })
   }
   const handleRight = () => {
-    setPropertyPagination(prev => { return { ...prev, index: propertyPagination.index + 1 } })
+    setIndex(index + 1)
   }
   const handleLeft = () => {
-    setPropertyPagination(prev => { return { ...prev, index: propertyPagination.index - 1 } })
+    setIndex(index - 1)
   }
+
+  useEffect(() => {
+    const changeColor = () => {
+      if (index === 0) {
+        setPropertyPagination({ firstColor: true, secondColor: false, thirdColor: false })
+      }
+      if (index === 1) {
+        setPropertyPagination({ firstColor: false, secondColor: true, thirdColor: false })
+      }
+      if (index === 2) {
+        setPropertyPagination({ firstColor: false, secondColor: false, thirdColor: true })
+      }
+    }
+    changeColor()
+  }, [index])
 
   // state to handle Modal
   const [modalStatus, setModalStatus] = useState(false)
@@ -68,17 +84,6 @@ const Properties = () => {
   const handleCloseModal = () => {
     setModalStatus(false)
   }
-
-  // state to toggle view property button color
-  const [hover, setHover] = useState(false)
-
-  const handleMouseOver = () => {
-    setHover(true)
-  }
-
-  const handleMouseLeave = () => {
-    setHover(false)
-  }
   return (
     <>
       {featuredListing !== undefined
@@ -88,8 +93,8 @@ const Properties = () => {
               <h1>Featured Listings</h1>
             </TopHeading>
             <PropertiesWrapper imageurl={image}>
-              {propertyPagination.index < 2 ? <RightArrow> <h1 onClick={handleRight}>{'>'}</h1> </RightArrow> : null}
-              {propertyPagination.index > 0 ? <LeftArrow> <h1 onClick={handleLeft}>{'<'}</h1></LeftArrow> : null}
+              {index < 2 ? <RightArrow> <h1 onClick={handleRight}>{'>'}</h1> </RightArrow> : null}
+              {index > 0 ? <LeftArrow> <h1 onClick={handleLeft}>{'<'}</h1></LeftArrow> : null}
               <SelectedProperties onClick={handleModal}>
                 <Price>
                   <h1>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(featuredListing[0].Price)}</h1>
@@ -110,12 +115,9 @@ const Properties = () => {
               secondCircleColor={propertyPagination.secondColor}
               thidCircleColor={propertyPagination.thirdColor}
             />
-            <ButtonContainer>
-              <Link to='/properties'> <OurProperty onMouseEnter={handleMouseOver} onMouseLeave={handleMouseLeave}>VIEW PROPERTIES</OurProperty></Link>
-              <span>{hover === false ? <CursorButton> {'>'} </CursorButton> : <CursorButtonChange> {'>'}</CursorButtonChange>}</span>
-            </ButtonContainer>
+            <Buttons />
           </ContentWrapper>
-        </Container>
+          </Container>
         : null}
       <Modal
         handleShow={modalStatus}

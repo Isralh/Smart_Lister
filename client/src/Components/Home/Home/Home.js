@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Styling } from './HomeStlying'
 import FrontView from '../FrontView/FrontView'
 import WhoWeAre from '../WhoWeAre/WhoWeAre'
-import Footer from '../Footer/Footer'
+import FooterContainer from '../Footer/FooterContainer'
 import Properties from '../Properties/Properties'
 import PortfolioContainer from '../Portfolio/PortfolioContainer'
 import Nav from '../Nav/Nav'
@@ -20,7 +20,7 @@ export default function Home () {
       <Properties />
       <PortfolioContainer />
       <Testimonials />
-      <Footer />
+      <FooterContainer />
     </Container>
   )
 }

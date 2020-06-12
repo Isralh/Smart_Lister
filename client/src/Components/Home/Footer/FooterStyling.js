@@ -69,12 +69,12 @@ export const FontAwesomeContainer = styled.div`
     color:white;
     font-size:25px;
     @media (min-width:600px) {
-        font-size:35px;
+        font-size:30px;
         margin-left:50%;
     }
     @media (min-width:768px) {
-        font-size:35px;
-        margin:25% 0 0 0;
+        font-size:30px;
+        margin:22% 0 0 0;
     }
 `
 export const FontAwesomeStyle = {
@@ -114,10 +114,8 @@ text-align:justify;
   color: white;
   font-size: 15px;
   font-weight: bold;
-  /* padding-left:50px; */
 `
 export const Form = styled.form`
-/* margin-top: 10px; */
 text-align:center;
 `
 export const Button = styled.button`
@@ -155,124 +153,3 @@ p{
     font-weight: bold;
 }
 `
-// export const SectionWrapper = styled.div`
-// grid-template-rows: repeat(100px, auto);
-// grid-template-columns: repeat(3, 1fr) ;
-// display: grid;
-// border-bottom: 1px solid lightgray;
-// background:  #19334d;
-// `
-// export const AboutCompanyWrapper = styled.div`
-// grid-column: 1/2;
-// display: grid;
-// `
-// export const CompanyInfoWrapper = styled.div`
-// grid-column: 1/2;
-// display: inline-block;
-// padding-top: 40px;
-// text-align:center;
-// padding-left: 160px;
-// h1 {
-//     font-size: 24px;
-//     font-family: Helvetica, sans-serif;
-//     color: white;
-//     font-weight: bold;
-//     text-align:center;
-//     padding-bottom: 5px;
-// }
-//     p{
-//      margin-top: -5px;
-//     font-size: 16px;
-//     font-family: Helvetica, sans-serif;
-//     color: white;
-//     line-height: 15px;
-//     font-weight: bold;
-// }
-// `
-// export const LinksSectionWrapper = styled.div`
-// grid-column: 2/3;
-// display: inline-block;
-// `
-// export const LinksWrapper = styled.div`
-// grid-column: 2/3;
-// padding-top: 20px;
-// padding-left: 160px;
-// /* text-align:center; */
-// `
-// export const InfoLinksWrapper = styled.div`
-// padding-top: 75px;
-// padding-left: 5px;
-// a{
-//     font-size: 16px;
-//     font-family: Helvetica, sans-serif;
-//     color: white;
-//     font-weight: bold;
-//     line-height: 35px;
-//     text-decoration: underline;
-//     text-align: justify;
-// }
-// `
-// export const UpdatesWrapper = styled.div`
-// grid-column: 3/4;
-// display: inline-block;
-// padding-right: 60px;
-// padding-top: 30px;
-// `
-// export const SignUp = styled.p`
-// font-size: 18px;
-// text-align: justify;
-// /* margin-top: 50px; */
-// font-family: Helvetica, sans-serif;
-// padding-left: 30px;
-// color: white;
-// font-weight: bold;
-// `
-// export const Input = styled.input`
-// /* padding-top: 10px; */
-// width: 70%;
-// /* margin-left: 20px; */
-// `
-// export const InputText = styled.p`
-//   width: 100%;
-//   padding-top: 10px;
-//   margin: 0px 0;
-//   box-sizing: border-box;
-//   font-family: Helvetica, sans-serif;
-//   color: white;
-//   font-size: 15px;
-//   font-weight: bold;
-// `
-// export const Form = styled.form`
-// padding-left: 30px;
-// margin-top: -15px;
-// `
-// export const Button = styled.button`
-// margin-top: 30px;
-// width: 200px;
-// margin-left: 35px;
-// border-radius: 120px;
-// padding: 10px;
-// background-color:#19334d;
-// color: white;
-// font-weight: bold;
-// font-size: 16px;
-// transition-duration: 1s;
-// transition-property: background;
-// cursor: pointer;
-// &:hover{
-//     background-color: white;
-//     color: #19334d;
-// }
-// `
-// export const CopyrightWrapper = styled.div`
-// grid-column: 1/4;
-// display: block;
-// margin-top: -20px;
-// /* display: inline-block; */
-// p{
-//     font-size: 16px;
-//     text-align: center;
-//     color: white;
-//     font-weight: bold;
-// }
-// `

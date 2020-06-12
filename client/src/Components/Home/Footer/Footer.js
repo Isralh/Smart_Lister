@@ -5,7 +5,7 @@ import {
 } from './FooterStyling'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter, faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons'
-const Footer = () => {
+const Footer = ({ handleChange, handleSubscription }) => {
   return (
     <SectionWrapper>
       <AboutCompanyWrapper>
@@ -30,10 +30,10 @@ const Footer = () => {
       </LinksSectionWrapper>
       <UpdatesWrapper>
         <SignUp>Sign-Up for Our Newsletters!</SignUp>
-        <Form>
-          <Input type='text' placeholder='First Name' /> <br />
-          <Input type='text' placeholder='Last Name' /><br />
-          <Input type='text' placeholder='Email' /><br />
+        <Form onSubmit={handleSubscription}>
+          <Input name='firstName' type='text' placeholder='First Name' required onChange={handleChange} /> <br />
+          <Input name='lastName' type='text' placeholder='Last Name' required onChange={handleChange} /><br />
+          <Input name='email' type='text' placeholder='Email' required onChange={handleChange} /><br />
           <Button>Subscribe</Button>
         </Form>
       </UpdatesWrapper>
