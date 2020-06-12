@@ -1,4 +1,5 @@
 import styled, { keyframes, css } from 'styled-components'
+
 export const Container = styled.div`
 grid-column: 100%;
 display: grid;
@@ -42,46 +43,6 @@ p{
     text-align: center;
 
 }
-`
-export const ButtonContainer = styled.div`
-grid-column: 2/3;
-display: block;
-padding-top: 40px;
-/* padding-left: 45px; */
-text-align:center;
-`
-export const AboutUsButton = styled.button`
-height: 45px;
-width: 150px;
-color:white;
-background:#19334d;
-cursor:pointer;
-font-weight: bolder;
-border: 1px solid #19334d;
-
-&:hover{
-    color:#19334d;
-background:white;
-    font-weight: bolder;
-}
-`
-export const CursorButton = styled.button`
-height: 45px;
-width: 40px;
-color:#19334d;
-background:white;
-cursor:pointer;
-font-weight: bolder;
-border: 1px solid #19334d;
-`
-export const CursorButtonChange = styled.button`
-height: 45px;
-width: 40px;
-color:white;
-background:#19334d;
-cursor:pointer;
-font-weight: bolder;
-border: 1px solid #19334d;
 `
 export const ServicesContainer = styled.div`
 grid-column: 2/3;

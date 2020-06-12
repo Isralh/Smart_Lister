@@ -52,7 +52,7 @@ display: block;
 }
 `
 export const SelectedProperties = styled.div`
-height: 100px;
+height:95px;
 width: 250px;
 background:#19334d;
 position: absolute;
@@ -63,8 +63,7 @@ cursor:pointer;
 `
 export const Price = styled.div`
 padding-left: 10px;
-margin-top:3px;
-/* margin-top:-5px; */
+margin-top:-10px;
 h1{
     font-size: 30px;
     background:white;

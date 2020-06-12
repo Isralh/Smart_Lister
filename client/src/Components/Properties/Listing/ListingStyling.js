@@ -81,13 +81,13 @@ export const ListingWrapper = styled.div`
     flex-direction: column;
     margin-top: 37.6vh;
     height: 70px;
-    width: 190px;
+    width: 160px;
     background:#19334d;
     cursor:pointer;
     bottom:0;
     @media (min-width: 768px) and (max-width:1200px) {
       margin-top: 29.5vh;
-      height: 60px;
+      height: 65px;
       width:100%;
   }
 `
@@ -95,11 +95,10 @@ export const Price = styled.h1`
        margin-top:-1px;
       margin-left: 5px;
       font-size: 22px;
-      /* z-index: 1; */
       color:  white;
       @media (min-width: 768px) {
         font-size: 20px;
-        margin-top:0px;
+        margin-top:10px;
   }
 `
 export const Address = styled.p`
@@ -110,7 +109,7 @@ export const Address = styled.p`
   color:  white;
   @media (min-width: 768px) {
     font-size: 14px;
-    margin-top: -10px;
+    margin-top: -15px;
 
   }
 `

@@ -111,7 +111,7 @@ export const ListingWrapper = styled.div`
     position: absolute;
     display: flex;
     flex-direction: column;
-    height: 60px;
+    height: 70px;
     width: 170px;
     background:#19334d;
     cursor:pointer;
@@ -121,13 +121,13 @@ export const ListingWrapper = styled.div`
         width: 170px;
 }
 `
-export const Price = styled.p`
+export const Price = styled.h1`
        margin-top:5px;
       margin-left: 5px;
-      font-size: 14px;
+      font-size: 20px;
       color:  white;
       @media (min-width:768px){
-        font-size: 16px;
+        font-size: 22px;
 }
 `
 export const Address = styled.p`

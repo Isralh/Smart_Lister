@@ -1,5 +1,13 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
+const dropDown = keyframes`
+from{
+    transform: translateY(-200%)
+}
+to{
+    transform: translateY(0%)
+}
+`
 export const Container = styled.div`
 height:10vh; 
 background:#19334d;
@@ -15,7 +23,7 @@ p{
     color:white;
     margin-top:15px;
     margin-left: 15px;
-    
+    animation: ${dropDown} 1s ease-in-out;
 }
 `
 export const ListWrapper = styled.div`
@@ -34,9 +42,6 @@ ul{
         right:0;
         padding-top: 50px;
         transition: transform 0.3s ease-in-out;
-        li{
-            color: #000;
-        }
 }
 
 li{
@@ -45,6 +50,7 @@ li{
     font-size: 16px;
     margin: 10px 8px;
     cursor:pointer;
+    animation: ${dropDown} 1s ease-in-out;
 }
 }
 `

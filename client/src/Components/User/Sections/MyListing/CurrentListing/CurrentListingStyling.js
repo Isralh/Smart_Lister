@@ -47,9 +47,6 @@ height:20px;
 display:flex;
 justify-content:flex-end;
 margin-top:25px;
-/* @media (min-width:768px){
-    width:50%;
-} */
 `
 export const Section = styled.div`
 position:relative;
@@ -65,13 +62,10 @@ height:25px;
 display:flex;
 justify-content:flex-end;
 @media (min-width:768px){
-    /* width:40%; */
 }
 div{
     height:10x;
 width:60px;
-/* margin-top:5px; */
-/* margin-top:-10px; */
 background:#19334d;
 cursor:pointer;
 border:1px solid white;
@@ -94,24 +88,18 @@ export const ImageContainer = styled.div`
   position:relative;
   width:100%;
   cursor:pointer;
-  /* flex-basis:100%; */
-  /* display:block; */
 @media (min-width:320px){
     height:40vh;
 }
 @media (min-width:375px){
     height:50vh;
 }
-/* @media (min-width:768px){
-    height:60vh;
-    width:50%;
-} */
 `
 export const ListingWrapper = styled.div`
     position: absolute;
     display: flex;
     flex-direction: column;
-    height: 60px;
+    height: 70px;
     width: 170px;
     background:#19334d;
     cursor:pointer;
@@ -121,13 +109,13 @@ export const ListingWrapper = styled.div`
         width: 170px;
 }
 `
-export const Price = styled.p`
-       margin-top:5px;
+export const Price = styled.h1`
+       margin-top:10px;
       margin-left: 5px;
-      font-size: 14px;
+      font-size: 20px;
       color:  white;
       @media (min-width:768px){
-        font-size: 16px;
+        font-size: 22px;
 }
 `
 export const Address = styled.p`
@@ -146,6 +134,7 @@ export const City = styled.p`
   color:  white;
   @media (min-width:768px){
         font-size: 16px;
+        margin-top: -18px;
 }
 `
 export const FontAwesomeStyle = {
@@ -154,4 +143,3 @@ export const FontAwesomeStyle = {
   fontSize: '20px',
   cursor: 'pointer'
 }
-
