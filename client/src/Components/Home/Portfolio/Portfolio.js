@@ -3,7 +3,7 @@ import {
   Container, PortfolioWrapper, TopHeading, OurProperty, CursorButton,
   MiddleWord, BottomWord, CardsWrapper, CursorButtonChange, ButtonContainer, Card
 } from './PortfolioStyling'
-
+import { Link } from 'react-router-dom'
 export default function Portfolio ({ handleMouseOver, handleMouseLeave, hover }) {
   return (
     <Container>
@@ -34,7 +34,7 @@ export default function Portfolio ({ handleMouseOver, handleMouseLeave, hover })
           </Card>
         </CardsWrapper>
         <ButtonContainer>
-          <OurProperty onMouseEnter={handleMouseOver} onMouseLeave={handleMouseLeave}>VIEW LISTINGS</OurProperty>
+          <Link to='/properties'> <OurProperty onMouseEnter={handleMouseOver} onMouseLeave={handleMouseLeave}>VIEW PROPERTIES</OurProperty></Link>
           <span>{hover === false ? <CursorButton> {'>'} </CursorButton> : <CursorButtonChange> {'>'}</CursorButtonChange>}</span>
         </ButtonContainer>
       </PortfolioWrapper>

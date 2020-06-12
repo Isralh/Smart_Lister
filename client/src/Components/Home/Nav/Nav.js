@@ -71,7 +71,6 @@ const reducer = (state, action) => {
 }
 export default function Nav () {
   const token = window.localStorage.getItem('token')
-
   const userInfo = () => {
     if (token !== null || undefined) {
       const user = jwtDecode(token)
@@ -86,7 +85,6 @@ export default function Nav () {
   }
   const openLogin = () => {
     dispatch({ type: 'open Login' })
-    console.log('its open')
   }
   const loginClose = () => {
     dispatch({ type: 'close Login' })

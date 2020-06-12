@@ -7,7 +7,6 @@ import Pagination from '../Testimonials/Pagination'
 import axios from 'axios'
 
 const Properties = () => {
-
   const [featuredListing, setFeaturedListing] = useState()
   const [image, setImage] = useState()
   const [propertyPagination, setPropertyPagination] = useState({
@@ -49,6 +48,13 @@ const Properties = () => {
   const showThirdProperty = () => {
     setPropertyPagination({ firstColor: false, secondColor: false, thirdColor: true, index: 2 })
   }
+  const handleRight = () => {
+    setPropertyPagination(prev => { return { ...prev, index: propertyPagination.index + 1 } })
+  }
+  const handleLeft = () => {
+    setPropertyPagination(prev => { return { ...prev, index: propertyPagination.index - 1 } })
+  }
+
   return (
     <>
       {featuredListing !== undefined
@@ -58,6 +64,8 @@ const Properties = () => {
               <h1>Featured Listings</h1>
             </TopHeading>
             <PropertiesWrapper imageurl={image}>
+              {propertyPagination.index < 2 ? <RightArrow> <h1 onClick={handleRight}>{'>'}</h1> </RightArrow> : null}
+              {propertyPagination.index > 0 ? <LeftArrow> <h1 onClick={handleLeft}>{'<'}</h1></LeftArrow> : null}
               <SelectedProperties>
                 <Price>
                   <h1>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(featuredListing[0].Price)}</h1>
@@ -79,12 +87,9 @@ const Properties = () => {
               thidCircleColor={propertyPagination.thirdColor}
             />
           </ContentWrapper>
-        </Container>
+          </Container>
         : null}
     </>
   )
 }
 export default Properties
-
-// {index < 2 ? <RightArrow> <h1 onClick={handleRight}>{'>'}</h1> </RightArrow> : null}
-// {index > 0 ? <LeftArrow> <h1 onClick={handleLeft}>{'<'}</h1></LeftArrow> : null}

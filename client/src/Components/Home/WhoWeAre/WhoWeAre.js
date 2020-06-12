@@ -3,28 +3,22 @@ import {
   Container, Wrapper, BioContainer, CompanyBio, ButtonContainer, AboutUsButton,
   CursorButton, CursorButtonChange
 } from './WhoWeAreStyling'
+import Services from './Services'
 
-function WhoWeAre ({ handleMouseOver, handleMouseLeave, hover }) {
+
+export default function WhoWeAre ({ handleMouseOver, handleMouseLeave, hover, openRegister }) {
   const bioRef = useRef(null)
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        console.log(entry.target)
-        bioRef.current.style.transform = 'translateX(0%)'
-        bioRef.current.style.transition = 'transform 5s ease-in-out'
-      }
-      observer.unobserve(entry.target)
-    })
-  }, {
-    root: null,
-    threshold: 0,
-    rootMargin: '-150px'
+  const intersectionObserver = new IntersectionObserver(entry => {
+    if (entry[0].isIntersecting) {
+    }
   })
-
   useEffect(() => {
-    observer.observe(bioRef.current)
-  }, [])
+    intersectionObserver.observe(bioRef.current)
 
+    return () => {
+      intersectionObserver.disconnect()
+    }
+  }, [])
   return (
     <Container ref={bioRef}>
       <Wrapper>
@@ -34,31 +28,12 @@ function WhoWeAre ({ handleMouseOver, handleMouseLeave, hover }) {
             <p>At the Smith Group we’re proud to be one of the most trusted real estate firms in the Greater Philadelphia area. We pride ourselves in exceptional customer service and educating our clients about the housing market. Our priority is to help you find your dream home.</p>
           </CompanyBio>
         </BioContainer>
-        <ButtonContainer>
-          <AboutUsButton onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>LEARN MORE</AboutUsButton>
-          <span>{hover === false ? <CursorButton> {'>'} </CursorButton> : <CursorButtonChange>{'>'}</CursorButtonChange>}</span>
-        </ButtonContainer>
+        <Services />
       </Wrapper>
     </Container>
   )
 }
-
-export default function WhoWeAreContainer () {
-  const [whenHover, setWhenHover] = useState(false)
-
-  const mouseOver = () => {
-    setWhenHover(true)
-  }
-
-  const mouseLeave = () => {
-    setWhenHover(false)
-  }
-
-  return (
-    <WhoWeAre
-      handleMouseLeave={mouseLeave}
-      handleMouseOver={mouseOver}
-      hover={whenHover}
-    />
-  )
-}
+// <ButtonContainer>
+// <AboutUsButton onClick={openRegister} onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>Get Started</AboutUsButton>
+// <span>{hover === false ? <CursorButton> {'>'} </CursorButton> : <CursorButtonChange>{'>'}</CursorButtonChange>}</span>
+// </ButtonContainer>

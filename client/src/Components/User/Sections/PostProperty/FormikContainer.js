@@ -16,6 +16,7 @@ export default function FormikContainer ({ viewListingForm }) {
   const [secondView, setSecondView] = useState(false)
   const [showPrevBtn] = useState(true)
   const [images, setImages] = useState()
+  const [active, setActive] = useState(true)
   // state to hold all of our formdata
   const [valuesContainer, setValuesContainer] = useState({
     firstForm: null,
@@ -85,7 +86,7 @@ export default function FormikContainer ({ viewListingForm }) {
     <Container>
       <Nav />
       <LayOutWrapper>
-        <Layout />
+        <Layout propertyActive={active} />
       </LayOutWrapper>
       <FormWrapper>
         <StepHeading>

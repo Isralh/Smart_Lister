@@ -41,6 +41,7 @@ grid-column:2/3;
 display:block;
 text-align:center;
 color:#19334d;
+
 img{
   width: 150px;
   height: 150px;

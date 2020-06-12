@@ -16,11 +16,6 @@ const Footer = () => {
           <p>info@Allangroup.com</p>
         </CompanyInfoWrapper>
       </AboutCompanyWrapper>
-      <LinksSectionWrapper>
-        <Link to='/'>About</Link>
-        <Link to='/'>Home Search</Link>
-        <Link to='/'>Communities</Link>
-      </LinksSectionWrapper>
       <UpdatesWrapper>
         <SignUp>Sign-Up for Our Newsletters!</SignUp>
         <Form>
@@ -38,3 +33,8 @@ const Footer = () => {
 }
 
 export default Footer
+// <LinksSectionWrapper>
+// <Link to='/'>About</Link>
+// <Link to='/'>Home Search</Link>
+// <Link to='/'>Communities</Link>
+// </LinksSectionWrapper>

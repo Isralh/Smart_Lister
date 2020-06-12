@@ -1,13 +1,13 @@
 import React from 'react'
-import { Container } from './LayoutStyling'
+import { Container, MyListing, PostProperty, Favorties, Account } from './LayoutStyling'
 import { Link } from 'react-router-dom'
-const Layout = ({ myActiveListing }) => {
+const Layout = ({ myActiveListing, propertyActive, favoriteActive, accountActive }) => {
   return (
     <Container>
-      <Link style={{ textDecoration: 'none' }} to='/user/myListing'><h1>MY LISTING</h1> </Link>
-      <Link style={{ textDecoration: 'none' }} to='/user/postProperty'> <h1>POST PROPERTY</h1></Link>
-      <Link style={{ textDecoration: 'none' }} to='/user/favorites'><h1>FAVORITES</h1></Link>
-      <Link style={{ textDecoration: 'none' }} to='/user/myAccount'> <h1>ACCOUNT</h1></Link>
+      <Link style={{ textDecoration: 'none' }} to='/user/myListing'><MyListing active={myActiveListing}>MY LISTING</MyListing> </Link>
+      <Link style={{ textDecoration: 'none' }} to='/user/postProperty'> <PostProperty active={propertyActive}>POST PROPERTY</PostProperty></Link>
+      <Link style={{ textDecoration: 'none' }} to='/user/favorites'><Favorties active={favoriteActive}>FAVORITES</Favorties></Link>
+      <Link style={{ textDecoration: 'none' }} to='/user/myAccount'> <Account active={accountActive}>ACCOUNT</Account></Link>
     </Container>
   )
 }

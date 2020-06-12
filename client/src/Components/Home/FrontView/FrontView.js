@@ -8,7 +8,7 @@ export default function FrontView () {
       <WelcomeMessage>
         <h1>Find Your Next Home</h1>
         <ButtonContainer>
-          <Link style={{ textDecoration: 'none' }} to='/properties'><button>See Listings</button></Link>
+          <Link to='/properties'><button>See Listings</button></Link>
         </ButtonContainer>
       </WelcomeMessage>
     </Container>

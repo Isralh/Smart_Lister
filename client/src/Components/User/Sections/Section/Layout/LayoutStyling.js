@@ -11,10 +11,6 @@ h1{
     font-size:15px;
     height:20px;
     cursor:pointer;
-    border-bottom:${props => props.active ? '2px solid #19334d' : 'none'};
-    :hover {
-        border-bottom: 2px solid #19334d;
-    }
     @media (min-width:320px){
     font-size: 11px;
 }
@@ -23,28 +19,28 @@ h1{
 }
 }
 `
-// export const MyListing = styled.h1`
-//     border-bottom:${props => props.active ? '2px solid #19334d' : 'none'};
-//     :hover {
-//         border-bottom: 2px solid #19334d;
-//     }
-// `
-// export const PostProperty = styled.h1`
-//     border-bottom:${props => props.active ? '2px solid #19334d' : 'none'};
-//     :hover {
-//         border-bottom: 2px solid #19334d;
-//     }
-// `
-// export const Favorties = styled.h1`
-//     border-bottom:${props => props.active ? '2px solid #19334d' : 'none'};
-//     :hover {
-//         border-bottom: 2px solid #19334d;
-//     }
-// `
-// export const Account = styled.h1`
-//     border-bottom:${props => props.active ? '2px solid #19334d' : 'none'};
-//     :hover {
-//         border-bottom: 2px solid #19334d;
-//     }
+export const MyListing = styled.h1`
+    border-bottom:${props => props.active ? '2px solid #19334d' : 'none'};
+    :hover {
+        border-bottom: 2px solid #19334d;
+    }
+`
+export const PostProperty = styled.h1`
+    border-bottom:${props => props.active ? '2px solid #19334d' : 'none'};
+    :hover {
+        border-bottom: 2px solid #19334d;
+    }
+`
+export const Favorties = styled.h1`
+    border-bottom:${props => props.active ? '2px solid #19334d' : 'none'};
+    :hover {
+        border-bottom: 2px solid #19334d;
+    }
+`
+export const Account = styled.h1`
+    border-bottom:${props => props.active ? '2px solid #19334d' : 'none'};
+    :hover {
+        border-bottom: 2px solid #19334d;
+    }
 
-// `
+`

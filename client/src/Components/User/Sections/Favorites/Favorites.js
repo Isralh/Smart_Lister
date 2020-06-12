@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Container, LayOutWrapper, SectiontWrapper, TopHeading, ContentContainer, ImageContainer,
   Section, City, ListingWrapper, Price, Address, Updates
@@ -7,7 +7,6 @@ import Nav from '../../../Home/Nav/Nav'
 import Layout from '../Section/Layout/Layout'
 import NoResult from '../SharedComponent/NoResult'
 import Modal from '../../../Properties/ListingModal/Modal/Modal'
-
 const Favorites = ({
   propertyData = [], index, showModal, modalClose,
   modalProperty, handleModal, property, deleteFavorite
@@ -19,12 +18,13 @@ const Favorites = ({
       return allImages[0][index]
     }
   }
+  const [active, setActive] = useState(true)
   return (
     <>
       <Container>
         <Nav />
         <LayOutWrapper>
-          <Layout />
+          <Layout favoriteActive={active} />
         </LayOutWrapper>
         {propertyData.length > 0
           ? <SectiontWrapper>
@@ -48,7 +48,7 @@ const Favorites = ({
                   </ImageContainer>
                 </Section>)}
             </ContentContainer>
-          </SectiontWrapper> : <NoResult notFound='No Saved Searches' />}
+            </SectiontWrapper> : <NoResult notFound='No Saved Searches' />}
       </Container>
       <Modal
         handleShow={showModal}

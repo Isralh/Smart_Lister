@@ -1,24 +1,4 @@
-import styled from 'styled-components'
-// export const observer = (reference) => {
-//   const observer = new IntersectionObserver((entries, observer) => {
-//     entries.forEach(entry => {
-//       if (entry.isIntersecting) {
-//         reference.current.style.transform = 'translateX(0%)'
-//         reference.current.style.transition = 'transform 5s ease-in-out'
-//       } else {
-//         reference.current.style.transform = 'translateX(-100%)'
-//         observer.unobserve(entry.target)
-//       }
-//     })
-//   }, {
-//     root: null,
-//     threshold: 0,
-//     rootMargin: '-150px'
-//   }, [])
-
-//   return observer
-// }
-
+import styled, { keyframes, css } from 'styled-components'
 export const Container = styled.div`
 grid-column: 100%;
 display: grid;
@@ -52,11 +32,6 @@ h1{
 export const CompanyBio = styled.div`
 grid-column: 2/3;
 display: block;
-/* padding-top: 10px; */
-@media (min-width:1020px) {
-    padding-left: 45px;
-
-}
 
 p{
     color:#19334d;
@@ -107,4 +82,48 @@ background:#19334d;
 cursor:pointer;
 font-weight: bolder;
 border: 1px solid #19334d;
+`
+export const ServicesContainer = styled.div`
+grid-column: 2/3;
+display:flex;
+flex-direction:column;
+flex-wrap: nowrap;
+justify-content:flex-start;
+width:100%;
+@media (min-width:768px){
+    flex-direction:row;
+    flex-wrap:nowrap;
+    justify-content:space-around;
+}
+`
+export const ContentWrapper = styled.div`
+margin-top:50px;
+@media (min-width:768px){
+    /* width:30%; */
+margin-left:3%;
+margin-right:3%;
+}
+
+`
+export const FontAwesomeContainer = styled.div`
+text-align:center;
+
+`
+export const FontAwesomeStyle = {
+  fontSize: '80px',
+  color: '#19334d'
+}
+export const Heading = styled.h1`
+font-size:20px;
+color:#19334d;
+text-align:center;
+font-weight:bold;
+`
+export const Paragraph = styled.p`
+color:#19334d;
+text-align:center;
+font-weight:400;
+font-size: 18px;
+font-family: serif;
+line-height: 35px;
 `

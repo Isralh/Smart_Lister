@@ -26,7 +26,7 @@ const MyListing = () => {
   const token = window.localStorage.getItem('token')
   const user = Jwt(token)
   const userId = user.userId
-  console.log(userId)
+  const [active, setActive] = useState(true)
   const [property, setProperty] = useState([])
   const index = 0
   const [currentListingView, setCurrentListingView] = useState(true)
@@ -78,13 +78,12 @@ const MyListing = () => {
     setCurrentListingView(true)
     setshowUpdateForm(false)
   }
-
   return (
     <>
       <Container>
         <Nav />
         <LayOutWrapper>
-          <Layout />
+          <Layout myActiveListing={active} />
         </LayOutWrapper>
         <CurrentListing
           index={index}
