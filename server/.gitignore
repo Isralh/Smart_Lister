@@ -2,7 +2,8 @@
 node_modules/
 
 #configs
-/server/src/config/# Logs
+src/config
+src/Database
 logs
 *.log
 npm-debug.log*
