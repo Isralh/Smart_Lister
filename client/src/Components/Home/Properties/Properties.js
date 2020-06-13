@@ -21,7 +21,7 @@ const Properties = () => {
     thirdColor: false
   })
   const [index, setIndex] = useState(0)
-  const featured = ['145 Rockhouse Run', '1346 Columbia Avenue', '1051 Fruitville Pike']
+  const featured = ['145 Rockhouse Run', '821 Lititz Pike', '265 Summit Road']
   const getProperties = async () => {
     const properties = await axios.get(`http://localhost:3001/api/get/property/address/${featured[index]}`)
     try {
@@ -41,7 +41,7 @@ const Properties = () => {
     if (featuredListing !== undefined) {
       const images = featuredListing[0].images
       const allImages = JSON.parse(images)
-      setImage(allImages[0][5])
+      setImage(allImages[0][1])
     }
   }, [featuredListing])
 

@@ -19,7 +19,7 @@ export default function Properties () {
     const getProperties = async () => {
       const propertyData = await axios.get(`http://localhost:3001/api/get/property/city/${cityName}`)
       try {
-        if (propertyData) {
+        if (propertyData.status === 200) {
           const data = propertyData.data.data
           setPropertyList(data)
           setLoading(prev => { return { ...prev, status: false } })

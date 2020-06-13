@@ -10,6 +10,7 @@ import FavoritesContainer from './Components/User/Sections/Favorites/FavoritesCo
 import { ProtectedRoute } from './Components/Authentication/ProtectedRoute'
 import MyListing from './Components/User/Sections/MyListing/MyListing/MyListing'
 import NotFound from './Components/PageNotFound/NotFound'
+import ServerError from './Components/Server_Error/ServerError'
 // global styling and wrap our app component with it
 const GlobalStyle = createGlobalStyle`
 body{ padding: 0px;
@@ -28,6 +29,7 @@ function App () {
           <ProtectedRoute path='/user/myListing' component={MyListing} />
           <ProtectedRoute path='/user/postProperty' component={FormikContainer} />
           <ProtectedRoute path='/user/favorites' component={FavoritesContainer} />
+          <Route path='/servererror' component={ServerError} />
           <Route path='*' component={NotFound} />
         </Switch>
         <GlobalStyle />

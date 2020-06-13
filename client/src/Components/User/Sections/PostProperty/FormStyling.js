@@ -101,5 +101,4 @@ export const ErrorStyle = styled.div`
 color:red;
 font-weight:normal;
 margin-bottom:5px;
-margin-left:2%;
 `
