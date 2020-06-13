@@ -13,29 +13,6 @@ const Search = ({ searchInput, results, keyid }) => {
 }
 
 const SearchContainer = ({ inputValue }) => {
-  // const [items, setItems] = useState({
-  //   item: ['David', 'Damien', 'Sara', 'Jane']
-  // })
-  // const [suggestion, setSuggestion] = useState([])
-
-  // const inputValue = (e) => {
-  //   const empty = []
-  //   const values = e.target.value
-  //   if (values.length === 0) {
-  //     setSuggestion(empty)
-  //   } else {
-  //     const regex = new RegExp(`^${values}`, 'i')
-  //     const suggestions = items.item.sort().filter(v => regex.test(v))
-  //     setSuggestion([suggestions])
-  //   }
-  // }
-  // useEffect(() => {
-  //   if (suggestion.length === 0) {
-  //     console.log(null)
-  //   } else {
-  //     console.log(suggestion.map(s => s))
-  //   }
-  // }, [suggestion, items])
   return (
     <Search searchInput={inputValue} />
   )

@@ -40,7 +40,6 @@ export const PropertiesWrapper = styled.div`
 background-image: url(${props => props.imageurl});
 width: 100%;
 grid-column: 2/3;
-/* margin:0 5% 0 5%; */
 height: 85vh;
 position: relative;
 background-repeat: no-repeat;
@@ -49,6 +48,16 @@ background-position: 50% 50%;
 display: block;
 @media (min-width:1024px){
     height:80vh;
+}
+`
+export const LoadingWrapper = styled.div`
+width: 100%;
+grid-column: 2/3;
+height: 55vh;
+position: relative;
+display: block;
+@media (min-width:1024px){
+    height:55vh;
 }
 `
 export const SelectedProperties = styled.div`

@@ -7,9 +7,10 @@ import Nav from '../../../Home/Nav/Nav'
 import Layout from '../Section/Layout/Layout'
 import NoResult from '../SharedComponent/NoResult'
 import Modal from '../../../Properties/ListingModal/Modal/Modal'
+import Loading from '../../../Loading/Loading'
 const Favorites = ({
-  propertyData = [], index, showModal, modalClose,
-  modalProperty, handleModal, property, deleteFavorite
+  propertyData = [], index, showModal, modalClose, loading,
+  modalProperty, handleModal, property, deleteFavorite, loadingStatus, loadingStyle
 }) => {
   function initialImage (key) {
     if (propertyData.length > 0) {
@@ -26,28 +27,29 @@ const Favorites = ({
         <LayOutWrapper>
           <Layout favoriteActive={active} />
         </LayOutWrapper>
-        {propertyData.length > 0
-          ? <SectiontWrapper>
-            <TopHeading>
-              <h1>SAVED SEARCHES</h1>
-            </TopHeading>
-            <ContentContainer>
-              {propertyData.map((property, i) =>
-                <Section key={property.id}>
-                  <Updates>
-                    <div>
-                      <p onClick={deleteFavorite.bind(this, property)}>DELETE</p>
-                    </div>
-                  </Updates>
-                  <ImageContainer onClick={handleModal.bind(this, property)} imageUrl={initialImage(i)}>
-                    <ListingWrapper>
-                      <Price>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(property.Price)}</Price>
-                      <Address>{property.address}</Address>
-                      <City>{property.cityState}</City>
-                    </ListingWrapper>
-                  </ImageContainer>
-                </Section>)}
-            </ContentContainer>
+        {loading ? <Loading loadingState={loadingStatus} loadingMargin={loadingStyle} />
+          : propertyData.length > 0
+            ? <SectiontWrapper>
+              <TopHeading>
+                <h1>SAVED SEARCHES</h1>
+              </TopHeading>
+              <ContentContainer>
+                {propertyData.map((property, i) =>
+                  <Section key={property.id}>
+                    <Updates>
+                      <div>
+                        <p onClick={deleteFavorite.bind(this, property)}>DELETE</p>
+                      </div>
+                    </Updates>
+                    <ImageContainer onClick={handleModal.bind(this, property)} imageUrl={initialImage(i)}>
+                      <ListingWrapper>
+                        <Price>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(property.Price)}</Price>
+                        <Address>{property.address}</Address>
+                        <City>{property.cityState}</City>
+                      </ListingWrapper>
+                    </ImageContainer>
+                  </Section>)}
+              </ContentContainer>
             </SectiontWrapper> : <NoResult notFound='No Saved Searches' />}
       </Container>
       <Modal

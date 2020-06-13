@@ -9,9 +9,15 @@ import CurrentListing from '../CurrentListing/CurrentListing'
 import { Container, LayOutWrapper } from './MyListingStyles'
 import UpdateListing from '../UpdateListing/UpdateListing'
 import Modal from '../../../../Properties/ListingModal/Modal/Modal'
+import Loading from '../../../../Loading/Loading'
 export const ListingContext = createContext()
 
 const MyListing = () => {
+  // loading state
+  const [loading, setLoading] = useState({
+    status: true,
+    margin: '35vh 0 0 5%'
+  })
   // state to toggle modal
   const [showModal, setShowModal] = useState()
   // state for modal property
@@ -35,15 +41,15 @@ const MyListing = () => {
   // sucess message notification if property was deleted from the database successfuly
   toast.configure()
   const notify = () => toast.success('Successfully deleted Listing', {
-    autoClose: 2500
+    autoClose: 1500
   })
   useEffect(() => {
     const getUserProperty = async () => {
       const propertyData = await Axios.get(`http://localhost:3001/api/get/user/properties/${userId}`)
       try {
         if (propertyData) {
-          console.log(propertyData)
           setProperty(propertyData.data.data)
+          setLoading(prev => { return { ...prev, status: false } })
         }
       } catch (e) {
         console.log(e)
@@ -58,10 +64,9 @@ const MyListing = () => {
     try {
       if (propertyData) {
         notify()
-        console.log(propertyData.data)
         setTimeout(() => {
           window.location.reload()
-        }, 2500)
+        }, 1000)
       }
     } catch (e) {
       console.log(e)
@@ -85,14 +90,15 @@ const MyListing = () => {
         <LayOutWrapper>
           <Layout myActiveListing={active} />
         </LayOutWrapper>
-        <CurrentListing
-          index={index}
-          propertyData={property}
-          handleDelete={deleteProperty}
-          handleUpdate={updatePropertyListing}
-          viewListing={currentListingView}
-          openModal={modalOpen}
-        />
+        {loading.status ? <Loading loadingState={loading.status} loadingMargin={loading.margin} />
+          : <CurrentListing
+            index={index}
+            propertyData={property}
+            handleDelete={deleteProperty}
+            handleUpdate={updatePropertyListing}
+            viewListing={currentListingView}
+            openModal={modalOpen}
+          />}
         <ListingContext.Provider value={currentListing}>
           <UpdateListing
             viewForm={showUpdateForm}

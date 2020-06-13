@@ -1,4 +1,3 @@
-const Users = require('../../models/users')
 const Properties = require('../../models/properties')
 
 const updateProperty = async (req, res) => {
@@ -23,10 +22,10 @@ const updateProperty = async (req, res) => {
         images: JSON.stringify([data.imageUrl])
       }).then(propertyData => {
         return res.status(200).send({ data: propertyData, message: 'Success' })
-      }).catch(e => { return res.status(400).send({ message: 'Unable to update property data' }) })
+      }).catch(e => { return res.status(204).send({ message: 'Unable to update property data' }) })
     }
   } catch (e) {
-    console.log(e)
+    return res.status(500).send({message: 'Server error' })
   }
 }
 

@@ -18,7 +18,7 @@ exports.imageupload = async (req, res) => {
 // function to handle property posting to the database
 exports.propertyInfo = async (req, res) => {
   if (req.body === null || undefined) {
-    return res.status(400).send({ message: 'No information recieved, please input data again' })
+    return res.status(204).send({ message: 'No information recieved, please input data again' })
   }
 
   // destructure the request to identify which will be added to the different tables
@@ -64,7 +64,7 @@ exports.propertyInfo = async (req, res) => {
     }
     return res.status(201).send({ message: 'Property list created successfully' })
   } catch (e) {
-    return res.status(404).send({ message: 'Error ' })
+    return res.status(500).send({ message: 'server erro ' })
   }
 }
 
@@ -79,7 +79,7 @@ exports.getAllProperties = async (req, res) => {
     }
     return req.status(200).send({ message: 'no proprties found' })
   } catch (e) {
-    return res.status(404).send({ error: 'Server Error' })
+    return res.status(500).send({ error: 'Server Error' })
   }
 }
 
@@ -93,15 +93,14 @@ exports.getPropertyByUserId = async (req, res) => {
   })
   try {
     if (userProperty) return res.status(200).send({ data: [userProperty], message: 'Successfully found property' })
-    else return res.status(200).send({ message: 'user doesnt have property listed ' })
+    else return res.status(204).send({ message: 'user doesnt have property listed ' })
   } catch (e) {
-    return res.status(404).send({ message: 'Server Error' })
+    return res.status(500).send({ message: 'Server Error' })
   }
 }
 
 // function to get properties by the city
 exports.getPropertyByCity = async (req, res) => {
-
   // get the requested city (if all send all the properties) (else get the property by city from the properties table)
   // then send the data to the user
   const cityName = await req.params.id
@@ -109,9 +108,9 @@ exports.getPropertyByCity = async (req, res) => {
     const allProperties = await Properties.findAll({ raw: true })
     try {
       if (allProperties) return res.status(200).send({ message: 'successfull', data: allProperties })
-      return res.status(404).send({ message: 'no content found' })
+      return res.status(204).send({ message: 'no content found' })
     } catch (e) {
-      return res.status(404).send({ message: 'Server error' })
+      return res.status(500).send({ message: 'Server error' })
     }
   } else {
     const properties = await Properties.findAll({
@@ -119,9 +118,9 @@ exports.getPropertyByCity = async (req, res) => {
     })
     try {
       if (properties) return res.status(200).send({ message: 'success', data: properties })
-      return res.status(404).send({ message: 'no content found' })
+      return res.status(204).send({ message: 'no content found' })
     } catch (e) {
-      return res.status(404).send({ message: 'Server error' })
+      return res.status(500).send({ message: 'Server error' })
     }
   }
 }
@@ -134,9 +133,12 @@ exports.getPropertyByAddress = async (req, res) => {
   if (addressRequest === 'All') {
     const property = await Properties.findAll({ raw: true })
     try {
-      if (property) return res.status(200).send({ message: 'Success', data: property })
+      if (property) {
+        return res.status(200).send({ message: 'Success', data: property })
+      }
+      return res.status(204).send({ message: 'content Not Found ' })
     } catch (e) {
-      console.log(e)
+      return res.status(500).send({ message: 'Server error' })
     }
   }
   const address = addressRequest.split(', ')
@@ -147,7 +149,7 @@ exports.getPropertyByAddress = async (req, res) => {
     })
     properties.push(property)
   }
-  console.log(properties)
+  console.log(properties.length)
   return res.status(200).send({ message: 'Success', data: properties })
 }
 
@@ -161,8 +163,8 @@ exports.deleteProperty = async (req, res) => {
       await property.destroy()
       return res.status(200).send({ message: 'Successfully deleted property' })
     }
-    return res.status(404).send({ message: 'Unable to find property' })
+    return res.status(204).send({ message: 'Unable to find property' })
   } catch (e) {
-    return res.status(404).send({ message: 'server error' })
+    return res.status(500).send({ message: 'server error' })
   }
 }

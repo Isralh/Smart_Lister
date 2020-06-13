@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Container, SelectedProperties, PropertiesWrapper, Price,
+  Container, SelectedProperties, PropertiesWrapper, Price, LoadingWrapper,
   Address, CityStateZip, RightArrow, LeftArrow, ContentWrapper, TopHeading
 } from './PropertiesStyling'
 import Pagination from '../Testimonials/Pagination'
 import axios from 'axios'
 import Modal from '../../Properties/ListingModal/Modal/Modal'
 import Buttons from './Buttons'
+import Loading from '../../Loading/Loading'
 const Properties = () => {
+  const [loading, setLoading] = useState({
+    status: true,
+    margins: '20vh 0 0 0%'
+  })
   const [featuredListing, setFeaturedListing] = useState()
   const [image, setImage] = useState()
   const [propertyPagination, setPropertyPagination] = useState({
@@ -20,8 +25,9 @@ const Properties = () => {
   const getProperties = async () => {
     const properties = await axios.get(`http://localhost:3001/api/get/property/address/${featured[index]}`)
     try {
-      if (properties) {
+      if (properties.status === 200) {
         setFeaturedListing(properties.data.data)
+        setLoading(prev => { return { ...prev, status: false } })
       }
     } catch (e) {
       console.log(e)
@@ -84,15 +90,19 @@ const Properties = () => {
   const handleCloseModal = () => {
     setModalStatus(false)
   }
+
   return (
     <>
-      {featuredListing !== undefined
-        ? <Container>
-          <ContentWrapper>
-            <TopHeading>
-              <h1>Featured Listings</h1>
-            </TopHeading>
-            <PropertiesWrapper imageurl={image}>
+      <Container>
+        <ContentWrapper>
+          <TopHeading>
+            <h1>Featured Listings</h1>
+          </TopHeading>
+          {loading.status
+            ? <LoadingWrapper>
+              <Loading loadingState={loading.status} loadingMargin={loading.margins} />
+            </LoadingWrapper>
+            : <PropertiesWrapper imageurl={image}>
               {index < 2 ? <RightArrow> <h1 onClick={handleRight}>{'>'}</h1> </RightArrow> : null}
               {index > 0 ? <LeftArrow> <h1 onClick={handleLeft}>{'<'}</h1></LeftArrow> : null}
               <SelectedProperties onClick={handleModal}>
@@ -106,19 +116,18 @@ const Properties = () => {
                   <span><p>{featuredListing[0].cityState}</p><p>{featuredListing[0].zipcode}</p></span>
                 </CityStateZip>
               </SelectedProperties>
-            </PropertiesWrapper>
-            <Pagination
-              FirstCircle={showFirstProperty}
-              secondCircle={showSecondProperty}
-              thirdCircle={showThirdProperty}
-              firstCircleColor={propertyPagination.firstColor}
-              secondCircleColor={propertyPagination.secondColor}
-              thidCircleColor={propertyPagination.thirdColor}
-            />
-            <Buttons />
-          </ContentWrapper>
-          </Container>
-        : null}
+            </PropertiesWrapper>}
+          <Pagination
+            FirstCircle={showFirstProperty}
+            secondCircle={showSecondProperty}
+            thirdCircle={showThirdProperty}
+            firstCircleColor={propertyPagination.firstColor}
+            secondCircleColor={propertyPagination.secondColor}
+            thidCircleColor={propertyPagination.thirdColor}
+          />
+          <Buttons />
+        </ContentWrapper>
+      </Container>
       <Modal
         handleShow={modalStatus}
         closeModal={handleCloseModal}

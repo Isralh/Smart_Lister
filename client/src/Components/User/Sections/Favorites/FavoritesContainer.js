@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react'
 import Favorites from './Favorites'
 import axios from 'axios'
 import jwt from 'jwt-decode'
-
 const SavedSearchContainer = () => {
+  // loading state
+  const [dataLoading, setDataLoading] = useState({
+    status: true,
+    margin: '35vh 0 0 5%'
+  })
   const token = window.localStorage.getItem('token')
   const user = jwt(token)
   const userId = user.userId
@@ -16,9 +20,9 @@ const SavedSearchContainer = () => {
       const propertyInfo = await axios.get(`http://localhost:3001/api/get/favorites/${userId}`)
 
       try {
-        if (propertyInfo) {
-          console.log(propertyInfo.data.data)
+        if (propertyInfo.data.data) {
           setProperty(propertyInfo.data.data)
+          setDataLoading(prev => { return { ...prev, status: false } })
         }
       } catch (e) {
         console.log(e)
@@ -61,7 +65,7 @@ const SavedSearchContainer = () => {
     setFavoriteProperty(property)
   }
   return (
-    <div>
+    <>
       <Favorites
         index={index}
         propertyData={property}
@@ -70,8 +74,11 @@ const SavedSearchContainer = () => {
         modalProperty={favortieProperty}
         handleModal={modalOpen}
         deleteFavorite={removeProperty}
+        loading={dataLoading.status}
+        loadingStatus={dataLoading.status}
+        loadingStyle={dataLoading.margin}
       />
-    </div>
+    </>
   )
 }
 

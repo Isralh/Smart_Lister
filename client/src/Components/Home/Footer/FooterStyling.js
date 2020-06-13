@@ -3,13 +3,9 @@ import styled from 'styled-components'
 export const SectionWrapper = styled.div`
 margin-top:100px;
 width: 100%;
-background:  #19334d;
+background: #19334d;
 grid-template-columns: 15% 70% 15%;
 display:grid;
-/* @media (min-width:500px) and (max-width:550px){
-    margin-left:75px;
-
-} */
 @media (min-width:600px) {
     display:grid;
     grid-template-columns:repeat(auto-fit, 33% 33% 33%);

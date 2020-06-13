@@ -3,8 +3,6 @@ import styled from 'styled-components'
 export const Container = styled.div`
 width:100%;
 background:white;
-height:100vh;
-/* display: ${props => props.viewMyListing ? 'block' : 'none'} */
 `
 export const LayOutWrapper = styled.div`
 margin: 0vh 1% 0 1%;
@@ -13,7 +11,6 @@ margin: 0vh 1% 0 1%;
 }
 `
 export const SectiontWrapper = styled.div`
-/* width:100%; */
 position:relative;
 margin-top:15%;
 margin: 5vh 1% 0 1%;
@@ -47,9 +44,6 @@ height:20px;
 display:flex;
 justify-content:flex-end;
 margin-top:25px;
-/* @media (min-width:768px){
-    width:50%;
-} */
 `
 export const Section = styled.div`
 position:relative;
@@ -65,13 +59,10 @@ height:25px;
 display:flex;
 justify-content:flex-end;
 @media (min-width:768px){
-    /* width:40%; */
 }
 div{
     height:10x;
 width:60px;
-/* margin-top:5px; */
-/* margin-top:-10px; */
 background:#19334d;
 cursor:pointer;
 border:1px solid white;
@@ -94,18 +85,12 @@ export const ImageContainer = styled.div`
   position:relative;
   width:100%;
   cursor:pointer;
-  /* flex-basis:100%; */
-  /* display:block; */
 @media (min-width:320px){
     height:40vh;
 }
 @media (min-width:375px){
     height:50vh;
 }
-/* @media (min-width:768px){
-    height:60vh;
-    width:50%;
-} */
 `
 export const ListingWrapper = styled.div`
     position: absolute;

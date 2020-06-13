@@ -7,6 +7,8 @@ import Axios from 'axios'
 import jwtDecode from 'jwt-decode'
 import Nav from '../../../Home/Nav/Nav'
 import Layout from '../Section/Layout/Layout'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 export default function FormikContainer ({ viewListingForm }) {
   // jwtDecode to get current user Information
   const token = window.localStorage.getItem('token')
@@ -17,6 +19,13 @@ export default function FormikContainer ({ viewListingForm }) {
   const [showPrevBtn] = useState(true)
   const [images, setImages] = useState()
   const [active, setActive] = useState(true)
+
+  // sucess message notification if property was posted to the database successfuly
+  toast.configure()
+  const notify = () => toast.success('Successfully created Listing', {
+    autoClose: 2000
+  })
+
   // state to hold all of our formdata
   const [valuesContainer, setValuesContainer] = useState({
     firstForm: null,
@@ -73,8 +82,12 @@ export default function FormikContainer ({ viewListingForm }) {
       if (valuesContainer.secondForm !== null && valuesContainer.imageUrl !== null) {
         const propertyInfo = await Axios.post('http://localhost:3001/api/post/propertyInfo', [valuesContainer])
         try {
-          if (propertyInfo) console.log(propertyInfo.data)
-          history.push('/user/mylisting')
+          if (propertyInfo) {
+            notify()
+            setTimeout(() => {
+              history.push('/user/mylisting')
+            }, 2200)
+          }
         } catch (e) {
           console.log(e)
         }

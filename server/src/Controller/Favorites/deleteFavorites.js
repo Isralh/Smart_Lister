@@ -9,17 +9,13 @@ const deleteFavorites = async (req, res) => {
 
   try {
     if (userFavorites) {
-      try {
-        userFavorites.destroy()
-        return res.status(200).send({ message: 'property removed from favorites list' })
-      } catch (e) {
-        console.log(e)
-      }
+      userFavorites.destroy()
+      return res.status(200).send({ message: 'property removed from favorites list' })
     } else {
-      return res.status(400).send({ message: 'Property not found' })
+      return res.status(204).send({ message: 'Property not found' })
     }
   } catch (e) {
-    console.log(e)
+    return res.status(500).send({message: 'Server error' })
   }
 }
 

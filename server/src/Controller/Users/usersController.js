@@ -44,10 +44,9 @@ exports.register = async (req, res) => {
         expiresIn: '1hr'
       })
       return res.status(201).send({ message: 'user created successfully', token: token })
-    }).catch(e => console.log(e))
+    }).catch(e => { return res.status(200).send({ message: 'unable to create user' }) })
   } catch (e) {
-    console.log(e)
-    return res.status(404).send({ message: 'server error', e })
+    return res.status(500).send({ message: 'server error' })
   }
 }
 
@@ -75,10 +74,9 @@ exports.login = async (req, res) => {
           })
           return res.status(202).send({ message: 'successfuly signed in', token: token })
         } else { return res.status(200).send({ message: 'incorrect password ' }) }
-      }).catch(e => console.log(e))
+      }).catch(e => {return res.status(200).send({ message: 'unable to signin user' }) })
     }
   } catch (e) {
-    console.log(e)
-    return res.status(404).send({ message: 'server error' })
+    return res.status(500).send({ message: 'server error' })
   }
 }

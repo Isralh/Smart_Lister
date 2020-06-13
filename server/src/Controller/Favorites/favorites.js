@@ -6,34 +6,31 @@ const Properties = require('../../models/properties')
 exports.addFavorites = async (req, res) => {
   const propertyData = await req.body[0]
 
-  // check the data coming is not null or undefined
-  if (propertyData !== null || undefined) {
-    const { userInfo } = propertyData
-    const { data } = propertyData
+  const { userInfo } = propertyData
+  const { data } = propertyData
 
-    // first check if the favorite search is alread in the database for the user
-    const property = await Favorties.findOne({
-      where: { user_email: userInfo, propertyId: data.id }
-    })
-    try {
-      if (property) {
-        return res.status(200).send({ message: 'property already exist in users favorites' })
-      }
-      if (!property) {
-        const existingUser = await Users.findOne({
-          where: { email: userInfo }
-        })
-        Favorties.create({
-          propertyId: data.id,
-          user_email: userInfo,
-          user_id: existingUser.id
-        })
-        return res.status(201).send({ message: 'Successfully added to favorites list ' })
-      }
-    } catch (e) {
-      return res.status(400).send({ message: 'Unable to add to favorites' })
+  // first check if the favorite search is alread in the database for the user
+  const property = await Favorties.findOne({
+    where: { user_email: userInfo, propertyId: data.id }
+  })
+  try {
+    if (property) {
+      return res.status(200).send({ message: 'property already exist in users favorites' })
     }
-  } else res.status(404).send({ message: 'Please enter valid data' })
+    if (!property) {
+      const existingUser = await Users.findOne({
+        where: { email: userInfo }
+      })
+      Favorties.create({
+        propertyId: data.id,
+        user_email: userInfo,
+        user_id: existingUser.id
+      })
+      return res.status(201).send({ message: 'Successfully added to favorites list ' })
+    }
+  } catch (e) {
+    return res.status(500).send({ message: 'server error' })
+  }
 }
 
 // function to get users favorite searches from database
@@ -69,6 +66,6 @@ exports.getFavorites = async (req, res) => {
     }
     return res.status(200).send({ Message: 'Unable to find data requested' })
   } catch (e) {
-    return res.status(404).send({ message: 'Error' })
+    return res.status(500).send({ message: 'Server Error' })
   }
 }

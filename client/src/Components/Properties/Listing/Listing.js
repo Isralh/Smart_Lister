@@ -1,10 +1,10 @@
 import React, { useState, createContext } from 'react'
 import { Container, HouseListing, SectionWrapper, Address, City, Price, ListingWrapper } from './ListingStyling'
 import { v4 as uuid } from 'uuid'
-import 'react-tippy/dist/tippy.css'
 import ModalContainer from '../ListingModal/Modal/ModalContainer'
+import Loading from '../../Loading/Loading'
 export const listingContext = createContext()
-export default function Listing ({ property }) {
+export default function Listing ({ property, loading, loginStatus, loadingStyle }) {
   const index = 0
   const [state, setState] = useState({
     showModal: false,
@@ -25,11 +25,12 @@ export default function Listing ({ property }) {
       return allImages[0][index]
     }
   }
+
   return (
     <listingContext.Provider value={state}>
       <Container>
-        <SectionWrapper>
-          {property.length > 0 ? <>
+        {loading ? <Loading loadingState={loginStatus} loadingMargin={loadingStyle} />
+          : <SectionWrapper>
             {property.map((listing, i) =>
               <HouseListing key={uuid()} ListingImage={initialImage(property, i, index)} onClick={handleOpen.bind(this, listing)}>
                 <ListingWrapper>
@@ -39,14 +40,9 @@ export default function Listing ({ property }) {
                 </ListingWrapper>
               </HouseListing>
             )}
-            </> : <p>Loading...</p>}
-        </SectionWrapper>
+          </SectionWrapper>}
       </Container>
       <ModalContainer openModal={state.showModal} closeModal={handleClose} />
     </listingContext.Provider>
   )
 }
-
-// <AddtoFavorite onClick={handleFavorites.bind(this, listing)}>
-// <Tooltip title='Add to favorite' trigger='mouseenter'><FontAwesomeIcon icon={faEye} style={FontAwesomeStyle} /></Tooltip>
-// </AddtoFavorite>

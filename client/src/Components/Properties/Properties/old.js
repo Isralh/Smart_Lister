@@ -58,10 +58,9 @@ export default function Properties () {
       }
     }
     const expression = new RegExp(`^${values}`, 'i')
-    if (propertyList) {
-      const expressionAddress = (propertyList.map(property => property.address).sort().filter(text => expression.test(text)))
-      setInputSuggestion(expressionAddress.join(', '))
-    }
+    const address = propertyList.map(property => property.address).sort().filter(text => expression.test(text))
+    console.log(address.length)
+    setInputSuggestion(address.join(', '))
   }
 
   useEffect(() => {
@@ -77,7 +76,6 @@ export default function Properties () {
     }
     propertyByCiy()
   }, [inputSuggestion])
-
   return (
     <propertiesContext.Provider value={propertyList}>
       <Container>
