@@ -8,13 +8,9 @@
 # production
 /build
 
-<<<<<<< HEAD
-/Components/Config
-=======
 # keys
 src/Components/Config
 src/Components/Properties/Map/apikey.js
->>>>>>> gitignore
 # misc
 .DS_Store
 .env.local
