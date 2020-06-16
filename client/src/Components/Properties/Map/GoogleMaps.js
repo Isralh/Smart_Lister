@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api'
-import { apikey } from './apiKey'
+import { apikey } from '../../Config/GoogleApiKey'
 import { mapStyle, containerStyle, mapCenter, InfoWrapper, ListingWrapper, Price, Address, City } from './MapsStyling'
 // google map options
 const mapOptions = {
