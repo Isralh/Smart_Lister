@@ -2,7 +2,6 @@ import styled from 'styled-components'
 export const Container = styled.div`
 width:100%;
 margin: 40px 0 5% 0;
-/* border-top: 1px solid #19334d; */
 @media (min-width:600px) {
   margin-bottom:5%;
     }
@@ -40,12 +39,12 @@ export const Input = styled.input`
 `
 export const Message = styled.input`
     width:65%;
-    height:100px;
+    padding:0 0 100px 0;
     margin: 0 0 15px 10px;
     font-weight:bold;
     @media(min-width:600px){
         width:50%;
-        text-align:justify;
+        /* text-align:justify; */
 
 }
 `

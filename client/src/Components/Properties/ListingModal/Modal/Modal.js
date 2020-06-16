@@ -24,6 +24,7 @@ export default function Modal ({
     phone: '',
     message: ''
   })
+  const [sendStatus, setSendStatus] = useState(false)
   // function to handle pagination of our property pictures in the Modal
   const nextImage = () => {
     setIndex(index + 1)
@@ -49,6 +50,12 @@ export default function Modal ({
   // sucess message notification if property was added to the database successfuly
   toast.configure()
   const successNotify = () => toast.success('Successfully added to favorites', {
+    autoClose: 2000
+  })
+
+  // sucess message notification if email was successfully sent to property lister
+  toast.configure()
+  const messageSuccess = () => toast.success('Email successfully sent to lister!', {
     autoClose: 2000
   })
   // function to handle posting user's favorite property to the database
@@ -79,10 +86,12 @@ export default function Modal ({
   // to send the email to the property lister
   const submitContact = async (e) => {
     e.preventDefault()
+    setSendStatus(true)
     const postInquiry = await axios.post('http://localhost:3001/api/post/userInquiry', [{ property: propertyData, senderInfo: inputInfo }])
     try {
-      if (postInquiry) {
-        console.log(postInquiry.data)
+      if (postInquiry.status === 200) {
+        setSendStatus(false)
+        messageSuccess()
       }
     } catch (e) {
       console.log(e)
@@ -102,7 +111,6 @@ export default function Modal ({
 
   useEffect(() => {
     userInfo()
-    console.log(inputInfo)
   }, [inputInfo])
   return (
     <PropertyContext.Provider value={property}>
@@ -126,7 +134,11 @@ export default function Modal ({
                   Beds={propertyData.Beds} Baths={propertyData.Baths} SqFt={`${new Intl.NumberFormat().format(propertyData.SqFt)} SqFt`} daysonMarket={propertyData.DaysOnMarket}
                 />
                 <Description numberOfBeds={propertyData.Beds} numberOfBath={propertyData.Baths} numberOfGarage={propertyData.Garages} city={propertyData.cityState} />
-                <InquiryForm handleSubmit={submitContact} handleInput={inputedData} />
+                <InquiryForm
+                  handleSubmit={submitContact}
+                  handleInput={inputedData}
+                  isSubmitting={sendStatus}
+                />
               </HouseDescription>
             </Content> : null}
         </ListingModal>

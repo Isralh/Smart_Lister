@@ -20,7 +20,7 @@ border:1px solid lightgray;
 border-radius:5px;
 position:relative;
 @media (min-width:320px){
-margin: 30vh 15%  0% 15%;
+margin: 30vh 10%  0% 10%;
 background:white;
 }
 @media (min-width:550px){

@@ -10,6 +10,7 @@ import { Container, LayOutWrapper } from './MyListingStyles'
 import UpdateListing from '../UpdateListing/UpdateListing'
 import Modal from '../../../../Properties/ListingModal/Modal/Modal'
 import Loading from '../../../../Loading/Loading'
+import FooterContainer from '../../../../Home/Footer/FooterContainer'
 export const ListingContext = createContext()
 
 const MyListing = () => {
@@ -84,34 +85,33 @@ const MyListing = () => {
     setshowUpdateForm(false)
   }
   return (
-    <>
-      <Container>
-        <Nav />
-        <LayOutWrapper>
-          <Layout myActiveListing={active} />
-        </LayOutWrapper>
-        {loading.status ? <Loading loadingState={loading.status} loadingMargin={loading.margin} />
-          : <CurrentListing
-            index={index}
-            propertyData={property}
-            handleDelete={deleteProperty}
-            handleUpdate={updatePropertyListing}
-            viewListing={currentListingView}
-            openModal={modalOpen}
-          />}
-        <ListingContext.Provider value={currentListing}>
-          <UpdateListing
-            viewForm={showUpdateForm}
-            handleCancel={cancelUpdate}
-          />
-        </ListingContext.Provider>
-      </Container>
+    <Container>
+      <Nav />
+      <LayOutWrapper>
+        <Layout myActiveListing={active} />
+      </LayOutWrapper>
+      {loading.status ? <Loading loadingState={loading.status} loadingMargin={loading.margin} />
+        : <CurrentListing
+          index={index}
+          propertyData={property}
+          handleDelete={deleteProperty}
+          handleUpdate={updatePropertyListing}
+          viewListing={currentListingView}
+          openModal={modalOpen}
+        />}
+      <ListingContext.Provider value={currentListing}>
+        <UpdateListing
+          viewForm={showUpdateForm}
+          handleCancel={cancelUpdate}
+        />
+      </ListingContext.Provider>
       <Modal
         handleShow={showModal}
         closeModal={modalClose}
         propertyData={modalProperty}
       />
-    </>
+      <FooterContainer />
+    </Container>
   )
 }
 

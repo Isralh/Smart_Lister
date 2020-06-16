@@ -6,6 +6,7 @@ import axios from 'axios'
 import SearchContainer from '../Search/Search'
 import Nav from '../../Home/Nav/Nav'
 import Maps from '../Map/Maps'
+import FooterContainer from '../../Home/Footer/FooterContainer'
 export const propertiesContext = createContext()
 export default function Properties () {
   const [loading, setLoading] = useState({

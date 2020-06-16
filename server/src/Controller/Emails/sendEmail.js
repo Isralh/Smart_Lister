@@ -38,7 +38,7 @@ exports.clientEmail = async (req, res) => {
     if (listerInfo) {
       listerEmailAddress.push(listerInfo.email)
       transporter.sendMail(mailOptions, (err, data) => {
-        err ? console.log(err) : console.log('Email sent successfully')
+        return err ? console.log(err) : res.status(200).send({ message: 'email sent successfuly', data: data })
       })
     }
   } catch (e) {

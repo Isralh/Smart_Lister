@@ -70,6 +70,10 @@ export const FontAwesomeContainer = styled.div`
     }
     @media (min-width:768px) {
         font-size:30px;
+        margin:40% 0 0 0;
+    }
+    @media (min-width:920px) {
+        font-size:30px;
         margin:22% 0 0 0;
     }
 `

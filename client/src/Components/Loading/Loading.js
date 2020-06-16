@@ -1,5 +1,5 @@
 import React from 'react'
-import { ListingContainer, PropertiesContainer } from './LoadingStyle'
+import { ListingContainer } from './LoadingStyle'
 import { BeatLoader } from 'react-spinners'
 const Loading = ({ loadingState, loadingMargin }) => {
   return (

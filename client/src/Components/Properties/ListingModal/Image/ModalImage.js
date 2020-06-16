@@ -3,6 +3,7 @@ import { Container, MoveLeft, MoveRight, PaginationContainer, FavoriteIcon, Imag
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 export default function ModalImage ({ backgroundImage, handleRight, handleLeft, currentIndex, indexLength, addToFavorites }) {
+
   return (
     <>
       <Container background={backgroundImage} />

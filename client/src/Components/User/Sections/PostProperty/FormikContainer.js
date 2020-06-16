@@ -9,6 +9,7 @@ import Nav from '../../../Home/Nav/Nav'
 import Layout from '../Section/Layout/Layout'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import FooterContainer from '../../../Home/Footer/FooterContainer'
 export default function FormikContainer ({ viewListingForm }) {
   // jwtDecode to get current user Information
   const token = window.localStorage.getItem('token')
@@ -125,6 +126,7 @@ export default function FormikContainer ({ viewListingForm }) {
           handleImageUpload={uploadImage}
         />
       </FormWrapper>
+      <FooterContainer />
     </Container>
   )
 }
