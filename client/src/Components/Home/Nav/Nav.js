@@ -133,10 +133,6 @@ export default function Nav () {
     }
   }, [navRef, state.showDropDown])
 
-  useEffect(() => {
-    console.log(state.showDropDown)
-    console.log(navRef)
-  }, [state.showDropDown, navRef])
   return (
     <Container>
       <CompanyName>
