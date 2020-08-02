@@ -52,7 +52,6 @@ right:20px;
 display:flex;
 justify-content:space-around;
 flex-flow:column nowrap;
-/* margin-top: 5px; */
 z-index: 2;
 display:none;
 cursor: pointer;
@@ -84,11 +83,9 @@ export const AccountContainer = styled.div`
 display:${props => props.initialView ? 'block' : 'none'};
 background:#19334d;
 color:white;
-/* height: 10vh; */
 div{
     color:white;
     font-family: serif;
-    /* font-size: 18px; */
     margin-top: 10px;
     padding-bottom:5px;
     cursor:pointer;

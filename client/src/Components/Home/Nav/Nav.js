@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useEffect, useRef, useState } from 'react'
 import { Container, CompanyName, ListWrapper, NavLink, AccountContainer } from './NavStyling'
 import { Link, useHistory } from 'react-router-dom'
 import RegisterContainer from '../../Register_Login/Register/RegisterContainer'
@@ -60,6 +60,12 @@ const reducer = (state, action) => {
         showDropDown: !state.showDropDown
       }
     }
+    case 'close DropDown' : {
+      return {
+        ...state,
+        showDropDown: !state.showDropDown
+      }
+    }
     case 'List Property' : {
       return {
         ...state,
@@ -103,11 +109,34 @@ export default function Nav () {
   }
   const handleDropDown = () => {
     dispatch({ type: 'show DropDown' })
+    setNavChoiceMenu(true)
   }
   const handleLogOut = () => {
     Logout()
     history.push('/')
   }
+
+  /* close the nav menu when clicking out */
+  const navRef = useRef(null)
+  const [navChoiceMenu, setNavChoiceMenu] = useState(false)
+  useEffect(() => {
+    const closeMenuOption = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        if (navChoiceMenu === true) {
+          setNavChoiceMenu(false)
+        }
+      }
+    }
+    document.addEventListener('mousedown', closeMenuOption)
+    return () => {
+      document.removeEventListener('mousedown', closeMenuOption)
+    }
+  }, [navRef, state.showDropDown])
+
+  useEffect(() => {
+    console.log(state.showDropDown)
+    console.log(navRef)
+  }, [state.showDropDown, navRef])
   return (
     <Container>
       <CompanyName>
@@ -127,11 +156,11 @@ export default function Nav () {
             <Link style={{ textDecoration: 'none' }} to='/properties'><li>Properties</li></Link>
             {userInfo() === 'user not logged in' ? <li onClick={openLogin}>Login/Register</li>
               : <li onClick={handleDropDown}>Welcome, {userInfo()[0]} <FontAwesomeIcon icon={faCaretDown} style={{ paddingLeft: '5px' }} />
-                <AccountContainer initialView={state.showDropDown}>
+                <AccountContainer initialView={state.showDropDown} ref={navRef} initialView={navChoiceMenu} >
                   <Link style={{ textDecoration: 'none' }} to='/user/mylisting'><div>My Account</div></Link>
                   <div onClick={handleLogOut}>Logout</div>
                 </AccountContainer>
-                </li>}
+              </li>}
           </ul>
         </ListWrapper>
         <RegisterContainer registerModal={state.showRegister} closeModal={registerClose} showLogin={showLogin} />

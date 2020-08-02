@@ -17,9 +17,7 @@ const FooterContainer = () => {
     const subscriptionData = await axios.post('http://localhost:3001/api/post/newsubscriber', inputState)
 
     try {
-      if (subscriptionData) {
-        console.log(subscriptionData.data.message)
-      }
+      if (subscriptionData) window.alert(subscriptionData.data.message)
     } catch (e) {
       console.log(e)
     }

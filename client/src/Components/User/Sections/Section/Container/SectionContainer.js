@@ -14,7 +14,7 @@ export default function SectionContainer () {
       <MyListingContainer />
       <FormikContainer />
       <SavedSearchContainer />
-      <Account />
+      {/* <Account /> */}
     </Container>
   )
 }
