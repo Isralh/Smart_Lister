@@ -30,13 +30,13 @@ export function FirstForm ({
           </ErrorStyle>
           <Field name='zipcode' type='number' placeholder='Zipcode' />
           <ErrorStyle>
-            <ErrorMessage name='longitude' />
+            <ErrorMessage name='beds' />
           </ErrorStyle>
-          <Field name='longitude' type='number' placeholder='Longitude' />
+          <Field name='beds' type='number' placeholder='Beds' />
           <ErrorStyle>
-            <ErrorMessage name='latitude' />
+            <ErrorMessage name='baths' />
           </ErrorStyle>
-          <Field name='latitude' type='number' placeholder='Latitude' />
+          <Field name='baths' type='number' placeholder='Baths' />
           <FirstStepButton />
         </FirstStep>
       </Form>
@@ -49,7 +49,6 @@ export function SecondForm ({
   secondActive, prevBtn, validateOnBlur, prevStep, submitForm,
   validateOnChange, formValues, formSchema, handleSecondForm, handleImageUpload
 }) {
-
   return (
     <Formik
       validateOnBlur={validateOnBlur}
@@ -60,14 +59,6 @@ export function SecondForm ({
     >
       <Form>
         <SecondStep activeStep={secondActive}>
-          <ErrorStyle>
-            <ErrorMessage name='beds' />
-          </ErrorStyle>
-          <Field name='beds' type='number' placeholder='Beds' />
-          <ErrorStyle>
-            <ErrorMessage name='baths' />
-          </ErrorStyle>
-          <Field name='baths' type='number' placeholder='Baths' />
           <ErrorStyle>
             <ErrorMessage name='sqFt' />
           </ErrorStyle>

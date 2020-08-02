@@ -39,7 +39,7 @@ const MyListing = () => {
   const [currentListingView, setCurrentListingView] = useState(true)
   const [showUpdateForm, setshowUpdateForm] = useState(false)
   const [currentListing, setCurrentListing] = useState()
-  // sucess message notification if property was deleted from the database successfuly
+  /* sucess message notification if property was deleted from the database successfuly */
   toast.configure()
   const notify = () => toast.success('Successfully deleted Listing', {
     autoClose: 1500

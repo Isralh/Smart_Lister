@@ -3,7 +3,7 @@ const upload = require('./ImageUploadConfig')
 const Users = require('../../models/users')
 
 // function to handle posting images to amazon web services
-exports.imageupload = async (req, res) => {
+exports.imageUpload = async (req, res) => {
   const downloadUrl = []
   upload(req, res, err => {
     if (err) return res.status(200).send({ message: 'Error uploading the images' })
@@ -16,12 +16,12 @@ exports.imageupload = async (req, res) => {
 }
 
 // function to handle property posting to the database
-exports.propertyInfo = async (req, res) => {
+exports.postProperty = async (req, res) => {
   if (req.body === null || undefined) {
-    return res.status(204).send({ message: 'No information recieved, please input data again' })
+    return res.status(204).send({ message: 'No information received, please input data again' })
   }
 
-  // destructure the request to identify which will be added to the different tables
+  // destructor the request to identify which will be added to the different tables
   const firstForm = req.body[0].firstForm
   const secondForm = req.body[0].secondForm
   const imageUrl = req.body[0].imageUrl // this is an array
@@ -50,10 +50,10 @@ exports.propertyInfo = async (req, res) => {
         address: firstForm.address,
         cityState: firstForm.cityState,
         zipcode: firstForm.zipcode,
-        lat: firstForm.latitude,
-        lng: firstForm.longitude,
-        Beds: secondForm.beds,
-        Baths: secondForm.baths,
+        lat: firstForm.lat,
+        lng: firstForm.lng,
+        Beds: firstForm.beds,
+        Baths: firstForm.baths,
         SqFt: secondForm.sqFt,
         Garages: secondForm.garages,
         Price: secondForm.price,
@@ -64,7 +64,7 @@ exports.propertyInfo = async (req, res) => {
     }
     return res.status(201).send({ message: 'Property list created successfully' })
   } catch (e) {
-    return res.status(500).send({ message: 'server erro ' })
+    return res.status(500).send({ message: 'server error ' })
   }
 }
 

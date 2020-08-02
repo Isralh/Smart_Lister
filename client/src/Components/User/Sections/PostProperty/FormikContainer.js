@@ -10,6 +10,9 @@ import Layout from '../Section/Layout/Layout'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import FooterContainer from '../../../Home/Footer/FooterContainer'
+import Geocode from 'react-geocode'
+import { geoCodeKey } from '../../../Config/GoogleApiKey'
+
 export default function FormikContainer ({ viewListingForm }) {
   // jwtDecode to get current user Information
   const token = window.localStorage.getItem('token')
@@ -34,16 +37,29 @@ export default function FormikContainer ({ viewListingForm }) {
     imageUrl: null,
     user: userInfo
   })
+
+  useEffect(() => {
+    console.log(valuesContainer)
+  }, [valuesContainer])
   // steps in our form
   const steps = ['Step 1 of 2', 'Step 2 of 2']
 
   // on step 1 of form submission set the valuesContainer(formData) and go to the next step in the process
   const submitFirstForm = (values) => {
-    setFirstView(false)
-    setSecondView(true)
-    console.log('hi')
-    const firstForm = values
-    setValuesContainer(prev => { return { ...prev, firstForm: firstForm } })
+    Geocode.setApiKey(geoCodeKey)
+    Geocode.setLanguage('en')
+    Geocode.setRegion('us')
+    Geocode.fromAddress(`${values.address}, ${values.cityState}, ${values.zipcode}`).then(
+      response => {
+        values.lat = response.results[0].geometry.location.lat
+        values.lng = response.results[0].geometry.location.lng
+        setFirstView(false)
+        setSecondView(true)
+        console.log(values.address)
+        const firstForm = values
+        setValuesContainer(prev => { return { ...prev, firstForm: firstForm } })
+      }
+    ).catch(e => window.alert(' please input correct address '))
   }
   const previousStep = () => {
     setSecondView(false)
@@ -83,12 +99,12 @@ export default function FormikContainer ({ viewListingForm }) {
       if (valuesContainer.secondForm !== null && valuesContainer.imageUrl !== null) {
         const propertyInfo = await Axios.post('http://localhost:3001/api/post/propertyInfo', [valuesContainer])
         try {
-          if (propertyInfo) {
+          if (propertyInfo.status === 201) {
             notify()
             setTimeout(() => {
               history.push('/user/mylisting')
             }, 2200)
-          }
+          } else if (propertyInfo.status === 200) window.alert(propertyInfo.data.message)
         } catch (e) {
           console.log(e)
         }
