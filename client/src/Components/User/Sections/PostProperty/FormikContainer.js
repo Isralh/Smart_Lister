@@ -38,9 +38,6 @@ export default function FormikContainer ({ viewListingForm }) {
     user: userInfo
   })
 
-  useEffect(() => {
-    console.log(valuesContainer)
-  }, [valuesContainer])
   // steps in our form
   const steps = ['Step 1 of 2', 'Step 2 of 2']
 
@@ -55,7 +52,6 @@ export default function FormikContainer ({ viewListingForm }) {
         values.lng = response.results[0].geometry.location.lng
         setFirstView(false)
         setSecondView(true)
-        console.log(values.address)
         const firstForm = values
         setValuesContainer(prev => { return { ...prev, firstForm: firstForm } })
       }

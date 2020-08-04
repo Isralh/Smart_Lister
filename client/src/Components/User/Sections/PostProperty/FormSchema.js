@@ -19,9 +19,7 @@ export const FirstFormSchema = {
     baths: '',
     address: '',
     cityState: '',
-    zipcode: '',
-    lat: '',
-    lng: ''
+    zipcode: ''
   }
 
 }

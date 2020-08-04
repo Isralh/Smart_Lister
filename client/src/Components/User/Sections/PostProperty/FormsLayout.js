@@ -1,6 +1,6 @@
 import React from 'react'
 import { Field, ErrorMessage, Form, Formik } from 'formik'
-import { ErrorStyle, FirstStep, SecondStep } from './FormStyling'
+import { ErrorStyle, FirstStep, SecondStep, FieldTextArea } from './FormStyling'
 import { FirstStepButton, SecondStepButton } from './Buttons'
 
 export function FirstForm ({
@@ -71,10 +71,7 @@ export function SecondForm ({
             <ErrorMessage name='price' />
           </ErrorStyle>
           <Field name='price' type='number' placeholder='Price' />
-          <ErrorStyle>
-            <ErrorMessage name='propertyType' />
-          </ErrorStyle>
-          <Field name='propertyType' type='text' placeholder='Property Type' />
+          <FieldTextArea required placeholder='Description...' minLength={10} />
           <input name='image' type='file' accept='.jpeg .png .jpg' multiple required onChange={handleImageUpload} />
           <SecondStepButton showPrevBtn={prevBtn} handlePrev={prevStep} />
         </SecondStep>

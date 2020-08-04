@@ -20,14 +20,11 @@ const UpdateListing = ({ viewForm, handleCancel }) => {
     address: '',
     cityState: '',
     zipcode: '',
-    longitude: '',
-    latitude: '',
     beds: '',
     baths: '',
     sqFt: '',
     garages: '',
     price: '',
-    propertyType: '',
     imageUrl: []
   })
 
@@ -112,14 +109,11 @@ const UpdateListing = ({ viewForm, handleCancel }) => {
           address: currentListing.address,
           cityState: currentListing.cityState,
           zipcode: currentListing.zipcode,
-          longitude: currentListing.lng,
-          latitude: currentListing.lat,
           baths: currentListing.Baths,
           beds: currentListing.Beds,
           sqFt: currentListing.SqFt,
           garages: currentListing.Garages,
-          price: currentListing.Price,
-          propertyType: currentListing.PropertyType
+          price: currentListing.Price
         })
       }
     }
@@ -154,14 +148,12 @@ const UpdateListing = ({ viewForm, handleCancel }) => {
         address={formValues.address}
         cityState={formValues.cityState}
         zipcode={formValues.zipcode}
-        latitude={formValues.latitude}
-        longitude={formValues.longitude}
+        beds={formValues.beds}
+        baths={formValues.baths}
       />
       <SecondForm
         secondActive={secondView}
         prevStep={showPrevStep}
-        beds={formValues.beds}
-        baths={formValues.baths}
         sqFt={formValues.sqFt}
         garages={formValues.garages}
         price={formValues.price}

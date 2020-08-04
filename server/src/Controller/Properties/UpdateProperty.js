@@ -12,8 +12,6 @@ const updateProperty = async (req, res) => {
         address: data.address,
         cityState: data.cityState,
         zipcode: data.zipcode,
-        lat: data.latitude,
-        lng: data.longitude,
         Beds: data.beds,
         Baths: data.baths,
         SqFt: data.sqFt,

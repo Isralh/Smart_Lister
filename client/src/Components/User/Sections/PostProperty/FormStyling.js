@@ -102,3 +102,10 @@ color:red;
 font-weight:normal;
 margin-bottom:5px;
 `
+
+export const FieldTextArea = styled.textarea`
+width: 95%;
+height: 100px;
+margin-top:15px;
+
+`

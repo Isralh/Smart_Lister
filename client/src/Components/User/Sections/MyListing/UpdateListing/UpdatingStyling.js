@@ -56,7 +56,6 @@ export const ButtonContainer = styled.div`
 margin-top:15px;
 display:flex;
 flex-direction:row nowrap;
-/* justify-content:${props => props.changeFlex ? 'space-between' : 'flex-end'}; */
 justify-content: space-between;
 margin:15px 5% 0% 5%;
 `
@@ -66,7 +65,6 @@ background:#19334d;
 color:white;
 width:80px;
 border-radius:15px;
-/* display: ${props => props.showButton ? 'block' : 'none'}; */
 cursor:pointer;
 `
 export const Cancel = styled.button`
@@ -95,9 +93,6 @@ margin:0% 0% 5% 0%;
 @media (min-width:600px){
     flex-direction:row;
     flex-wrap: wrap;
-    /* justify-content:space-between; */
-    /* justify-content:flex-start; */
-
 }
 
 `

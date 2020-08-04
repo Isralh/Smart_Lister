@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 export function FirstForm ({
-  firstActive, cancelForm, address, cityState, zipcode, longitude, latitude,
+  firstActive, cancelForm, address, cityState, zipcode, beds, baths,
   handleChange, handleSubmit
 }) {
   return (
@@ -17,10 +17,10 @@ export function FirstForm ({
         <input name='cityState' type='text' placeholder='City, State' required value={cityState} onChange={handleChange} /><br />
         <label>ZipCode </label><br />
         <input name='zipcode' type='text' placeholder='Zipcode' required minLength='5' value={zipcode} onChange={handleChange} /><br />
-        <label>longitude </label><br />
-        <input name='longitude' type='number' placeholder='Longitude' required value={longitude} onChange={handleChange} /><br />
-        <label>latitude </label><br />
-        <input name='latitude' type='number' placeholder='Latitude' required value={latitude} onChange={handleChange} /><br />
+        <label>Beds </label><br />
+        <input name='beds' type='number' placeholder='Beds' required value={beds} onChange={handleChange} /><br />
+        <label>Baths </label><br />
+        <input name='baths' type='number' placeholder='Baths' required value={baths} onChange={handleChange} /><br />
         <FirstStepButton handleCancel={cancelForm} />
       </FirstStep>
     </form>
@@ -29,24 +29,18 @@ export function FirstForm ({
 
 export function SecondForm ({
   secondActive, handleSubmit, prevStep, handleImageUpload,
-  beds, baths, sqFt, garages, price, type, handleChange, propertyData,
+  sqFt, garages, price, type, handleChange, propertyData,
   deleteImage, image, imageHolder
 }) {
   return (
     <form onSubmit={handleSubmit}>
       <SecondStep activeStep={secondActive}>
-        <label>Beds </label><br />
-        <input name='beds' type='number' placeholder='Beds' required value={beds} onChange={handleChange} /><br />
-        <label>Baths </label><br />
-        <input name='baths' type='number' placeholder='Baths' required value={baths} onChange={handleChange} /><br />
         <label>SqFt </label><br />
         <input name='sqFt' type='number' placeholder='SqFt' required value={sqFt} onChange={handleChange} /><br />
         <label>Garages </label><br />
         <input name='garages' type='number' placeholder='Garages' required value={garages} onChange={handleChange} /><br />
         <label>Price </label><br />
         <input name='price' type='number' placeholder='Price' required value={price} onChange={handleChange} /><br />
-        <label>Property Type </label><br />
-        <input name='propertyType' type='text' placeholder='Property Type' required value={type} onChange={handleChange} /><br />
         <label>Upload Images</label>
         <input name='image' type='file' accept='.jpeg .png .jpg' multiple onChange={handleImageUpload} /><br />
         <ImagePreview>
