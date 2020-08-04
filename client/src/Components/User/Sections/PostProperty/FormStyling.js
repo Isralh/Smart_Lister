@@ -74,11 +74,10 @@ display: ${props => props.activeStep ? 'block' : 'none'};
 margin-left:5%;
 `
 export const ButtonContainer = styled.div`
-margin-top:15px;
 display:flex;
 flex-direction:row nowrap;
 justify-content:${props => props.changeFlex ? 'space-between' : 'flex-end'};
-margin:15px 5% 0% 5%;
+margin:35px 5% 0% 0%;
 `
 export const Previous = styled.button`
 height:40px;
@@ -102,10 +101,17 @@ color:red;
 font-weight:normal;
 margin-bottom:5px;
 `
-
-export const FieldTextArea = styled.textarea`
-width: 95%;
-height: 100px;
+export const UploadButton = styled.button`
 margin-top:15px;
+height:40px;
+width:100px;
+background:#19334d;
+color: white;
+border: 1px solid white;
+cursor:pointer;
+border-radius: 15px;
+`
 
+export const UploadState = styled.span`
+margin-left: 10px;
 `

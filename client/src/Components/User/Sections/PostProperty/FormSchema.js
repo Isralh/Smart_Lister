@@ -29,12 +29,10 @@ export const SecondFormSchema = {
     sqFt: Yup.number().required('Required'),
     garages: Yup.number().required('Required'),
     price: Yup.number().required('Required'),
-    propertyType: Yup.string().required('Required')
   }),
   initialValues: {
     sqFt: '',
     garages: '',
-    price: '',
-    propertyType: ''
+    price: ''
   }
 }

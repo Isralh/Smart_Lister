@@ -57,7 +57,6 @@ exports.postProperty = async (req, res) => {
         SqFt: secondForm.sqFt,
         Garages: secondForm.garages,
         Price: secondForm.price,
-        PropertyType: secondForm.propertyType,
         images: JSON.stringify([imageUrl]),
         users_id: userId.id
       })

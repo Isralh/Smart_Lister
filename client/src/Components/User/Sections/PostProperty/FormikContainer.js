@@ -14,23 +14,23 @@ import Geocode from 'react-geocode'
 import { geoCodeKey } from '../../../Config/GoogleApiKey'
 
 export default function FormikContainer ({ viewListingForm }) {
-  // jwtDecode to get current user Information
+  /* jwtDecode to get current user Information */
   const token = window.localStorage.getItem('token')
   const userInfo = jwtDecode(token)
   const history = useHistory()
   const [firstView, setFirstView] = useState(true)
   const [secondView, setSecondView] = useState(false)
   const [showPrevBtn] = useState(true)
-  const [images, setImages] = useState()
+  const [images, setImages] = useState('')
   const [active, setActive] = useState(true)
 
-  // sucess message notification if property was posted to the database successfuly
+  /* success message notification if property was posted to the database successfully */
   toast.configure()
   const notify = () => toast.success('Successfully created Listing', {
     autoClose: 2000
   })
 
-  // state to hold all of our formdata
+  /* state to hold all of our formdata */
   const [valuesContainer, setValuesContainer] = useState({
     firstForm: null,
     secondForm: null,
@@ -38,10 +38,10 @@ export default function FormikContainer ({ viewListingForm }) {
     user: userInfo
   })
 
-  // steps in our form
+  /* steps in our form */
   const steps = ['Step 1 of 2', 'Step 2 of 2']
 
-  // on step 1 of form submission set the valuesContainer(formData) and go to the next step in the process
+  /* on step 1 of form submission set the valuesContainer(formData) and go to the next step in the process */
   const submitFirstForm = (values) => {
     Geocode.setApiKey(geoCodeKey)
     Geocode.setLanguage('en')
@@ -62,19 +62,18 @@ export default function FormikContainer ({ viewListingForm }) {
     setFirstView(true)
   }
 
-  // onChange event to handle all the images that are uploaded and set the ValuesContainer(formData)
+  /* onChange event to handle all the images that are uploaded and set the ValuesContainer(formData) */
   const uploadImage = async (e) => {
     const file = await e.target.files
     setImages(file)
-    // setValuesContainer(prev => { return { ...prev, imageFileName: file } })
   }
 
-  // onSubmit event to handle the submission of the form data to aws and our backend
+  /* onSubmit event to handle the submission of the form data to aws and our backend */
   const submitSecondForm = async (values) => {
-    // first we add to the state valuesContainer(formData) our new data from the second step of the form submission process
+    /* first we add to the state valuesContainer(formData) our new data from the second step of the form submission process */
     const secondForm = await values
     setValuesContainer(prev => { return { ...prev, secondForm: secondForm } })
-    // for every image make a post request to aws and save the imageUrl to our valuesContainer
+    /* for every image make a post request to aws and save the imageUrl to our valuesContainer */
     const fileData = new FormData()
     const selectedFiles = images
     if (selectedFiles) {
@@ -132,6 +131,7 @@ export default function FormikContainer ({ viewListingForm }) {
           validateOnChange={ValidationSchema.OnChange}
           formValues={SecondFormSchema.initialValues}
           formSchema={SecondFormSchema.schema}
+          imageFile={images}
           prevBtn={showPrevBtn}
           prevStep={previousStep}
           handleSecondForm={submitSecondForm}

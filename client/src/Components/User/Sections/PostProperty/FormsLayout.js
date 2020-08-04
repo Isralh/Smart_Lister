@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Field, ErrorMessage, Form, Formik } from 'formik'
-import { ErrorStyle, FirstStep, SecondStep, FieldTextArea } from './FormStyling'
+import { ErrorStyle, FirstStep, SecondStep, UploadButton, UploadState } from './FormStyling'
 import { FirstStepButton, SecondStepButton } from './Buttons'
 
 export function FirstForm ({
@@ -46,9 +46,14 @@ export function FirstForm ({
 }
 
 export function SecondForm ({
-  secondActive, prevBtn, validateOnBlur, prevStep, submitForm,
-  validateOnChange, formValues, formSchema, handleSecondForm, handleImageUpload
+  secondActive, prevBtn, validateOnBlur, prevStep, validateOnChange,
+  formValues, formSchema, handleSecondForm, handleImageUpload, imageFile
 }) {
+  const imageRef = useRef(null)
+
+  const handleUploadClick = () => {
+    imageRef.current.click()
+  }
   return (
     <Formik
       validateOnBlur={validateOnBlur}
@@ -71,8 +76,13 @@ export function SecondForm ({
             <ErrorMessage name='price' />
           </ErrorStyle>
           <Field name='price' type='number' placeholder='Price' />
-          <FieldTextArea required placeholder='Description...' minLength={10} />
-          <input name='image' type='file' accept='.jpeg .png .jpg' multiple required onChange={handleImageUpload} />
+          <input name='image' type='file' accept='.jpeg .png .jpg' hidden='hidden' ref={imageRef} multiple required onChange={handleImageUpload} />
+          <UploadButton type='button' onClick={handleUploadClick}>upload Image</UploadButton>
+          <UploadState className='upload-text'>
+            {imageFile.length > 0 ? imageFile.length === 1 ? '1 file selected'
+              : `${imageFile.length} files selected`
+              : 'No File Chosen'}
+          </UploadState>
           <SecondStepButton showPrevBtn={prevBtn} handlePrev={prevStep} />
         </SecondStep>
       </Form>
