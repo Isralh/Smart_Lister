@@ -52,8 +52,9 @@ h1{
 }
 p{
     font-size: 20px;
-    margin-top:40px;
+    margin:40px 20px 0 20px;
     line-height:45px;
+    
 }
 `
 export const FirstTestimonyWrapper = styled.div`

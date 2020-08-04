@@ -1,6 +1,0 @@
-export const FPHolicoptershot = require('./FPHelicoptershot.jpg')
-export const FPBath = require('./FPBath.jpg')
-export const FPFront = require('./FPFront.jpg')
-export const FPInside = require('./FPInside.jpg')
-export const FPKitchen = require('./FPKitchen.jpg')
-export const FPOutside = require('./FPOutside.jpg')

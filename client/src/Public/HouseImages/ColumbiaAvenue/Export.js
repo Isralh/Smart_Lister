@@ -1,7 +1,0 @@
-export const CABath = require('./CABath.jpg')
-export const CABed = require('./CABed.jpg')
-export const CACouch = require('./CACouch.jpg')
-export const CAFront = require('./CAFront.jpg')
-export const CAInside = require('./CAInside.jpg')
-export const CAKitchen = require('./CAKitchen.jpg')
-export const CAShower = require('./CAShower.jpg')

@@ -1,6 +1,0 @@
-export const WSFront = require('./WSFront.jpg')
-export const WSFrontNight = require('./WSFrontNight.jpg')
-export const WSFrontSide = require('./WSFrontSide.jpg')
-export const WSKitchen = require('./WSKitchen.jpg')
-export const WSPool = require('./WSpool.jpg')
-export const WSStairs = require('./WSStairs.jpg')

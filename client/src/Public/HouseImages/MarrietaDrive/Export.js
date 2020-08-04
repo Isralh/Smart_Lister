@@ -1,6 +1,0 @@
-export const MDBack = require('./MDBack.jpg')
-export const MDchairs = require('./MDchairs.jpg')
-export const MDFront = require('./MDFront.jpg')
-export const MDInside = require('./MDInside.jpg')
-export const MDInsideSecond = require('./MDInsideSecond.jpg')
-export const MDLivingRoom = require('./MDlivingRoom.jpg')

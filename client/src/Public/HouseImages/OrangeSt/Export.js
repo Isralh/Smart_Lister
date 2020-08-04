@@ -1,6 +1,0 @@
-export const OSCouch = require('./OSCouch.jpg')
-export const OSFirePlace = require('./OSFireplace.jpg')
-export const OSFront = require('./OSFront.jpg')
-export const OSInside = require('./OSInside.jpg')
-export const OSLivingRoom = require('./OSliving room.jpg')
-export const OutsideSecond = require('./OutsideSecond.jpg')

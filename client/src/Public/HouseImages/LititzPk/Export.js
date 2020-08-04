@@ -1,5 +1,0 @@
-export const LPCouch = require('./LPCouch.jpg')
-export const LPFront = require('./LPFront.jpg')
-export const LPInside = require('./LPInside.jpg')
-export const LPLivingRoom = require('./LPLivingRoom.jpg')
-export const LPShower = require('./LPShower.jpg')
