@@ -1,7 +1,7 @@
 
 import styled from 'styled-components'
 export const InfoWrapper = styled.div`
- width: 250px;
+  width: 250px;
   height: 180px;
   background: url(${(prop) => prop.image});
   background-repeat: no-repeat;
@@ -22,9 +22,9 @@ export const ListingWrapper = styled.div`
     position: absolute;
     display: flex;
     flex-direction: column;
-    /* margin-top: 37.6vh; */
+    flex-wrap: nowrap;
     height: 60px;
-    width: 150px;
+    width: 180px;
     background:#19334d;
     cursor:pointer;
     bottom:0;

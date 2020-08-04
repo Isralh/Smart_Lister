@@ -59,6 +59,9 @@ const MyListing = () => {
     getUserProperty()
   }, [])
 
+  useEffect(() => {
+    console.log(property)
+  }, [property])
   const deleteProperty = async (property) => {
     const propertyId = property.id
     const propertyData = await Axios.delete(`http://localhost:3001/api/delete/property/${propertyId}`)

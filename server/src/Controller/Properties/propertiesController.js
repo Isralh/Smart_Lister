@@ -83,16 +83,16 @@ exports.getAllProperties = async (req, res) => {
   }
 }
 
-// function that gets propeties by the userId posted
+/* function that gets propeties by the userId posted */
 exports.getPropertyByUserId = async (req, res) => {
-  // get the requester userId then find the id from the properties table and send the property
-  // with the corresponding userId
+  /* get the requester userId then find the id from the properties table and send the property 
+   with the corresponding userId */
   const userId = await req.params.id
-  const userProperty = await Properties.findOne({
+  const userProperty = await Properties.findAll({
     where: { users_id: userId }
   })
   try {
-    if (userProperty) return res.status(200).send({ data: [userProperty], message: 'Successfully found property' })
+    if (userProperty) return res.status(200).send({ data: userProperty, message: 'Successfully found property' })
     else return res.status(204).send({ message: 'user doesnt have property listed ' })
   } catch (e) {
     return res.status(500).send({ message: 'Server Error' })

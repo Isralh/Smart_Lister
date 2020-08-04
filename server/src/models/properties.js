@@ -53,7 +53,8 @@ module.exports = Database.define('properties', {
   },
   DaysOnMarket: {
     type: DataTypes.INTEGER,
-    allowNull: true
+    allowNull: true,
+    defaultValue: 1
   },
   PropertyType: {
     type: DataTypes.STRING,

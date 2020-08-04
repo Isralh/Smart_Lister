@@ -81,7 +81,7 @@ export const ListingWrapper = styled.div`
     flex-direction: column;
     margin-top: 37.6vh;
     height: 70px;
-    width: 160px;
+    width: 180px;
     background:#19334d;
     cursor:pointer;
     bottom:0;
