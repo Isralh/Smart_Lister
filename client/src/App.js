@@ -28,7 +28,7 @@ function App () {
         <ProtectedRoute path='/user/myListing' component={MyListing} />
         <ProtectedRoute path='/user/postProperty' component={FormikContainer} />
         <ProtectedRoute path='/user/favorites' component={FavoritesContainer} />
-        <Route path='/servererror' component={ServerError} />
+        <Route path='/500' component={ServerError} />
         <Route path='*' component={NotFound} />
       </Switch>
     </Router>

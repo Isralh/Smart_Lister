@@ -6,7 +6,7 @@ import * as Yup from 'yup'
 export default function LoginContainer ({ loginModal, displayRegister, loginClose }) {
 
   const [loginError, setLoginError] = useState(false)
-  // state to hold our user information from login form
+  /* state to hold our user information from login form */
   const initialValues = {
     email: '',
     password: ''
@@ -18,10 +18,10 @@ export default function LoginContainer ({ loginModal, displayRegister, loginClos
     password: Yup.string().required('please enter password')
   })
 
-  // local storage to store our userToken
+  /* local storage to store our userToken */
   const userToken = window.localStorage
   const history = useHistory()
-  // post to database user's Info using axios to login
+  /* post to database user's Info using axios to login */
   const registerUrl = 'http://localhost:3001/api/login'
   const submitLogIn = async (values) => {
     const login = await axios.post(registerUrl, values)
@@ -31,12 +31,11 @@ export default function LoginContainer ({ loginModal, displayRegister, loginClos
         console.log(login.message)
       }
       if (login.status === 202) {
-        console.log(login.data.message)
         userToken.setItem('token', login.data.token)
         history.push('/user/mylisting')
       }
     } catch (e) {
-      console.log(e)
+      history.push('/500')
     }
   }
   return (

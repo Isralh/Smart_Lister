@@ -51,6 +51,8 @@ const UpdateListing = ({ viewForm, handleCancel }) => {
     const ImageResult = propertyImages.filter(propertyImage => propertyImage !== image)
     setPropertyImages(ImageResult)
   }
+
+  const history = useHistory()
   // onChange event to handle all the images that are uploaded and set the ValuesContainer(formData)
   const uploadImage = async (e) => {
     const file = await e.target.files
@@ -63,13 +65,13 @@ const UpdateListing = ({ viewForm, handleCancel }) => {
       }
       const downloadUrl = await axios.post('http://localhost:3001/api/post/propertyImages', fileData)
       try {
-        if (downloadUrl) {
+        if (downloadUrl.status === 201) {
           const awsImageUrl = downloadUrl.data
           const allUserImages = awsImageUrl.concat(propertyImages)
           setPropertyImages(allUserImages)
         }
       } catch (e) {
-        console.log(e)
+        history.push('/500')
       }
     }
   }
@@ -86,14 +88,14 @@ const UpdateListing = ({ viewForm, handleCancel }) => {
     const updateProperty = await axios.put(`http://localhost:3001/api/update/property/${formValues.id}`, formValues)
 
     try {
-      if (updateProperty) {
+      if (updateProperty.status === 200) {
         notify()
         setTimeout(() => {
           window.location.reload()
         }, 1500)
       }
     } catch (e) {
-      console.log(e)
+      history.push('/500')
     }
   }
 

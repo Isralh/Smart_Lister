@@ -93,7 +93,6 @@ exports.getPropertyByUserId = async (req, res) => {
   })
   try {
     if (userProperty) return res.status(200).send({ data: userProperty, message: 'Successfully found property' })
-    else return res.status(204).send({ message: 'user doesnt have property listed ' })
   } catch (e) {
     return res.status(500).send({ message: 'Server Error' })
   }
@@ -163,7 +162,7 @@ exports.deleteProperty = async (req, res) => {
       await property.destroy()
       return res.status(200).send({ message: 'Successfully deleted property' })
     }
-    return res.status(204).send({ message: 'Unable to find property' })
+    return res.status(404).send({ message: 'Unable to find property' })
   } catch (e) {
     return res.status(500).send({ message: 'server error' })
   }

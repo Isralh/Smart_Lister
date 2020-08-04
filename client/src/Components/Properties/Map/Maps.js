@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import GoogleMaps from './GoogleMaps'
 import Modal from '../ListingModal/Modal/Modal'
 import { propertiesContext } from '../Properties/Properties'

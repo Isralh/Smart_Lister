@@ -20,12 +20,12 @@ export default function RegisterContainer ({ registerModal, closeModal, showLogi
     confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match')
   })
 
-  // post to database user's Information using axios
+  /* post to database user's Information using axios */
   const registerUrl = 'http://localhost:3001/api/register'
   const userToken = window.localStorage
   const history = useHistory()
 
-  // function that handles our registration and posting to mysql database
+  /* function that handles our registration and posting to mysql database */
   const submitForm = async (values) => {
     const registerData = await axios({ method: 'POST', url: registerUrl, data: values })
     try {
@@ -38,10 +38,9 @@ export default function RegisterContainer ({ registerModal, closeModal, showLogi
         history.push('/user/mylisting')
       }
     } catch (e) {
-      console.log(e)
+      history.push('/500')
     }
   }
-  // return the view to our Home Component
   return (
     <RegisterForm
       registerModal={registerModal}

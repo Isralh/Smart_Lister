@@ -6,13 +6,15 @@ import axios from 'axios'
 import SearchContainer from '../Search/Search'
 import Nav from '../../Home/Nav/Nav'
 import Maps from '../Map/Maps'
-import FooterContainer from '../../Home/Footer/FooterContainer'
+import { useHistory } from 'react-router-dom'
 export const propertiesContext = createContext()
 export default function Properties () {
   const [loading, setLoading] = useState({
     status: true,
     margin: '20vh 0 0 5%'
   })
+
+  const history = useHistory()
   const [cityName, setCityName] = useState('All')
   const [priceToggle, setPriceToggle] = useState()
   const [propertyList, setPropertyList] = useState([])
@@ -26,7 +28,7 @@ export default function Properties () {
           setLoading(prev => { return { ...prev, status: false } })
         }
       } catch (e) {
-        console.log(e)
+        history.push('/500')
       }
     }
     getProperties()
@@ -55,7 +57,7 @@ export default function Properties () {
           setPropertyList(propertyData.data.data)
         }
       } catch (e) {
-        console.log(e)
+        history.push('/500')
       }
     }
     const expression = new RegExp(`^${values}`, 'i')
@@ -73,7 +75,7 @@ export default function Properties () {
           setPropertyList(propertyData.data.data)
         }
       } catch (e) {
-        console.log(e)
+        history.push('/500')
       }
     }
     propertyByCiy()

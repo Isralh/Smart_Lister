@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react'
 import Favorites from './Favorites'
 import axios from 'axios'
 import jwt from 'jwt-decode'
+import { useHistory } from 'react-router-dom'
+
 const SavedSearchContainer = () => {
-  // loading state
+  /* loading state */
   const [dataLoading, setDataLoading] = useState({
     status: true,
     margin: '35vh 0 0 5%'
@@ -15,17 +17,18 @@ const SavedSearchContainer = () => {
   const [deletedProperty, setDeletedProperty] = useState()
   const index = 0
 
+  const history = useHistory()
   useEffect(() => {
     const getFavorites = async () => {
       const propertyInfo = await axios.get(`http://localhost:3001/api/get/favorites/${userId}`)
 
       try {
-        if (propertyInfo.data.data) {
+        if (propertyInfo.status === 200) {
           setProperty(propertyInfo.data.data)
           setDataLoading(prev => { return { ...prev, status: false } })
         }
       } catch (e) {
-        console.log(e)
+        history.push('/500')
       }
     }
     getFavorites()
@@ -42,12 +45,12 @@ const SavedSearchContainer = () => {
         const deleteData = { property: propertyId, user: userId }
         const response = await axios.post('http://localhost:3001/api/delete/favoriteProperties', deleteData)
         try {
-          if (response) {
+          if (response.status === 200) {
             const newFavoriteList = property.filter(properties => properties !== deletedProperty)
             setProperty(newFavoriteList)
           }
         } catch (e) {
-          console.log(e)
+          history.push('/500')
         }
       }
     }

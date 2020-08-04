@@ -12,10 +12,10 @@ const deleteFavorites = async (req, res) => {
       userFavorites.destroy()
       return res.status(200).send({ message: 'property removed from favorites list' })
     } else {
-      return res.status(204).send({ message: 'Property not found' })
+      return res.status(404).send({ message: 'Property not found' })
     }
   } catch (e) {
-    return res.status(500).send({message: 'Server error' })
+    return res.status(500).send({ message: 'Server error' })
   }
 }
 

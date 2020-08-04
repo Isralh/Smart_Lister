@@ -4,7 +4,6 @@ import {
   Section, City, ListingWrapper, Price, Address, Updates
 } from './CurrentListingStyling'
 import NoResult from '../../SharedComponent/NoResult'
-// import { v4 as uuid } from 'uuid'
 const CurrentListing = ({
   propertyData = [], index, handleDelete, property, handleUpdate,
   viewListing, openModal

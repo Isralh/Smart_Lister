@@ -22,10 +22,10 @@ const updateProperty = async (req, res) => {
         images: JSON.stringify([data.imageUrl])
       }).then(propertyData => {
         return res.status(200).send({ data: propertyData, message: 'Success' })
-      }).catch(e => { return res.status(204).send({ message: 'Unable to update property data' }) })
+      }).catch(e => { return res.status(404).send({ message: 'Unable to update property data' }) })
     }
   } catch (e) {
-    return res.status(500).send({message: 'Server error' })
+    return res.status(500).send({ message: 'Server error' })
   }
 }
 

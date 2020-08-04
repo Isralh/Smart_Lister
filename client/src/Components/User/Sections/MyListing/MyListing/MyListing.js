@@ -11,6 +11,7 @@ import UpdateListing from '../UpdateListing/UpdateListing'
 import Modal from '../../../../Properties/ListingModal/Modal/Modal'
 import Loading from '../../../../Loading/Loading'
 import FooterContainer from '../../../../Home/Footer/FooterContainer'
+import { useHistory } from 'react-router-dom'
 export const ListingContext = createContext()
 
 const MyListing = () => {
@@ -44,16 +45,17 @@ const MyListing = () => {
   const notify = () => toast.success('Successfully deleted Listing', {
     autoClose: 1500
   })
+  const history = useHistory()
   useEffect(() => {
     const getUserProperty = async () => {
       const propertyData = await Axios.get(`http://localhost:3001/api/get/user/properties/${userId}`)
       try {
-        if (propertyData) {
+        if (propertyData.status === 200) {
           setProperty(propertyData.data.data)
           setLoading(prev => { return { ...prev, status: false } })
         }
       } catch (e) {
-        console.log(e)
+        history.push('/500')
       }
     }
     getUserProperty()
@@ -66,7 +68,7 @@ const MyListing = () => {
     const propertyId = property.id
     const propertyData = await Axios.delete(`http://localhost:3001/api/delete/property/${propertyId}`)
     try {
-      if (propertyData) {
+      if (propertyData.status === 200) {
         notify()
         setTimeout(() => {
           window.location.reload()

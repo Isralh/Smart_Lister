@@ -64,7 +64,7 @@ exports.getFavorites = async (req, res) => {
       }
       return res.status(200).send({ Message: 'success', data: favoriteProperty })
     }
-    return res.status(200).send({ Message: 'Unable to find data requested' })
+    return res.status(404).send({ Message: 'Unable to find data requested' })
   } catch (e) {
     return res.status(500).send({ message: 'Server Error' })
   }

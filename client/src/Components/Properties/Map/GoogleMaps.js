@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api'
 import { apikey } from '../../Config/GoogleApiKey'
 import { mapStyle, containerStyle, mapCenter, InfoWrapper, ListingWrapper, Price, Address, City } from './MapsStyling'
