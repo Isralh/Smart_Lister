@@ -48,7 +48,7 @@ const MyListing = () => {
   const history = useHistory()
   useEffect(() => {
     const getUserProperty = async () => {
-      const propertyData = await Axios.get(`http://localhost:3001/api/get/user/properties/${userId}`)
+      const propertyData = await Axios.get(`https://smart-lister.work/api/get/user/properties/${userId}`)
       try {
         if (propertyData.status === 200) {
           setProperty(propertyData.data.data)
@@ -66,7 +66,7 @@ const MyListing = () => {
   }, [property])
   const deleteProperty = async (property) => {
     const propertyId = property.id
-    const propertyData = await Axios.delete(`http://localhost:3001/api/delete/property/${propertyId}`)
+    const propertyData = await Axios.delete(`https://smart-lister.work/api/delete/property/${propertyId}`)
     try {
       if (propertyData.status === 200) {
         notify()

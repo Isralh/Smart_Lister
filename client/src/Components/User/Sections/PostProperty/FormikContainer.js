@@ -80,7 +80,7 @@ export default function FormikContainer ({ viewListingForm }) {
       for (let i = 0; i < selectedFiles.length; i++) {
         fileData.append('images', selectedFiles[i], selectedFiles[i].name)
       }
-      const downloadUrl = await Axios.post('http://localhost:3001/api/post/propertyImages', fileData)
+      const downloadUrl = await Axios.post('https://smart-lister.work/api/post/propertyImages', fileData)
       try {
         if (downloadUrl) setValuesContainer(prev => { return { ...prev, imageUrl: downloadUrl.data } })
       } catch (e) {
@@ -92,7 +92,7 @@ export default function FormikContainer ({ viewListingForm }) {
   useEffect(() => {
     async function postProperty () {
       if (valuesContainer.secondForm !== null && valuesContainer.imageUrl !== null) {
-        const propertyInfo = await Axios.post('http://localhost:3001/api/post/propertyInfo', [valuesContainer])
+        const propertyInfo = await Axios.post('https://smart-lister.work/api/post/propertyInfo', [valuesContainer])
         try {
           if (propertyInfo.status === 201) {
             notify()

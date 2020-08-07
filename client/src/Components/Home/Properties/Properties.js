@@ -23,7 +23,7 @@ const Properties = () => {
   const [index, setIndex] = useState(0)
   const featured = ['145 Rockhouse Run', '821 Lititz Pike', '265 Summit Road']
   const getProperties = async () => {
-    const properties = await axios.get(`http://localhost:3001/api/get/property/address/${featured[index]}`)
+    const properties = await axios.get(`https://smart-lister.work/api/get/property/address/${featured[index]}`)
     try {
       if (properties.status === 200) {
         setFeaturedListing(properties.data.data)

@@ -21,7 +21,7 @@ export default function RegisterContainer ({ registerModal, closeModal, showLogi
   })
 
   /* post to database user's Information using axios */
-  const registerUrl = 'http://localhost:3001/api/register'
+  const registerUrl = 'https://smart-lister.work/api/register'
   const userToken = window.localStorage
   const history = useHistory()
 

@@ -62,7 +62,7 @@ export default function Modal ({
   const userFavorite = async () => {
     const user = userInfo()
     if (user !== 'user not logged in') {
-      const postData = await axios.post('http://localhost:3001/api/post/favoriteProperties', [{ data: propertyData, userInfo: user }])
+      const postData = await axios.post('https://smart-lister.work/api/post/favoriteProperties', [{ data: propertyData, userInfo: user }])
       try {
         if (postData.status === 200) {
           window.alert('Property already exists in favorites')
@@ -87,7 +87,7 @@ export default function Modal ({
   const submitContact = async (e) => {
     e.preventDefault()
     setSendStatus(true)
-    const postInquiry = await axios.post('http://localhost:3001/api/post/userInquiry', [{ property: propertyData, senderInfo: inputInfo }])
+    const postInquiry = await axios.post('https://smart-lister.work/api/post/userInquiry', [{ property: propertyData, senderInfo: inputInfo }])
     try {
       if (postInquiry.status === 200) {
         setSendStatus(false)

@@ -22,7 +22,7 @@ export default function LoginContainer ({ loginModal, displayRegister, loginClos
   const userToken = window.localStorage
   const history = useHistory()
   /* post to database user's Info using axios to login */
-  const registerUrl = 'http://localhost:3001/api/login'
+  const registerUrl = 'https://smart-lister.work/api/login'
   const submitLogIn = async (values) => {
     const login = await axios.post(registerUrl, values)
     try {

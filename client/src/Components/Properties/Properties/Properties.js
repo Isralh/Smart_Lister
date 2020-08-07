@@ -20,7 +20,7 @@ export default function Properties () {
   const [propertyList, setPropertyList] = useState([])
   useEffect(() => {
     const getProperties = async () => {
-      const propertyData = await axios.get(`http://localhost:3001/api/get/property/city/${cityName}`)
+      const propertyData = await axios.get(`https://smart-lister.work/api/get/property/city/${cityName}`)
       try {
         if (propertyData.status === 200) {
           const data = propertyData.data.data
@@ -51,7 +51,7 @@ export default function Properties () {
   const searchInput = async (e) => {
     const values = e.target.value
     if (!values) {
-      const propertyData = await axios.get('http://localhost:3001/api/get/property/address/All')
+      const propertyData = await axios.get('https://smart-lister.work/api/get/property/address/All')
       try {
         if (propertyData) {
           setPropertyList(propertyData.data.data)
@@ -69,7 +69,7 @@ export default function Properties () {
 
   useEffect(() => {
     const propertyByCiy = async (req, res) => {
-      const propertyData = await axios.get(`http://localhost:3001/api/get/property/address/${inputSuggestion}`)
+      const propertyData = await axios.get(`https://smart-lister.work/api/get/property/address/${inputSuggestion}`)
       try {
         if (propertyData.status === 200) {
           setPropertyList(propertyData.data.data)

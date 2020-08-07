@@ -14,7 +14,7 @@ const FooterContainer = () => {
   }
   const subscribeUser = async (e) => {
     e.preventDefault()
-    const subscriptionData = await axios.post('http://localhost:3001/api/post/newsubscriber', inputState)
+    const subscriptionData = await axios.post('https://smart-lister.work/api/post/newsubscriber', inputState)
 
     try {
       if (subscriptionData) window.alert(subscriptionData.data.message)
