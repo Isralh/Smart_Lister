@@ -30,7 +30,7 @@ export default function Login ({
             <ErrorStyle>
               <ErrorMessage name='password' />
             </ErrorStyle>
-            <Field name='password' type='text' placeholder='Password' />
+            <Field name='password' type='password' placeholder='Password' />
             <ButtonWrapper>
               <p>Need an account? <span onClick={displayRegister}>Register</span></p>
               <button type='submit'>Login</button>

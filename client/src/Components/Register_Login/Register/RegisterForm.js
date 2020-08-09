@@ -32,11 +32,11 @@ function RegisterForm ({ registerModal, initialValues, validationSchema, handleS
             <ErrorStyle>
               <ErrorMessage name='password' />
             </ErrorStyle>
-            <Field name='password' type='text' placeholder='Password' />
+            <Field name='password' type='password' placeholder='Password' />
             <ErrorStyle>
               <ErrorMessage name='confirmPassword' />
             </ErrorStyle>
-            <Field name='confirmPassword' type='text' placeholder='Confirm Password' />
+            <Field name='confirmPassword' type='password' placeholder='Confirm Password' />
             <ButtonWrapper>
               <p>Already a member? <span onClick={displayLogin}>Login</span></p>
               <button type='submit'>Sign Up</button>
