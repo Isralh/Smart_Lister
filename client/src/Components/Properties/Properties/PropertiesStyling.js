@@ -14,13 +14,11 @@ export const ContentContainer = styled.div`
     margin: 10px 0 0 0;
     grid-template-columns: 50% 50%;
     display:grid;
-    /* flex-direction:row; */
 }
 `
 export const MapContainer = styled.div`
 @media (min-width:768px){
     grid-column:1/2;
-    /* height:100vh; */
     margin-top: 5px;
 }
 @media (max-width:767px){

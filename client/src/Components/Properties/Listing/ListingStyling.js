@@ -41,12 +41,6 @@ export const SectionWrapper = styled.div`
   width:90%;
   height:82vh;
   }
-  ::-webkit-scrollbar{
-width:5px;
-}
-::-webkit-scrollbar-track{
-  background:gray;
-  }
 `
 export const HouseListing = styled.div`
   max-width: 100%;
