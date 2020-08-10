@@ -31,12 +31,12 @@ After that you're all set!
 
 ## Built With
 
-React Js
-Styled Components
-Node Js
-Express
-Mysql
-Aws s3
+- React Js
+- Styled Components
+- Node Js
+- Express
+- Mysql
+- AWS S3
 
 ## Contributors
 
