@@ -17,13 +17,13 @@ the next available port.
 ### `npm start`
 
 Next you will need to run the back end development server on your local machine, you will need to first
-install all the required npm packages for the backend node js express server.
+install all the required npm packages for the backend express server.
 
 ### `cd server`
 
 ### `npm install`
 
-After installing all the required backend packages, you can start the backend server on port :3001.
+After installing all the required backend packages, you can start the express server on port :3001.
 
 ### `npm run server`
 
