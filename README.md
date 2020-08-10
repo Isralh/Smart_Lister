@@ -1,37 +1,47 @@
 ## SmartLister
 
-SmartLister is a web app for property sellers who want to avoid real estate agents and directly market their property to potential buyers. The site lets property sellers post ads to potential buyers about their property with options to upload unlimited images and google maps geocoding. An important feature implemented in this platform using nodemailer is email alerts sent to the property lister whenever a potential buyer inquires about their property. User's of the app also have the ability to add and delete properties they're closely following to their favorites list and check their status.
+SmartLister is a web app for property sellers who want to avoid real estate agents and directly market their property to potential buyers. The site lets property sellers post ads to potential buyers about their property with options to upload unlimited images and google maps geocoding. An important feature implemented in this platform using nodemailer is email alerts sent to the property lister whenever a potential buyer inquires about their property. User's of the app also have the ability to add and delete properties they're closely following to their favorites list and check their status. Link to the actual
+deployed site is www.smartLister.website
 
 ## Getting Started
 
 In order to run the front end development server on your local machine, you will need to first install all the required npm packages for the frontend.
 
-### `cd Client`
+### `cd client`
 
 ### `npm install`
 
-## Available Scripts
-
-In the project directory, you can run:
+After installing all the required frontend packages, you can start the frontend server on port :3000 or
+the next available port.
 
 ### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Next you will need to run the back end development server on your local machine, you will need to first
+install all the required npm packages for the backend node js express server.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### `cd server`
 
-### `npm run build`
+### `npm install`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+After installing all the required backend packages, you can start the backend server on port :3001.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### `npm run server`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+After that you're all set!
 
-### `npm run eject`
+## Built With
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+React Js
+Styled Components
+Node Js
+Express
+Mysql
+Aws s3
+
+## Contributors
+
+Isral Hadero
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details
