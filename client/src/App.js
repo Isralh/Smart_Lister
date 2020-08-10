@@ -9,8 +9,9 @@ import { ProtectedRoute } from './Components/Authentication/ProtectedRoute'
 import MyListing from './Components/User/Sections/MyListing/MyListing/MyListing'
 import NotFound from './Components/PageNotFound/NotFound'
 import ServerError from './Components/Server_Error/ServerError'
-// import GlobalStyle from './Components/GlobalStyle/GlobalStyle'
-// global styling and wrap our app component with it
+
+/* global styling and wrap our app component with it */
+
 const GlobalStyle = createGlobalStyle`
 body{ padding: 0px;
      margin:0px;
