@@ -52,9 +52,9 @@ const MyListing = () => {
       try {
         if (propertyData.status === 200) {
           setProperty(propertyData.data.data)
-          setLoading(prev => { return { ...prev, status: false } })
+          setLoading(prev => ({ ...prev, status: false }))
         } else if (propertyData.status === 204) {
-          setProperty(propertyData.data.data)
+          setLoading(prev => ({ ...prev, status: false }))
         }
       } catch (e) {
         history.push('/500')
