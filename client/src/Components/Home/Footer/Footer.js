@@ -10,7 +10,7 @@ const Footer = ({ handleChange, handleSubscription }) => {
     <SectionWrapper>
       <AboutCompanyWrapper>
         <CompanyInfoWrapper>
-          <h1>THE SMITH GROUP</h1>
+          <h1>SmartLister</h1>
           <p>562 Stanley Avenue</p>
           <p>King of Prussia, PA 19406</p>
           <p>+1 717 342 0012</p>
@@ -38,7 +38,7 @@ const Footer = ({ handleChange, handleSubscription }) => {
         </Form>
       </UpdatesWrapper>
       <CopyrightWrapper>
-        <p>Copyright © 2020 The Smith Group</p>
+        <p>Copyright © 2020 SmartLister</p>
       </CopyrightWrapper>
     </SectionWrapper>
   )
