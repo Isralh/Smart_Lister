@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## SmartLister
+
+SmartLister is a web platform for property sellers who want to avoid real estate agents and directly market their property to potential buyers. The site lets property sellers post ads to potential buyers about their property with options to upload unlimited images and google maps geocoding. An important feature implemented in this platform using nodemailer is email alerts sent to the property lister whenever a potential buyer inquires about their property. User's of the platform also have the ability to add and delete properties they're closely following to their favorites list and check their status.
 
 ## Available Scripts
 
