@@ -53,6 +53,8 @@ const MyListing = () => {
         if (propertyData.status === 200) {
           setProperty(propertyData.data.data)
           setLoading(prev => { return { ...prev, status: false } })
+        } else if (propertyData.status === 204) {
+          setProperty(propertyData.data.data)
         }
       } catch (e) {
         history.push('/500')
@@ -61,9 +63,6 @@ const MyListing = () => {
     getUserProperty()
   }, [])
 
-  useEffect(() => {
-    console.log(property)
-  }, [property])
   const deleteProperty = async (property) => {
     const propertyId = property.id
     const propertyData = await Axios.delete(`https://smart-lister.work/api/delete/property/${propertyId}`)

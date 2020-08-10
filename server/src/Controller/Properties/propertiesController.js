@@ -92,6 +92,7 @@ exports.getPropertyByUserId = async (req, res) => {
   })
   try {
     if (userProperty) return res.status(200).send({ data: userProperty, message: 'Successfully found property' })
+    if (!userProperty) return res.status(204).send({ message: 'User doesnt have listing' })
   } catch (e) {
     return res.status(500).send({ message: 'Server Error' })
   }
