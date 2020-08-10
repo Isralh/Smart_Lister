@@ -1,6 +1,14 @@
 ## SmartLister
 
-SmartLister is a web platform for property sellers who want to avoid real estate agents and directly market their property to potential buyers. The site lets property sellers post ads to potential buyers about their property with options to upload unlimited images and google maps geocoding. An important feature implemented in this platform using nodemailer is email alerts sent to the property lister whenever a potential buyer inquires about their property. User's of the platform also have the ability to add and delete properties they're closely following to their favorites list and check their status.
+SmartLister is a web app for property sellers who want to avoid real estate agents and directly market their property to potential buyers. The site lets property sellers post ads to potential buyers about their property with options to upload unlimited images and google maps geocoding. An important feature implemented in this platform using nodemailer is email alerts sent to the property lister whenever a potential buyer inquires about their property. User's of the app also have the ability to add and delete properties they're closely following to their favorites list and check their status.
+
+## Getting Started
+
+In order to run the front end development server on your local machine, you will need to first install all the required npm packages for the frontend.
+
+### `cd Client`
+
+### `npm install`
 
 ## Available Scripts
 
