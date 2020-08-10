@@ -53,7 +53,7 @@ const MyListing = () => {
         if (propertyData.status === 200) {
           setProperty(propertyData.data.data)
           setLoading(prev => ({ ...prev, status: false }))
-        } else if (propertyData.status === 204) {
+        } else {
           setLoading(prev => ({ ...prev, status: false }))
         }
       } catch (e) {
