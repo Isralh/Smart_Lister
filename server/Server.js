@@ -7,12 +7,13 @@ const users = require('./src/Router/Users/Users')
 const favorties = require('./src/Router/Favorties/Favorties')
 const emails = require('./src/Router/SendEmail/sendEmail')
 const newsLetters = require('./src/Router/NewsLetters/NewsLetter')
+require('dotenv').config()
+
 app.use(express.json())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
 
-// routers
 app.use('/api', properties)
 app.use('/api', users)
 app.use('/api', favorties)

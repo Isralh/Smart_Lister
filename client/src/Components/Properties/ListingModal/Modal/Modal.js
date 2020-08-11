@@ -62,7 +62,8 @@ export default function Modal ({
   const userFavorite = async () => {
     const user = userInfo()
     if (user !== 'user not logged in') {
-      const postData = await axios.post('https://smart-lister.work/api/post/favoriteProperties', [{ data: propertyData, userInfo: user }])
+      const postData = await axios.post('https://smart-lister.work/api/post/favoriteProperties',
+        [{ data: propertyData, userInfo: user }], { headers: { Authorization: `Bearer ${token}` } })
       try {
         if (postData.status === 200) {
           window.alert('Property already exists in favorites')

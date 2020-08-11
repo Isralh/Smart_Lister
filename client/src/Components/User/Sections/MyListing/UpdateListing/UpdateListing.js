@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 const UpdateListing = ({ viewForm, handleCancel }) => {
+  const token = window.localStorage.getItem('token')
   const currentListing = useContext(ListingContext)
   const [index, setIndex] = useState(0)
   const [propertyImages, setPropertyImages] = useState([])
@@ -60,7 +61,8 @@ const UpdateListing = ({ viewForm, handleCancel }) => {
       for (let i = 0; i < selectedFiles.length; i++) {
         fileData.append('images', selectedFiles[i], selectedFiles[i].name)
       }
-      const downloadUrl = await axios.post('https://smart-lister.work/api/post/propertyImages', fileData)
+      const downloadUrl = await axios.post('https://smart-lister.work/api/post/propertyImages', fileData,
+        { headers: { Authorization: `Bearer ${token}` } })
       try {
         if (downloadUrl.status === 201) {
           const awsImageUrl = downloadUrl.data
@@ -82,7 +84,8 @@ const UpdateListing = ({ viewForm, handleCancel }) => {
   // onSubmit event to handle the submission of the form data to aws and our backend
   const submitSecondForm = async (e) => {
     e.preventDefault()
-    const updateProperty = await axios.put(`https://smart-lister.work/api/update/property/${formValues.id}`, formValues)
+    const updateProperty = await axios.put(`https://smart-lister.work/api/update/property/${formValues.id}`, formValues,
+      { headers: { Authorization: `Bearer ${token}` } })
 
     try {
       if (updateProperty.status === 200) {

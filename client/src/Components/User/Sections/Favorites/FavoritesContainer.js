@@ -20,8 +20,8 @@ const SavedSearchContainer = () => {
   const history = useHistory()
   useEffect(() => {
     const getFavorites = async () => {
-      const propertyInfo = await axios.get(`https://smart-lister.work/api/get/favorites/${userId}`)
-
+      const propertyInfo = await axios.get(`https://smart-lister.work/api/get/favorites/${userId}`,
+        { headers: { Authorization: `Bearer ${token}` } })
       try {
         if (propertyInfo.status === 200) {
           setProperty(propertyInfo.data.data)
@@ -43,7 +43,8 @@ const SavedSearchContainer = () => {
       if (deletedProperty !== undefined) {
         const propertyId = deletedProperty.id
         const deleteData = { property: propertyId, user: userId }
-        const response = await axios.post('https://smart-lister.work/api/delete/favoriteProperties', deleteData)
+        const response = await axios.post('https://smart-lister.work/api/delete/favoriteProperties',
+          deleteData, { headers: { Authorization: `Bearer ${token}` } })
         try {
           if (response.status === 200) {
             const newFavoriteList = property.filter(properties => properties !== deletedProperty)
